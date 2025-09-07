@@ -1,0 +1,223 @@
+\section{2.A Outer Measure on R}
+
+\begin{problem}[1]\label{2.A.1}
+    证明：对于任意的\(A,B \subseteq \mathbb{R}\)满足\(\abs*{B}=0\)，\(\abs*{A \cup B}=\abs*{A}\).
+\end{problem}
+
+\begin{proof}
+    由外测度的次可加性，有\(\abs*{A \cup B} \leq \abs*{A}+\abs*{B}=\abs*{A}\).
+
+    由外测度的单调性，有\(A \cup B \supseteq A, \abs*{A \cup B} \geq \abs*{A}\).于是\(\abs*{A \cup B}=\abs*{A}\).
+\end{proof}
+
+\begin{problem}[2]\label{2.A.2}
+    设\(A \subseteq \mathbb{R}, t \in \mathbb{R}\).令\(tA=\{ta:a \in A\}\).求证：\(\abs*{tA}=\abs*{t}\abs*{A}\).
+\end{problem}
+
+\begin{proof}
+    设\(\{I_k\}\)是\(A\)的开覆盖序列，那么\(\{tI_k\}\)是\(tA\)的开覆盖序列.
+
+    对于任意的开区间\(I\)，有\(\abs*{tI}=\abs*{t}\abs*{I}\)，若\(t \ne 0\)，则\(\abs*{tA} \leq \sum_{k=1}^\infty \ell(tI_k)=\abs*{t} \sum_{k=1}^\infty \ell(I_k)\).
+
+    取下确界，于是\(\abs*{tA} \leq \abs*{t}\abs*{A}\).同理\(\abs*{A}=\abs*{(1/t)(tA)} \leq (1/t)\abs*{tA}\)，那么\(\abs*{tA}=\abs*{t}\abs*{A}\).
+
+    当\(t=0\)时，由于\(0 \cdot \infty=0\)，故\(\abs*{tA}=\abs*{t}\abs*{A}=0\)，证毕.
+\end{proof}
+
+\begin{problem}[3]\label{2.A.3}
+    证明：对于任意的\(A,B \subseteq \mathbb{R}\)满足\(\abs*{A}<\infty\)，\(\abs*{B \setminus A} \geq \abs*{B}-\abs*{A}\).
+\end{problem}
+
+\begin{proof}
+    由于\(B=(B \cap A) \cup (B \setminus A)\)，根据外测度的次可加性，
+    
+    有\(\abs*{B}=\abs*{(B \cap A) \cup (B \setminus A)} \leq \abs*{B \setminus A}+\abs*{B \cap A} \leq \abs*{B \setminus A}+\abs*{A}\).
+\end{proof}
+
+\begin{comment}
+\begin{problem}[5]\label{2.A.5}
+    设\(\mathcal{A}\)是\(\mathbb{R}\)的闭子集集合，满足\(\bigcap_{F \in \mathcal{A}}F=\varnothing\).
+
+    证明：若\(\mathcal{A}\)包含至少一个紧集，那么存在\(F_1, \dots, F_n \in \mathcal{A}\)使得\(\bigcap_{i=1}^n F_i=\varnothing\).
+\end{problem}
+
+\begin{proof}
+    设紧集为\(K\)，那么\(K \cap \bigcap_{F \in \mathcal{A}}F=\varnothing\)，也即\(K \subset (\bigcap_{F \in \mathcal{A}}F)^c=\bigcup_{F \in \mathcal{A}}F^c\).
+
+    于是\(\bigcup_{F \in \mathcal{A}}F^c\)构成了\(K\)的开覆盖序列，那么\(K\)拥有一组有限子覆盖\(\bigcup_{i=1}^n F_i^c\).
+
+    得到\(K \subset \bigcup_{i=1}^n F_i^c=(\bigcap_{i=1}^n F_i)^c\)，即\(K \cap \bigcap_{i=1}^n F_i=\varnothing\).
+\end{proof}
+\end{comment}
+
+\begin{comment}
+    \begin{problem}[7]\label{2.A.7}
+        证明：若\(I_1, \dots, I_n\)是互不相交的开区间，那么\(\abs*{\bigcup_{k=1}^n I_k}=\sum_{k=1}^n \ell(I_k)\).
+    \end{problem}
+
+    \begin{proof}
+        对于\(n=1\)，情况显然成立.现设\(\abs*{\bigcup_{k=1}^{n-1} I_k}=\sum_{k=1}^{n-1} \ell(I_k)\).
+
+        设\(I_n=(a_n,b_n)\).若\(\ell(I_n)=\infty\)，那么\(\abs*{\bigcup_{k=1}^n I_k}=\sum_{k=1}^n \ell(I_k)=\infty\)，故设\(\ell(I_n)<\infty\).
+
+        由于\(\bigcup_{k=1}^n I_k=\bigcup_{k=1}^{n-1} I_k \cup I_n\)，故\(\abs*{\bigcup_{k=1}^n I_k} \leq \abs*{\bigcup_{k=1}^{n-1} I_k}+\ell(I_n)=\sum_{k=1}^n \ell(I_k)\).
+
+        设\(\bigcup_{k=1}^n I_k\)的开覆盖为\(\bigcup_{i=1}^\infty G_i\).令\(G_i^1=G_i \cap (-\infty,a_n), G_i^2=G_i \cap (a_n,b_n), G_i^3=G_i \cap (b_n,\infty)\).
+
+        所以\(G_1^1, G_1^3, G_2^1, G_2^3, \dots\)和\(G_1^2, G_2^2, \dots\)分别是\(\bigcup_{k=1}^{n-1} I_k\)和\(I_n\)的开覆盖序列.
+        \begin{align*}
+            \sum_{i=1}^\infty \ell(G_i)=\sum_{i=1}^\infty (\ell(G_i^1)+\ell(G_i^3))+\sum_{i=1}^\infty \ell(G_i^2)
+            \geq \abs*{\bigcup_{k=1}^{n-1} I_k}+\abs*{I_n}
+        \end{align*}
+        取下确界得\(\sum_{k=1}^n \ell(I_k) \geq \abs*{\bigcup_{k=1}^{n-1} I_k}+\ell(I_n)\)，即\(\abs*{\bigcup_{k=1}^n I_k}=\sum_{k=1}^n \ell(I_k)\).
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+    \begin{problem}
+        证明：\(\abs*{(a,b) \cup (c,d)}=(b-a)+(d-c)\)与\((a,b) \cap (c,d)=\varnothing\)等价.
+    \end{problem}
+
+    \begin{proof}
+        不失一般性，设\(a \leq c\)，那么\((a,b) \cap (c,d)=\varnothing\)等价于\(b \leq c\).
+
+        令\(A=[b,c], B=(a,d)\)，则\(\abs*{(a,b) \cup (c,d)}=\abs*{B \setminus A} \geq \abs*{B}-\abs*{A}=(d-a)+(b-c)\).
+
+        结合\(\abs*{(a,b) \cup (c,d)} \leq (b-a)+(d-c)\)，得到\(\abs*{(a,b) \cup (c,d)}=(b-a)+(d-c)\).
+
+        另一方面，若\((a,b) \cap (c,d) \ne \varnothing\)，也即\(b>c\)，则\((a,b) \cup (c,d)=(a, \max(b,d))\).
+
+        若\(b \geq d\)，则\((b-a)+(d-c)=\abs*{(a,b) \cup (c,d)}=\abs*{(a,b)}=b-a\)，于是\(\abs*{(c,d)}=0\)，矛盾；
+
+        若\(b \leq d\)，则\((b-a)+(d-c)=\abs*{(a,b) \cup (c,d)}=\abs*{(a,d)}=d-a\)，于是\(\abs*{(c,b)}=0\)，矛盾.
+
+        所以\((a,b) \cap (c,d) \ne \varnothing\)的假设不成立，必要性得证.
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+\begin{problem}[8]\label{2.A.8}
+    证明：若\(A \subseteq \mathbb{R}, t>0\)，那么\(\abs*{A}=\abs*{A \cap (-t,t)}+\abs*{A \cap (-t,t)^c}\).
+\end{problem}
+
+\begin{proof}
+    由于\(A=(A \cap (-t,t)) \cup (A \cap (-t,t)^c)\)，因而有\(\abs*{A} \leq \abs*{A \cap (-t,t)}+\abs*{A \cap (-t,t)^c}\).
+
+    设\(A\)的开覆盖为\(\bigcup_{k=1}^\infty I_k\).令\(I_k^1=I_k \cap (-\infty,-t), I_k^2=I_k \cap (-t,t), I_k^3=I_k \cap (t,\infty)\).
+
+    所以\(I_1^1, I_1^3, I_2^1, I_2^3, \dots\)和\(I_1^2, I_2^2, \dots\)分别是\(A \cap (-t,t)^c\)和\(A \cap (-t,t)\)的开覆盖序列.
+    \begin{align*}
+        \sum_{k=1}^\infty \ell(I_k)=\sum_{k=1}^\infty (\ell(I_k^1)+\ell(I_k^3))+\sum_{k=1}^\infty \ell(I_k^2)
+        \geq \abs*{A \cap (-t,t)}+\abs*{A \cap (-t,t)^c}
+    \end{align*}
+    取下确界得\(\abs*{A} \geq \abs*{A \cap (-t,t)}+\abs*{A \cap (-t,t)^c}\)，得\(\abs*{A}=\abs*{A \cap (-t,t)}+\abs*{A \cap (-t,t)^c}\).
+\end{proof}
+\end{comment}
+
+\begin{problem}[9]\label{2.A.9}
+    证明：\(\abs*{A}=\lim_{t \to \infty}\abs*{A \cap (-t,t)}\).
+\end{problem}
+
+\begin{proof}
+    令\(f: [0, \infty] \to [0, \infty]\)为\(f(t)=\abs*{A \cap (-t,t)}\)，由外测度的单调性得\(f\)是增函数.
+
+    同时\(f(t)=\abs*{A}-\abs*{A \cap (-t,t)^c} \leq \abs*{A}\)，故\(f\)有上界，下证\(\sup f=\abs*{A}\).
+
+    由\(f\)的单调性，\(\lim_{t \to \infty} f(t)=\sup f\)，同时\(\sup f=\abs*{\bigcup_{t=1}^\infty A \cap (-t,t)}=\abs*{A}\).
+
+    因此\(\abs*{A}=\sup f=\lim_{t \to \infty}\abs*{A \cap (-t,t)}\)，证毕.
+\end{proof}
+
+\newpage
+
+\begin{problem}[11]\label{2.A.11}
+    设开集\(G=\bigcup_{k=1}^\infty I_k\)，其中\(\{I_k\}_{k \in \mathbb{Z}^+}\)是互不相交的开区间序列，
+    
+    则有\(\abs*{G}=\sum_{k=1}^\infty \ell(I_k)\).
+\end{problem}
+
+\begin{proof}
+    由于\(\{I_k\}_{k \in \mathbb{Z}^+}\)本身是\(G\)的可数开覆盖，故\(\sum_{k=1}^\infty \ell(I_k) \geq \abs*{G}\).
+
+    取\(G\)的任意开区间覆盖\(\mathcal{S}=\{J_j\}_{j \in \mathbb{Z}^+}\)，定义\(J_i \sim J_j\)当且仅当\(\exists J_1, \dots, J_m \in \mathcal{S}\)，
+
+    使得\(J_p=J_1, J_q=J_m, \forall p=1, \dots, m-1, J_p \cap J_{p+1} \ne \varnothing\).
+
+    定义等价类\(\mathcal{U}_j=\{J_i \in \mathcal{S}: J_i \sim J_j\}\)，有\([J_j]=\bigcup_{J_i \in \mathcal{U}_j} J_i, \ell([J_j]) \leq \sum_{J_i \in \mathcal{U}_j} \ell(J_i)\).
+
+    {\kaishu 定义\(\mathcal{A}\)是所有等价类的任一代表元组成的集合，令\([J_\alpha], [J_\beta]\)为其元素.}
+    
+    因此\(\bigcup_{j=1}^\infty J_j=\bigcup_{[J_\alpha] \in \mathcal{A}} [J_\alpha]\)且\(\sum_{[J_\alpha] \in \mathcal{A}} \ell([J_\alpha]) \leq \sum_{j=1}^\infty \ell(J_j)\).若\([J_\alpha] \ne [J_\beta]\)，则\([J_\alpha] \cap [J_\beta]=\varnothing\).
+    
+    因而\(\forall k \in \mathbb{Z}^+\)不可能同时有\(I_k \cap [J_\alpha] \ne \varnothing, I_k \cap [J_\beta] \ne \varnothing, \alpha \ne \beta\)，即\(\exists [J_\alpha] \in \mathcal{A}, I_k \subseteq [J_\alpha]\).
+
+    定义\(\mathcal{J}_\alpha=\{I_k \in \mathbb{Z}^+: I_k \subseteq [J_\alpha]\}\)，从而\(\bigcup_{k=1}^\infty I_k=\bigcup_{[J_\alpha] \in \mathcal{A}} \bigcup_{I_k \in [\mathcal{J}_\alpha]} I_k \subseteq \bigcup_{[J_\alpha] \in \mathcal{A}} [J_\alpha]\).
+
+    因此\(\sum_{k=1}^\infty \ell(I_k) \leq \sum_{[J_\alpha] \in \mathcal{A}} \ell([J_\alpha]) \leq \sum_{j=1}^\infty \ell(J_j)\)，故\(\sum_{k=1}^\infty \ell(I_k) \leq \abs*{G}, \abs*{G}=\sum_{k=1}^\infty \ell(I_k)\).
+
+    {\kaishu 证明分为两步.首先将任意选取的开覆盖按照最大连通分支合并，按照可数次可加性得到第一个不等式；随后由于\(G\)的任意开区间均包含于这些开覆盖，于是它们只能属于其中一个分支，否则开区间将是分离集.将\(G\)的开区间分别归入所有等价类，得到第二个不等式.}
+\end{proof}
+
+\begin{lemma}\label{2.A.11.1}
+    设\(G \subseteq \mathbb{R}\)是开集，则\(\forall E \in 2^\mathbb{R}, \abs*{E}=\inf\{\abs*{G}: G \supseteq E\}\).
+\end{lemma}
+
+\begin{proof}
+    考虑\(E\)的任意开区间覆盖\(\{I_k\}_{k \in \mathbb{Z}^+}\)，令\(G=\bigcup_{k=1}^\infty I_k\)，则\(G \supseteq E\)是开集.定义
+    \begin{align*}
+        \mathcal{S}_1=\left\{\sum_{k=1}^\infty \ell(I_k): \bigcup_{k=1}^\infty I_k \supseteq E\right\},
+        \mathcal{S}_2=\left\{\abs*{G}: G \supseteq E\right\}.
+    \end{align*}
+    由于\(\forall \{I_k\}_{k \in \mathbb{Z}^+}, \abs*{G} \leq \sum_{k=1}^\infty \ell(I_k)\)，故\(\forall s_1 \in \mathcal{S}_1, \exists s_2 \in \mathcal{S}_2, s_2 \leq s_1\)，即\(\inf \mathcal{S}_2 \leq \inf \mathcal{S}_1\).
+
+    同时由于\(\forall G \supseteq E, G=\bigcup_{k=1}^\infty I_k \supseteq E, \mathcal{S}_2 \ni \abs*{G}=\sum_{k=1}^\infty \ell(I_k) \in \mathcal{S}_1\).
+
+    因此\(\mathcal{S}_2 \subseteq \mathcal{S}_1, \inf \mathcal{S}_2 \geq \inf \mathcal{S}_1\)，即\(\inf \mathcal{S}_1=\inf \mathcal{S}_2\)，得到\(\abs*{E}=\inf\{\abs*{G}: G \supseteq E\}\).
+
+    {\kaishu 一方面，对于任意一个开覆盖，按最大联通分支合并后总能得到一个测度更小的开集，从而前者的下确界大于后者；另一方面后者作为一种特殊的开覆盖是前者的子集，故后者的下确界大于前者.它表明开集是一种最有效率的覆盖方式.}
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[10]\label{2.A.10}
+        证明：\(\abs*{[0,1] \setminus \mathbb{Q}}=1\).
+    \end{problem}
+
+    \begin{proof}
+        \(\abs*{[0,1] \setminus \mathbb{Q}} \geq \abs*{[0,1]}-\abs*{\mathbb{Q}}=\abs*{[0,1]}=1\)且\(\abs*{[0,1] \setminus \mathbb{Q}} \leq \abs*{[0,1]}=1\)，
+        得\(\abs*{[0,1] \setminus \mathbb{Q}}=1\).
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+\begin{problem}[11]\label{2.A.11}
+    证明：若\(I_1, I_2, \dots\)是互不相交的开区间序列，那么\(\abs*{\bigcup_{k=1}^\infty I_k}=\sum_{k=1}^\infty \ell(I_k)\).
+\end{problem}
+
+\begin{proof}
+    若\(\abs*{\bigcup_{k=1}^\infty I_k}=\infty\)，则\(\abs*{\bigcup_{k=1}^\infty I_k}=\sum_{k=1}^\infty \ell(I_k)=\infty\)，故设\(\abs*{\bigcup_{k=1}^\infty I_k}<\infty\).
+    
+    据有限可加性，得\(\forall n \in \mathbb{N}, \abs*{\bigcup_{k=1}^n I_k}=\sum_{k=1}^n \ell(I_k)\).定义\(c_n=\sum_{k=1}^n \ell(I_k)=\abs*{\bigcup_{k=1}^n I_k}\).
+    
+    由于\(c_n=\abs*{\bigcup_{k=1}^n I_k} \leq \abs*{\bigcup_{k=1}^\infty I_k}\)，故\(\{c_n\}\)单调有界收敛于\(c\).因此\(c=\sum_{k=1}^\infty \ell(I_k) \leq \abs*{\bigcup_{k=1}^\infty I_k}\).
+    
+    结合\(\abs*{\bigcup_{k=1}^\infty I_k} \leq \sum_{k=1}^\infty \ell(I_k)\)，有\(\abs*{\bigcup_{k=1}^\infty I_k}=\sum_{k=1}^\infty \ell(I_k)\).
+\end{proof}
+\end{comment}
+
+\begin{comment}
+    \begin{problem}[12]\label{2.A.12}
+        设\(r_1, r_2, \dots\)是有理数序列，令\(F=(\bigcup_{k=1}^\infty (r_k-\frac{1}{2^k}, r_k+\frac{1}{2^k}))^c\).
+
+        a.证明\(F\)是闭集. \quad b.证明包含于\(F\)的区间最多含一个元素. \quad c.证明\(\abs*{F}=\infty\).
+    \end{problem}
+
+    \begin{proof}[证明a]
+        {\kaishu 开集对可数并封闭且闭集是开集的补集.}
+        
+        于是\(\bigcup_{k=1}^\infty (r_k-\frac{1}{2^k}, r_k+\frac{1}{2^k})\)是开集，\((\bigcup_{k=1}^\infty (r_k-\frac{1}{2^k}, r_k+\frac{1}{2^k}))^c\)是闭集.
+    \end{proof}
+
+    \begin{proof}[证明b]
+        设区间\((a,b) \subset F\)，则存在\(r_k \in (a,b)\)，从而\((r_k-\frac{1}{2^k}, r_k+\frac{1}{2^k}) \cap F \ne \varnothing\)，矛盾.
+    \end{proof}
+\end{comment}

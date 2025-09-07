@@ -1,0 +1,54 @@
+{
+    "folders": [{"path": "."}],
+    "settings": {
+        "latex-workshop.latex.autoBuild.run": "never",
+        "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/temp",
+        "latex-workshop.latex.rootFile.useSubFile": false,
+        "latex-workshop.latex.rootFile.doNotPrompt": false,
+        "latex-workshop.latex.tools": [
+            {
+                "name": "lualatex",
+                "command": "lualatex",
+                "args": [
+                    "--output-directory=%WORKSPACE_FOLDER%/temp",
+                    "--interaction=nonstopmode",
+                    "--synctex=1",
+                    "%DOC%"
+                ]
+            },
+            {
+                "name": "latexmk",
+                "command": "latexmk",
+                "args": [
+                    "-lualatex",
+                    "-synctex=1",
+                    "-interaction=nonstopmode", 
+                    "-file-line-error",
+                    "-outdir=%WORKSPACE_FOLDER%/temp",
+                    "%DOCFILE%"
+                ]
+            }
+        ],
+        "latex-workshop.latex.recipes": [
+            {
+                "name": "lualatex (Linux)",
+                "tools": ["lualatex"]
+            },
+            {
+                "name": "latexmk (Linux)",
+                "tools": ["latexmk"]
+            }
+        ],
+        "latex-workshop.latex.clean.fileTypes": [
+            "*.aux", "*.bbl", "*.blg", "*.idx", 
+            "*.ind", "*.lof", "*.lot", "*.out", 
+            "*.toc", "*.acn", "*.acr", "*.alg",
+            "*.glg", "*.glo", "*.gls", "*.ist",
+            "*.fls", "*.log", "*.fdb_latexmk"
+        ],
+        "latex-workshop.hover.preview.mathjax.extensions": [
+            "mathtools",
+            "physics",
+        ]
+    }
+}

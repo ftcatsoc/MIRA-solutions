@@ -1,0 +1,36 @@
+\section{4.A Hardy-Littlewood Maximal Function}
+
+\begin{theorem}[4.1]\label{4.1}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(h \in \mathcal{L}^1(\mu)\)，
+    
+    则\(\forall c>0, \mu(\{x \in X: \abs*{h(x)} \geq c\}) \leq \norm*{h}_1/c\).
+\end{theorem}
+
+\begin{proof}
+    设\(c>0\).则
+    \begin{align*}
+        \mu(\{x \in X: \abs*{h(x)} \geq c\})=\frac{1}{c}\int_{\mu(\{x \in X: \abs*{h(x)} \geq c\})} c d\mu
+        \leq \frac{1}{c}\int_{\mu(\{x \in X: \abs*{h(x)} \geq c\})} \abs*{h} d\mu
+        \leq \frac{1}{c} \norm*{h}_1
+    \end{align*}
+    证毕.
+\end{proof}
+
+\begin{theorem}[4.8]\label{4.8}
+    设\(h \in \mathcal{L}^1(\mathbb{R})\)，则\(\forall c>0, \abs*(\{b \in \mathbb{R}: h^*(b)>c\}) \leq 3\norm*{h}_1/c\).
+\end{theorem}
+
+\begin{proof}
+    设\(F \subseteq \{b \in \mathbb{R}: h^*(b)>c\}\)是有界闭集，下证\(\abs*{F} \leq 3\int \abs*{h}/c\).
+
+    设\(b \in F\)，则\(\exists t_b \in \mathbb{R}, \int_{B(t,t_b)}\abs*{h}>c\abs*{B(b,t_b)}\)，令\(B(b_1,t_{b_1}), B(b_2,t_{b_2}), \dots\)为\(F\)的可数开覆盖.
+
+    由\(F\)为有界闭集，抽取\(I_1, \dots, I_n\)为\(F\)的有限子覆盖.
+
+    由\textit{Vitali}覆盖引理，存在互不相交的子序列\(I_{k_1}, \dots, I_{k_m}\)使得\(\bigcup_{k=1}^n I_k \subseteq \bigcup_{r=1}^m (3*I_{k_r})\).
+    \begin{align*}
+        \abs*{F} \leq \abs*{\bigcup_{k=1}^n I_k} \leq \abs*{\bigcup_{r=1}^m (3*I_{k_r})}=3\sum_{r=1}^m \abs*{I_{k_r}}
+        <\frac{3}{c} \sum_{r=1}^m \int_{I_{k_r}} \abs*{h} \leq \frac{3}{c} \int \abs*{h}=\frac{3}{c} \norm*{h}_1
+    \end{align*}
+    其中由于\(\{I_{k_r}\}\)互不相交且\(\int_{B(t,t_b)}\abs*{h}/c>\abs*{B(b,t_b)}\)，第三不等式成立.
+\end{proof}
