@@ -1,0 +1,44 @@
+\section{4.B Derivatives of Integrals}
+
+\begin{theorem}[4.10]\label{4.10}
+    设\(f \in \mathcal{L}^1(\mathbb{R})\)，则几乎\(\forall b \in \mathbb{R}, \lim_{t \downarrow 0} 1/2t \int_{b-t}^{b+t} \abs*{f-f(b)}=0\)成立.
+\end{theorem}
+
+\begin{proof}
+    先看\(f\)是{\kaishu 连续函数}的情况.由于
+    \begin{align*}
+        \frac{1}{2t} \int_{b-t}^{b+t} \abs*{f-f(b)} \leq \sup_{(b-t,b+t)} \abs*{f-f(b)}
+    \end{align*}
+    显然\(\lim_{t \downarrow 0} \sup_{(b-t,b+t)} \abs*{f-f(b)}=0\)，故得证.
+
+    现在考虑{\kaishu 一般情况}.根据定理3.48，存在连续函数序列\(\{h_k\}_{k \in \mathbb{Z}^+}, h_k \in \mathcal{L}^1(\mathbb{R})\)，
+    
+    满足\(\forall \varepsilon>0, f \in \mathcal{L}^1(\mathbb{R}), \norm*{f-h}_1<\varepsilon/k 2^k\).
+
+    令\(B_k^1=\{b \in \mathbb{R}: \abs*{f(b)-h_k(b)} \leq 1/k\}, B_k^2=\{b \in \mathbb{R}: (f-h_k)^*(b) \leq 1/k\}, B_k=B_k^1 \cap B_k^2\).
+    
+    根据\cref{4.1}和\cref{4.8}，有
+    \begin{align*}
+        &\abs*{\mathbb{R} \setminus B_k^1}=\abs*{\{b \in \mathbb{R}: \abs*{f(b)-h_k(b)}>1/k\}}<\norm*{f-h_k}_1/k \leq \varepsilon/2^k \\
+        &\abs*{\mathbb{R} \setminus B_k^2}=\abs*{\{b \in \mathbb{R}: (f-h_k)^*(b)>1/k\}}<3\norm*{f-h_k}_1/k \leq 3\varepsilon/2^k
+    \end{align*}
+    因此\(\abs*{\mathbb{R} \setminus B_k} \leq \abs*{\mathbb{R} \setminus B_k^1}+\abs*{\mathbb{R} \setminus B_k^2}<\varepsilon/2^{k-2}\)，令\(B=\bigcap_{k=1}^\infty B_k\).
+    \begin{align*}
+        \abs*{\mathbb{R} \setminus B}=\abs*{\bigcup_{k=1}^\infty \mathbb{R} \setminus B_k} 
+        \leq \sum_{k=1}^\infty \abs*{\mathbb{R} \setminus B_k}<\sum_{k=1}^\infty \frac{\varepsilon}{2^{k-2}}=4\varepsilon
+    \end{align*}
+    设\(\forall b \in B, t>0\).利用{\kaishu 连续函数近似}，有
+    \begin{align*}
+        \frac{1}{2t} \int_{b-t}^{b+t} \abs*{f-f(b)} &\leq \frac{1}{2t} \int_{b-t}^{b+t}(\abs*{f-h_k}+\abs*{h_k-h_k(b)}+\abs*{f(b)-h_k(b)}) \\
+        &\leq (f-h_k)^*(b)+\abs*{f(b)-h_k(b)}+\frac{1}{2t} \int_{b-t}^{b+t} \abs*{h_k-h_k(b)} 
+    \end{align*}
+    由于\(h_k\)的连续性，
+    \begin{align*}
+        \forall k \in \mathbb{Z}^+, \exists t_k>0, \frac{1}{2t_k} \int_{b-t_k}^{b+t_k} \abs*{h_k-h_k(b)} \leq \sup_{(b-t_k,b+t_k)} \abs*{f-f(b)}<\frac{1}{k}
+    \end{align*}
+    因此\(\forall k \in \mathbb{Z}^+, \exists t_k>0, 1/2t_k \int_{b-t_k}^{b+t_k} \abs*{f-f(b)}<3/k\).
+    \begin{align*}
+        \forall b \in B, \lim_{t \downarrow 0} \frac{1}{2t} \int_{b-t}^{b+t} \abs*{f-f(b)}=0
+    \end{align*}
+    对于\(\mathbb{R} \setminus B\)，由于\(\forall \varepsilon>0, \abs*{\mathbb{R} \setminus B}<4\varepsilon\)，故\(\abs*{\mathbb{R} \setminus B}=0\)，结论几乎处处成立.
+\end{proof}

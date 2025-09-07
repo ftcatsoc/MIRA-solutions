@@ -1,0 +1,514 @@
+\section{Basic Topology}
+
+\begin{theorem}\label{br2.30}
+    设\(Y \subseteq X\)，则\(E \subseteq Y\)是\(Y\)的开子集等价于存在\(X\)的开子集\(G\)使得\(E=Y \cap G\).
+\end{theorem}
+
+\begin{proof}
+    若\(E \subseteq Y\)是\(Y\)的开子集，则\(\forall p \in E, \exists r_p>0, \forall q \in Y, d(p,q)<r_p, q \in E\).
+
+    令\(G=\bigcup_{p \in E} B(p,r_p)\)，从而\(G\)是开集，下证\(E=Y \cap G\).
+
+    由于\(\forall p \in E, p \in B(p,r_p) \subseteq G, p \in E \subseteq Y\)，故\(E \subseteq Y \cap G\).
+
+    由于\(\forall q \in B(p,r_p), q \in Y, d(p,q)<r_p, q \in E\)，则\(\forall p \in E, B(p,r_p) \cap Y \subseteq E\)，
+
+    即\(\bigcup_{p \in E} (B(p,r_p) \cap Y)=\bigcup_{p \in E} B(p,r_p) \cap Y=G \cap Y \subseteq E\)，充分性证毕.
+
+    若\(E=Y \cap G\)，则\(\forall p \in E, \exists r_p>0, \forall q \in Y, d(p,q)<r_p, q \in E\)，即\(E\)是\(Y\)的开子集，证毕.
+\end{proof}
+
+\begin{theorem}\label{br2.36}
+    若\(\{F_\alpha\}_{\mathcal{A}}\)是紧集族，且满足任意有限集\(\mathcal{S} \subseteq \mathcal{A}\)都有\(\bigcap_{\alpha \in \mathcal{S}} F_\alpha \ne \varnothing\)，则\(\bigcap_{\alpha \in \mathcal{A}} F_\alpha \ne \varnothing\).
+\end{theorem}
+
+\begin{proof}
+    设\(K \in \{F_\alpha\}_{\mathcal{A}}\).若\(K\)中不存在同时属于所有\(F_\alpha\)的点，则\(\{F_\alpha^c\}_{\mathcal{A}}\)是\(K\)的开覆盖.
+
+    由于\(K\)是紧集，可以抽取一组有限子覆盖，即存在有限集\(\mathcal{S} \subseteq \mathcal{A}\)使得\(K \subseteq \bigcup_{\alpha \in \mathcal{S}} F_\alpha^c\).
+
+    从而\(\bigcap_{\alpha \in \mathcal{S}} F_\alpha \subseteq K^c\)，即\(K \cap \bigcap_{\alpha \in \mathcal{S}} F_\alpha=\varnothing\)，与假设矛盾.
+\end{proof}
+
+\begin{comment}
+    \begin{theorem}\label{br2.37}
+        紧集\(K\)的无限子集\(E\)在\(K\)中必有极限点.
+    \end{theorem}
+
+    \begin{proof}
+        设\(E\)在\(K\)中没有极限点，故\(\forall x \in E, \exists r_x>0, B(x,r_x) \cap E=\{x\}\).
+
+        选择一个开集\(G\)满足\(K \setminus \bigcup_{x \in E} B(x,r_x) \subseteq G\)，从而\(\{B(x,r_x)\}_{x \in E}, G\)构成一组开覆盖.
+
+        由于\(\forall x \in E, \exists r_x>0, B(x,r_x) \cap E=\{x\}\)，故\(x_0 \notin \bigcup_{x \in E \setminus \{x_0\}} B(x,r_x) \cup G\).
+
+        因此\(K\)没有一个\(\{B(x,r_x)\}_{x \in E}, G\)的有限子覆盖，与\(K\)的紧性矛盾.
+    \end{proof}
+\end{comment}
+
+
+\begin{theorem}\label{br2.43}
+    若\(P \subseteq \mathbb{R}\)是非空完全集，那么\(P\)是不可数集.
+\end{theorem}
+
+\begin{proof}
+    设\(P\)是可数集，考虑\(x_1 \in P\)的邻域\(B(x_1,r_1)\)，下面{\kaishu 归纳地构造\(B(x_k,r_k)\)序列}.
+    
+    假设\(B(x_k,r_k)\)已经被构造.由\(x_k\)是\(P\)的极限点，故\(\exists x_{k+1} \in P, d(x_k,x_{k+1})<r_k\).
+
+    选取\(r_{k+1} \in (0,\min\{d(x_k,x_{k+1}), r-d(x_k,x_{k+1})\})\)，构造\(B(x_{k+1},r_{k+1})\).
+    
+    因此\(\overline{B}(x_{k+1},r_{k+1}) \subseteq B(x_k,r_k), x_n \notin \overline{B}(x_{k+1},r_{k+1})\).令\(F_k=B(x_k,r_k) \cap P\).
+
+    由于\(\forall k \in \mathbb{Z}^+, F_k \ne \varnothing, F_{k+1} \subseteq F_k\)，故\(\bigcap_{k=1}^\infty F_k \ne \varnothing\).
+
+    然而由于\(F_k \subseteq P\)且\(x_k \notin F_{k+1}\)，故\(\bigcap_{k=1}^\infty F_k=\varnothing\)，矛盾.
+\end{proof}
+
+\begin{problem}[2]\label{pb2.2}
+    设存在不全为零的整数\(a_0, \dots, a_n\)，且复数\(z\)满足\(\sum_{k=0}^n a_n z^{n-k}=0\).
+
+    这样的\(z\)被称为代数数.证明：所有代数数构成可数集.
+\end{problem}
+
+\begin{proof}
+    由于\(a_0, \dots, a_n\)不全为零，故\(\sum_{k=0}^n \abs*{a_k}>0\).固定次数\(n\)，设\(\sum_{k=0}^n \abs*{a_k}=N\).
+
+    对于固定的\(n, N \in \mathbb{Z}^+\)，只有有限个\(a_0, \dots, a_n\)的取值可能.记\(p_{n,N}, A_{n,N}\)为
+    \begin{align*}
+        p_{n,N}=\left\{p(z)=\sum_{k=0}^n a_k z^{n-k}: \sum_{k=0}^n \abs*{a_k}=N \right\},
+        A_{n,N}=\bigcup_{p \in p_{n,N}}\left\{z \in \mathbb{C}: p(z)=0\right\}
+    \end{align*}
+    对于任意的\(p \in p_{n,N}\)，最多只有\(n\)个复数\(z\)满足\(p(z)=0\)，因而\(p_{n,N}, A_{n,N}\)是有限集.
+
+    于是所有代数数的集合是\(\bigcup_{n=1}^\infty \bigcup_{N=1}^\infty A_{n,N}\)，证毕.
+\end{proof}
+
+\newpage
+
+\begin{problem}[12]\label{pb2.12}
+    设\(K=\{0\} \cup \{1/n: n \in \mathbb{Z}^+\}\).证明\(K\)是紧集.
+\end{problem}
+
+\begin{proof}
+    考虑\(K\)的可数开覆盖序列\(\{G_\alpha\}\)，从中挑出任一包含\(0\)的开集\(G_0\).
+
+    由\(0\)为\(G_0\)的内点，得\(\exists \delta>0, B(0,\delta) \subseteq G_0\)，故\(\exists N \in \mathbb{Z}^+, \forall n>N, 1/n<\delta\).
+
+    对于\(1, \dots, 1/N\)，分别抽取\(G_1, \dots, G_N\)包含之，故\(G_0, G_1, \dots, G_N\)是一个有限子覆盖.
+\end{proof}
+
+\begin{problem}[13]\label{pb2.13}
+    构造一个\((0,1)\)的可数开覆盖，但它没有有限子覆盖.
+\end{problem}
+
+\begin{proof}
+    令\(G_k=(1/k, 1-1/k), k=3, 4, \dots\)，则\(\{G_k\}_{k \in \mathbb{Z}^+, k \geq 3}\)是一个可数开覆盖.
+
+    抽取有限子列\(G_{k_1}, \dots, G_{k_n}\)，则令\(\max\{k_1, \dots, k_r\}=k_0\)，得到\(\bigcup_{r=1}^n G_{k_r}=G_{k_0} \subseteq (0,1)\).
+\end{proof}
+
+\begin{problem}[16]\label{pb2.16}
+    \(E=\{q \in \mathbb{Q}: q>0, q^2 \in (2,3)\}\).证明\(E\)在\(\mathbb{Q}\)中是有界闭集、开集但不是紧集.
+\end{problem}
+
+\begin{proof}
+    显然\(-2,2\)分别是\(E\)的下界和上界，故\(E\)是有界集.下证\(E\)是闭集.
+
+    假设存在\(q \in \mathbb{Q}\)使得\(q \notin E\)且存在\(q_1, q_2, \dots \in E\)满足\(\lim_{k \to \infty} q_k=q\).令
+    \begin{align*}
+        r(q)_1=\frac{q^2-2}{q+2}, r(q)_2=\frac{q^2-3}{q+3}, r(q)=\min\{r(q)_1, r(q)_2\}
+    \end{align*}
+    因此\(\forall k \in \mathbb{Z}^+, q_k \notin B(q,r(q))\)，故\(\lim_{k \to \infty} q_k \ne q\)，故\(E\)是闭集.
+
+    考虑\(\forall q \in E, \exists r(q)>0, B(q,r(q)) \subseteq E\)，故\(E\)是开集.
+
+    然而考虑开覆盖序列\(\{G_k\}_{k \in \mathbb{Z}^+}, G_k=(q_k,2)\).其中\(q_0=3/2, q_k=(2q_{k-1}+2)/(q_{k-1}+2)\).
+
+    显然\(E \subseteq \bigcup_{k=1}^\infty G_k\)，但是若抽取有限子列\(G_{k_1}, \dots, G_{k_n}\)，令\(\max\{k_1, \dots, k_r\}=k_0\)，
+
+    得到\(\bigcup_{r=1}^n G_{k_r}=G_{k_0}\)，而\(\exists q_{k_0+1} \notin G_{k_0}\)且\(q_{k_0+1} \in E\)，故\(E\)不是紧集.
+\end{proof}
+
+\begin{problem}[17]\label{pb2.17}
+    令\(E \subseteq [0,1]\)，其中所有实数的十进制展开只含\(4,7\).
+    
+    证明\(E\)在\([0,1]\)中不是稠密集，但却是紧集和完全集.
+\end{problem}
+
+\begin{proof}
+    显然\(\sup E=7/9<1\)，故\(1\)不是\(E\)中元素的极限点，故\(E\)不在\([0,1]\)中稠密.
+
+    显然\(E\)是有界集，下证\(E\)是闭集.设\(\forall x=0.d_1d_2\dots \in [0,1] \setminus E, d_n \ne 4, d_n \ne 7\).
+
+    显然选择\(r(n)=10^{-n-1}\)即可，\(B(x, 10^{-n-1}) \subseteq [0,1] \setminus E\)，即\(E\)的补集是开集.
+
+    设\(\forall \varepsilon>0, \exists n \in \mathbb{Z}^+, 10^{-n+1}<\varepsilon\).设\(x=0.d_1 \dots d_n \dots, x_n=0.d_1 \dots d_n' \dots\).
+
+    令\(d_n\)和\(d_n'\)分别取不同值，从而\(\abs*{x-x_n}<10^{-n+1}<\varepsilon\)，因此\(\{x_n\}_{n \in \mathbb{Z}^+}, x_n \in E\)收敛于\(x\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[19]\label{pb2.19}
+    a.设\(A,B\)是度量空间\(X\)的不交闭集，证明它们是分离的.
+
+    b.设\(A,B\)是度量空间\(X\)的不交开集，证明它们是分离的.
+
+    c.固定\(p \in X, \delta>0\).令\(A=\{q \in X: d(p,q)<\delta\}, B=\{q \in X: d(p,q)>\delta\}\).证明它们分离.
+
+    d.证明至少含有两个点的联通度量空间是不可数的.
+\end{problem}
+
+\begin{proof}[证明a]
+    显然\(\overline{A} \cap B=A \cap \overline{B}=A \cap B=\varnothing\)，即\(A,B\)是分离的.
+\end{proof}
+
+\begin{proof}[证明b]
+    设\(\exists a_1, a_2, \dots \in A\)使得\(\lim_{k \to \infty}a_k=a \in B\).由\(B\)为开集，设\(\exists r>0, B(a,r) \subseteq B\).
+
+    显然\(\exists n \in \mathbb{Z}^+, \forall k>n, a_k \in B(a,r) \subseteq A\)，与\(A \cap B=\varnothing\)矛盾.
+\end{proof}
+
+\begin{proof}[证明c]
+    显然\(A,B\)都是开集，因此它们是分离的.
+\end{proof}
+
+\begin{proof}[证明d]
+    设存在一个{\kaishu 含可数元素的联通度量空间}\(X\)，\(D=\{d(x,y): x,y \in X\}\)是可数集.
+
+    由于\(\mathbb{R}\)是不可数集，故\(\exists \delta \in (\inf D, \sup D), \delta \notin D\)，固定\(p \in X\).
+
+    令\(A=\{q \in X: d(p,q)<\delta\}, B=\{q \in X: d(p,q)>\delta\}\).
+    
+    由于不存在\(q \in X, d(p,q)=\delta\)，故\(X=A \cup B\)，但\(A,B\)是分离集，矛盾.
+\end{proof}
+
+\begin{problem}[21]\label{pb2.21}
+    设\(A,B\)是\(\mathbb{R}^n\)中的分离集，令\(a \in A, b \in B, t \in \mathbb{R}, p(t)=(1-t)a+tb\).
+
+    设\(A_0=p^{-1}(A), B_0=p^{-1}(B)\).a.证明\(A_0,B_0\)是\(\mathbb{R}\)中的分离集.
+
+    b.证明存在\(t_0 \in (0,1)\)使得\(p(t_0) \notin A \cup B\).
+
+    c.证明\(\mathbb{R}^n\)的凸子集是联通集.
+\end{problem}
+
+\begin{proof}[证明a]
+    设存在\(t_1, t_2, \dots \in A_0, \lim_{k \to \infty} t_k=t \in B_0\)，则\(\forall k \in \mathbb{Z}^+, p(t_k) \in A\).
+
+    然而\(\lim_{k \to \infty} p(t_k)=p(t) \in B\)，则\(\overline{A} \cap B \ne \varnothing\)，与\(A,B\)分离矛盾.
+\end{proof}
+
+\begin{proof}[证明b]
+    设\(\forall t_0 \in (0,1), p^{-1}(t_0) \in A_0 \cup B_0\)，令\(A'=A_0 \cap [0,1], B'=B_0 \cap [0,1]\).
+
+    从而\((0,1)=A' \cup B'\)是两个不空分离集的并，\((0,1)\)不连通，显然矛盾.
+\end{proof}
+
+\begin{proof}[证明c]
+    设\(a,b \in \mathbb{R}^n\).令\(A=\{p(t): t \in [0,1]\}\).若存在分离集\(V,W\)使得\(A=V \cup W\)，
+
+    那么\(p^{-1}(V) \cup p^{-1}(W)=[0,1]\)，而\(p^{-1}(V), p^{-1}(W)\)分离，故\([0,1]\)不连通.
+\end{proof}
+
+\begin{problem}[22]\label{pb2.22}
+    含有可数稠密子集的的度量空间是可分度量空间.证明\(\mathbb{R}^n\)是可分度量空间.
+\end{problem}
+
+\begin{proof}
+    令\(Q=\{(q_1, \dots, q_n): \forall k=1, \dots, n, q_k \in \mathbb{Q}\}\)，下证\(Q\)在\(\mathbb{R}^n\)中稠密.
+
+    设\(x=(x_1, \dots, x_n) \in \mathbb{R}^n\)，则\(\forall k=1, \dots, n, x_k\)有柯西序列\(\{q_k^i\}, q_k^i \in \mathbb{Q}\).
+
+    令\(q_i=(q_1^i, \dots, q_n^i)\)，从而\(\lim_{i \to \infty} q_i=(q_1^i, \dots, q_n^i)=(x_1, \dots, x_n)=x\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[23]\label{pb2.23}
+    证明可分度量空间\(X\)有一组可数基.
+\end{problem}
+
+\begin{proof}
+    设\(X\)的可数稠密子集是\(U=\{u_1, u_2, \dots\}\).令\(\mathcal{U}=\{B(u_k,q_j): u_k \in U, q_j \in \mathbb{Q}^+\}\).
+
+    显然\(\mathcal{U}\)是可数集，下证\(\forall x \in V \subseteq X, \exists j,k \in \mathbb{Z}^+, x \in B(u_k,q_j) \subseteq V\)，其中\(V\)是开集.
+
+    由\(V\)是开集，\(\exists r>0, B(x,r) \subseteq V\).由\(U\)的稠密性，选择\(u_k \in U, d(u_k,x)<r/2\).
+
+    由有理数的稠密性，选择\(q_j \in (d(u_k,x), r/2)\).构造\(B(u_k,q_j)\)，下证\(x \in B(u_k,q_j) \subseteq V\).
+
+    \(\forall y \in B(u_k,q_j), d(x,y) \leq d(x,u_k)+d(u_k,y)<r/2+q_j<r/2+r/2=r\)，故\(y \in B(x,r)\).
+
+    由于\(d(u_k,x)<q_j\)，故\(x \in B(u_k,q_j)\).结合两者，得到\(x \in B(u_k,q_j) \subseteq V\).
+\end{proof}
+
+\begin{problem}[24]\label{pb2.24}
+    设度量空间\(X\)满足其中任一无限子集都有极限点，证明它是可分度量空间.
+\end{problem}
+
+\begin{proof}
+    固定\(x_1 \in X, \delta>0\).选取\(x_2, x_3, \dots \in X\)使得\(\forall k \in \mathbb{Z}^+, j<k \in \mathbb{Z}^+, d(x_j,x_k)>\delta\).
+
+    若该过程可无限持续，则\(\forall k \in \mathbb{Z}^+, j>k \in \mathbb{Z}^+, d(x_j,x_k)>\delta\).
+    
+    从而\(\{x_k\}_{k \in \mathbb{Z}^+}\)不是柯西序列，与{\kaishu 任一无限子集都有极限点}矛盾.
+    
+    依次取\(\delta=1/n, n \in \mathbb{Z}^+\)，得\(\forall n \in \mathbb{Z}^+, \exists x_1^n, \dots, x_{m_n}^n \in X, X=\bigcup_{k=1}^{m_n} B(x_k,1/n)\).
+    
+    构造\(U=\bigcup_{n=1}^\infty \bigcup_{k=1}^{m_n} \{x_k\}\).\(\forall x \in X, n \in \mathbb{Z}^+, \exists k_n \in \{1, \dots, m_n\}, d(x_{k_n}^n,x)<1/n\).
+
+    于是\(x_{k_1}^1, x_{k_2}^2, \dots\)是\(x\)的一个逼近序列，即\(U\)在\(X\)中稠密.
+\end{proof}
+
+\begin{problem}[25]\label{pb2.25}
+    证明紧度量空间\(X\)必有一组可数基.
+\end{problem}
+
+\begin{proof}
+    由\(X\)为紧度量空间，设\(\forall n \in \mathbb{Z}^+, \exists x_1^n, \dots, x_{m_n}^n \in X, \bigcup_{k=1}^{m_n} B(x_k^n, 1/n)=X\).
+
+    下证\(\bigcup_{n=1}^\infty \bigcup_{k=1}^{m_n} B(x_k^n, 1/n)\)是一组可数基.考虑开集\(V \subseteq X, x \in V\).
+
+    存在\(r>0, B(x,r) \subseteq V\).由有理数的稠密性，选择\(N \in \mathbb{Z}^+, 1/N<r/2\).
+    
+    由\(X=\bigcup_{k=1}^{m_N} B(x_k^N, 1/n)\)，于是\(\exists k \in \{1, \dots, m_N\}, x \in B(x_k^N, 1/N) \subseteq B(x,r) \subseteq V\).
+\end{proof}
+
+\begin{problem}[26]\label{pb2.26}
+    设度量空间\(X\)满足其中任一无限子集都有极限点，证明它是紧度量空间.
+\end{problem}
+
+\begin{proof}
+    \(X\)是{\kaishu 可分度量空间}，故{\kaishu \(X\)的开覆盖总存在一组可数子覆盖}\(\{G_k\}_{k \in \mathbb{Z}^+}\).
+
+    若\(X\)无有限子覆盖，那么\(\forall n \in \mathbb{Z}^+, X \setminus \bigcup_{k=1}^n G_k \ne \varnothing\)，令\(F_n=X \setminus \bigcup_{k=1}^n G_k\).
+
+    从每一\(F_n\)中抽取\(x_n\).令\(E=\{x_n: x \in \mathbb{Z}^+\}\).若\(E\)是有限集，则\(\exists x_t, x_t \in \bigcap_{n=1}^\infty F_n=\varnothing\)，矛盾.
+
+    若\(E\)是无限集，序列\(x_1, x_2, \dots\)应有极限点\(x\)且\(\exists n \in \mathbb{Z}^+, x \in \bigcup_{k=1}^n G_k\)，即\(x \notin F_n\).
+
+    由于\(F_n\)是闭集且\(x_n, x_{n+1}, \dots \in F_n\)，然而其极限点\(x \notin F_n\)，矛盾.
+\end{proof}
+
+\newpage
+
+\begin{problem}[27]\label{pb2.27}
+    设\(E \subseteq \mathbb{R}^n\)，\(P\)是\(E\)的所有凝点的集，证明\(P\)是完全集，
+    
+    且\(E\)中最多有可数个点不在\(P\)中.
+\end{problem}
+
+\begin{proof}
+    设\(\mathcal{S}=\{V_k\}_{k \in \mathbb{Z}^+}\)是\(\mathbb{R}^n\)的可数基.令\(\mathcal{U}=\{V_k: V_k \cap E \text{\kaishu 至多为可数集}\}\).
+
+    考虑\(x \in \bigcup_{V_k \in \mathcal{U}} V_k\)，即\(\exists k \in \mathbb{Z}^+, x \in V_k, V_k \cap E\)至多可数，即\(x \in \mathbb{R}^n \setminus P\).
+
+    若\(x \in \mathbb{R}^n \setminus P\)，则\(\exists r>0, B(x,r) \cap E\)至多可数.\(\exists \mathcal{F}_x \subseteq \mathcal{S}, B(x,r)=\bigcup_{V_k \in \mathcal{F}_x} V_k\).
+
+    显然\(\forall V_k \in \mathcal{F}, V_k \cap E\)至多可数，即\(\mathcal{F}_x \subseteq \mathcal{U}, x \in \bigcup_{V_k \in \mathcal{U}} V_k\).因而\(\mathbb{R}^n \setminus P=\bigcup_{V_k \in \mathcal{U}} V_k\).
+
+    {\kaishu 至此\(P\)是闭集，且至多只有可数点在\(E\)中，下证\(P\)是完全集.}
+
+    取\(p \in P\)，则\(\forall r>0, B(p,r) \cap E\)是不可数集.考虑\(B(p,r) \cap E\)的凝点集\(P'\).
+
+    从\(P'\)中选择\(p' \ne p\)，从而\(\forall r'>0, B(p',r') \cap B(p,r) \cap E\)也是不可数集，
+    
+    因此\(p'\)也是\(E\)的凝点，即\(\forall p \in P, r>0, \exists p' \in P' \subseteq P, d(p,p')<r\).\(P\)是完全集.
+
+    {\kaishu 因此可分度量空间\(X\)的闭子集\(F\)都是一个完全集\(P\)和一个至多可数集的并.}
+\end{proof}
+
+\begin{comment}
+\begin{problem}[28]\label{1.B.28}
+    证明可分度量空间\(X\)的闭子集\(F\)都是一个完全集\(P\)和一个至多可数集的并.
+\end{problem}
+
+\begin{proof}
+    令\(P\)是\(F\)所有凝点的集合，由于\(F\)是闭集，故\(P \subseteq F\).
+
+    延续\cref{1.B.27}的操作，即可证明\(P\)是完全集且\(F \setminus P\)是至多可数集.
+\end{proof}
+\end{comment}
+
+\begin{problem}[29]\label{pb2.29}
+    开集\(G \subset \mathbb{R}\)可以被写成至多可数不相交的开区间的并集.
+\end{problem}
+
+\begin{proof}
+    给出\(\mathbb{R}\)的可数基\(\mathcal{S}=\{(p,q): p,q \in \mathbb{Q}\}\).从而\(\forall G \subseteq \mathbb{R}, \exists \mathcal{U}_G \subseteq \mathcal{S}, G=\bigcup_{(p,q) \in \mathcal{U}_G}(p,q)\).
+
+    定义\((p,q) \sim (p',q')\)当且仅当存在\((p_1,q_1), \dots, (p_n,q_n) \in \mathcal{S}\)，
+    
+    满足\((p_1,q_1)=(p,q), (p_n,q_n)=(p',q'), \forall k=1, \dots, n-1, (p_k,q_k) \cap (p_{k+1}, q_{k+1}) \ne \varnothing\).
+
+    定义等价类\(\mathcal{U}_{(p,q)}=\{(p',q') \in \mathcal{S}: (p,q) \sim (p',q')\}, [(p,q)]=\bigcup_{(p',q') \in \mathcal{U}_{(p,q)}}(p',q')\).
+
+    故\(G=\bigcup_{(p,q) \in \mathcal{U}} [(p,q)]\)，且\([(p_1,q_1)] \cap [(p_2,q_2)] \ne \varnothing\)和\([(p_1,q_1)]=[(p_2,q_2)]\)等价.
+
+    下证若\(G\)是{\kaishu 联通开集}，有\(\forall x,y \in G, (x,y) \subseteq G, G=[(x,y)]\).
+    
+    考虑紧集\([x,y]\).由\(\mathcal{S}\)为可数基，则\(\exists \mathcal{U}_{[x,y]} \subseteq \mathcal{S}, [x,y] \subseteq \bigcup_{(p,q) \in \mathcal{U}_{[x,y]}} (p,q)\).
+
+    由\([x,y]\)为紧集，挑选有限子覆盖\((p_1,q_1), \dots, (p_n,q_n)\).从而\(\forall I_x \ni x, I_y \ni y, I_x \sim I_y\).
+
+    {\kaishu 故一方面一个联通集包含于一个等价类，另一方面两个不相等的等价类是不连通的.}
+\end{proof}
+
+\begin{problem}[30]\label{pb2.30}
+    若\(\forall k \in \mathbb{Z}^+, G_k\)是\(\mathbb{R}^n\)的稠密开子集，则\(\bigcap_{k=1}^\infty G_k \ne \varnothing\).
+\end{problem}
+
+\begin{proof}
+    由\(G_1\)为开集，\(\exists x_1 \in G_1, r_1 \in (0,1), \overline{B}(x_1,r_1) \subseteq G_1\).下面{\kaishu 归纳地构造\(B(x_k,r_k)\)序列}.
+
+    假设\(B(x_1,r_1), \dots, B(x_n,r_n)\)已经被构造，且满足
+    \begin{align*}
+        \overline{B}(x_1,r_1) \supseteq \dots \supseteq \overline{B}(x_n,r_n), 
+        \forall k=1, \dots, n, B(x_k,r_k) \subseteq G_k, r_k \in(0,1/k).
+    \end{align*}
+    由于\(G_{k+1}\)在\(\mathbb{R}^n\)中稠密，故\(\exists x_{k+1} \in G_{k+1}, x_{n+1} \in B(x_n,r_n)\).
+
+    选取\(r_{n+1} \in (0,1/(n+1))\)使得\(\overline{B}(x_{n+1},r_{n+1}) \subseteq \overline{B}(x_n,r_n) \cap G_{n+1}\).
+
+    因此\(\forall k \geq n, d(x_n,x_k)<1/n\)，即\(\lim_{n \to \infty} x_n=x\)存在，且\(x \in \bigcap_{k=1}^\infty \overline{B}(x_k,r_k)\).
+    
+    因此\(x \in \bigcap_{k=1}^\infty G_k \supseteq \bigcap_{k=1}^\infty \overline{B}(x_k,r_k)\)，证毕.
+\end{proof}
+
+\begin{comment}
+    \begin{theorem}
+        若有集合族\((X,\mathcal{S})\)，则\(X \setminus \bigcup_{A \in \mathcal{S}} A=\bigcap_{A \in \mathcal{S}}(X \setminus A)\).
+    \end{theorem}
+
+    \begin{proof}
+        考虑任意的\(x \in A \in \mathcal{S}\)，则有
+        \begin{align*}
+            x \in X \setminus \bigcup_{A \in \mathcal{S}}A \Longleftrightarrow
+            x \notin \bigcup_{A \in \mathcal{S}}A \Longleftrightarrow
+            \forall A \in \mathcal{S}, x \in X \setminus A \Longleftrightarrow
+            x \in \bigcap_{A \in \mathcal{S}} X \setminus A.
+        \end{align*}
+        于是\(X \setminus \bigcup_{A \in \mathcal{S}} A=\bigcap_{A \in \mathcal{S}}(X \setminus A)\).
+    \end{proof}
+
+    \begin{theorem}
+        \(A\)是开集和\(A^c\)是闭集等价.
+    \end{theorem}
+
+    \begin{proof}
+        若\(A\)是开集，那么对于\(A^c\)的任意极限点\(x\)，都存在去心邻域\(N(x) \cap A^c \ne \varnothing\).
+
+        于是\(N(x) \nsubseteq A\)，也即\(x\)不是\(A\)的内点，于是\(x \notin A, x \in A^c\)，\(A^c\)包含了它的所有极限点.
+
+        若\(A^c\)是闭集，那么\(\forall x \in A, x\)不是\(A^c\)的极限点，因此存在\(x\)的去心邻域\(N(x) \cap A^c=\varnothing\).
+        
+        也即\(N(x) \subset A\)，\(x\)是\(A\)的内点，所以\(A\)中的所有点都是\(A\)的内点.
+    \end{proof}
+
+    \begin{theorem}
+        开集\(G\)对可数并封闭，对有限交封闭；闭集\(F\)对可数交封闭，对有限并封闭.    
+    \end{theorem}
+
+    \begin{proof}
+        \(\bigcup_{G \in \mathcal{S}}G\)中的每一点\(x\)都是某个\(G_i\)的内点，于是存在\(N(x) \subset G_i \subset \bigcup_{G \in \mathcal{S}}G\).
+
+        \(\bigcap_{i=1}^n G_i\)中的每一点\(x\)都存在一个邻域\(N_i(x) \subset G_i\)，取\(N(x)=\bigcap_{i=1}^n N_i(x) \subset \bigcap_{i=1}^n G_i\).
+
+        {\kaishu 对以上结论取补集并使用徳·摩根律即可证明闭集的结论.}
+    \end{proof}
+
+    \begin{theorem}
+        \(A \subset \mathbb{R}\)是联通集当且仅当对于\(x<y \in A, (x,y) \subset A\).
+    \end{theorem}
+
+    \begin{proof}
+        若存在\(z \in (x,y) \in \mathbb{R}\)且\(z \notin A\)，令\(A_1=(-\infty,z) \cap A, A_2=(z,\infty) \cap A\).
+
+        显然\(A_1,A_2\)是分离的，而\(A=A_1 \cup A_2\)，那么\(A\)就不是联通的.
+    \end{proof}
+
+    \begin{theorem}
+        开集\(G \subset \mathbb{R}\)可以被写成不相交的开区间\(I_1, I_2, \dots\)的并集\(\bigcup_{k=1}^\infty I_k\).
+    \end{theorem}
+
+    \begin{proof}
+        定义\(x \sim y\)为存在\(G\)的联通子集\(C\)使得\(x,y \in C\)，定义\([x]=\{y \in G: y \sim x\}\).
+
+        若\([x] \cap [y] \ne \varnothing\)，则\(\exists z \in G, x \sim z, y \sim z\)，从而\(x \sim y\)，则\([x]=[y]\).
+
+        因此一个等价类\([x]\)规定一个最大联通子集\(C\)，且它们互不相交，且\(G=\bigcup_{x \in G}[x]\).
+
+        由有理数的稠密性，\([x]\)一定包含一个有理数\(q\)，且\([x]=[q]\)，那么\(G=\bigcup_{q \in G}[q]\).
+    \end{proof}
+
+    \begin{proof}
+        定义\(I_x=(a_x,b_x), a_x=\inf\{a \in \mathbb{R}: (a,x] \subset G\}, b_x=\sup\{b \in \mathbb{R}: [x,b) \subset G\}\).
+
+        由于\(G\)是开集，因而\(\forall x \in G, \exists N(x) \subset G\)，于是\(\forall x \in G, x \in N(x) \subset I_x \subseteq \bigcup_{x \in G}I_x\).
+
+        因此\(G \subseteq \bigcup_{x \in G}I_x\).另一方面，\(\forall x \in G, I_x \subset G, \bigcup_{x \in G}I_x \subseteq G\)，故\(G=\bigcup_{x \in G}I_x\).
+
+        若\(I_x \cap I_y \ne \varnothing\)，则\(I_x=I_y\)，由有理数的稠密性，可以为每个\(I_x\)选择任一有理数\(q_x\).
+
+        若\(q_x \in I_y\)，则\(I_x, I_y\)视为同一分支.由有理数集是可数的，于是总分支数是至多可数的.
+
+        将所有涉及的有理数\(q_1, q_2, \dots\)所代表的区间记作\(I_1, I_2, \dots\)，则\(G=\bigcup_{k=1}^\infty I_k\).
+    \end{proof}
+
+    \newpage
+
+    \begin{theorem}[2.25]
+        设\(\mathcal{S}\)是\(X\)上的\(\sigma-\)代数，那么对于\(A_1, \dots, A_2, \dots \in \mathcal{S}\)，
+
+        有\(A_1 \cap A_2 \in \mathcal{S}, A_1 \setminus A_2 \in \mathcal{S}, \bigcap_{i=1}^\infty A_i \in \mathcal{S}\).
+    \end{theorem}
+
+    \begin{proof}
+        由\(X \setminus A_1, X \setminus A_2 \in \mathcal{S}\)，于是\((X \setminus A_1) \cup (X \setminus A_2)=X \setminus (A_1 \cap A_2) \in \mathcal{S}\)，即\(A_1 \cap A_2 \in \mathcal{S}\).
+
+        由\(A_1 \setminus A_2=A_1 \cap (X \setminus A_2)\)且\(X \setminus A_2 \in \mathcal{S}\)推出\(A_1 \setminus A_2 \in \mathcal{S}\).
+
+        由\(X \setminus A_i \in \mathcal{S}\)得到\(X \setminus \bigcap_{i=1}^\infty A_i=\bigcup_{i=1}^\infty (X \setminus A_i) \in \mathcal{S}\)，于是\(\bigcap_{i=1}^\infty A_i \in \mathcal{S}\).
+    \end{proof}
+
+    \begin{theorem}[2.33]
+        设\(f: X \to Y\)是一个函数，\((Y,\mathcal{A})\)确定一个集合族且\(A \subseteq \mathcal{A}\)，那么
+        
+        a.\(f^{-1}(X \setminus A)=Y \setminus f^{-1}(A)\) \enspace
+        b.\(f^{-1}(\bigcup_{A \in \mathcal{A}}A)=\bigcup_{A \in \mathcal{A}}f^{-1}(A)\) \enspace
+        c.\(f^{-1}(\bigcap_{A \in \mathcal{A}}A)=\bigcap_{A \in \mathcal{A}}f^{-1}(A)\)
+    \end{theorem}
+
+    \begin{proof}
+        考虑任意的\(x \in A \in \mathcal{A}\)，则有
+        \begin{align*}
+            &x \in f^{-1}(Y \setminus A) \Longleftrightarrow 
+            f(x) \in Y \setminus A \Longleftrightarrow
+            f(x) \notin A \Longleftrightarrow x \in X \setminus f^{-1}(A) \\
+            &x \in f^{-1}(\bigcup_{A \in \mathcal{A}}A) \Longleftrightarrow
+            f(x) \in \bigcup_{A \in \mathcal{A}}A \Longleftrightarrow
+            \exists A \in \mathcal{A}, f(x) \in A \Longleftrightarrow
+            x \in \bigcup_{A \in \mathcal{A}}f^{-1}(A) \\
+            &x \in f^{-1}(\bigcap_{A \in \mathcal{A}}A) \Longleftrightarrow
+            f(x) \in \bigcap_{A \in \mathcal{A}}A \Longleftrightarrow
+            \forall A \in \mathcal{A}, f(x) \in A \Longleftrightarrow
+            x \in \bigcap_{A \in \mathcal{A}}f^{-1}(A) \qedhere
+        \end{align*}
+    \end{proof}
+
+    \begin{theorem}[2.27]
+        设\(\mathcal{A}\)是\(X\)上的集合族，那么所有包含\(\mathcal{A}\)的\(\sigma-\)代数之交也是\(\sigma-\)代数.
+    \end{theorem}
+
+    \begin{proof}
+        令\(\mathcal{S}\)是所有包含\(\mathcal{A}\)的\(\sigma-\)代数之交.\(X\)上的所有\(\sigma-\)代数都包含空集.
+
+        若\(A \in \mathcal{S}\)，那么\(X \setminus A\)也在每一个包含\(A\)的\(\sigma-\)代数中，也即\(X \setminus A \in \mathcal{S}\).
+
+        若\(A_1, A_2, \dots \in \mathcal{S}\)，那么\(\bigcup_{i=1}^\infty A_i\)也在每一个包含\(A_i\)的\(\sigma-\)代数中，也即\(\bigcup_{i=1}^\infty A_i \in \mathcal{S}\).
+
+        {\kaishu 因此对于任意集合族都存在包含之的最小\(\sigma-\)代数.}
+    \end{proof}
+\end{comment}

@@ -1,0 +1,149 @@
+\section{2.C Measures and Their Properties}
+
+\begin{problem}[1]\label{2.C.1}
+    证明：不存在测度空间\((X, \mathcal{S}, \mu)\)使得\(\{\mu(E): E \in \mathcal{S}\}=[0,1)\).
+\end{problem}
+
+\begin{proof}
+    显然\(\mu(X)<1\)，因此\(\exists E \in \mathcal{S}, \mu(E) \in (\mu(X), 1)\).而\(\forall E \in \mathcal{S}, E \subseteq X, \mu(E) \leq \mu(X)\).
+\end{proof}
+
+\begin{problem}[2]\label{2.C.2}
+    设\(\mu\)是\((\mathbb{Z}^+, 2^{\mathbb{Z}^+})\)上的测度.
+
+    证明：存在序列\(w_1, w_2, \dots \in [0,\infty]\)使得\(\forall E \subseteq \mathbb{Z}^+, \mu(E)=\sum_{k \in E} w_k\).
+\end{problem}
+
+\begin{proof}
+    令\(\forall k \in \mathbb{Z}^+, w_k=\mu(\{k\})\)，那么\(\mu(E)=\mu(\bigcup_{k \in E} \{k\})=\sum_{k \in E} \mu(\{k\})=\sum_{k \in E} w_k\).
+\end{proof}
+
+\begin{problem}[3]\label{2.C.3}
+    构造\((\mathbb{Z}^+, 2^{\mathbb{Z}^+})\)上的测度\(\mu\)使得\(\{\mu(E): E \subseteq \mathbb{Z}^+\}=[0,1]\).
+\end{problem}
+
+\begin{proof}
+    令\(\forall k \in \mathbb{Z}^+, \mu(\{k\})=1/2^k\).对于\(x \in [0,1]\)，其{\kaishu 二进制展开}为\(x=(0.b_1 b_2 \dots)_2\).
+
+    其中\(\forall k \in \mathbb{Z}^+, b_k \in \{0,1\}\)，从而\(x=\sum_{k=1}^\infty b_k/2^k\).令\(A_x=\{k \in \mathbb{Z}^+: b_k=1\}\).
+    
+    那么\(x=\sum_{k \in A_x} 1/2^k=\sum_{k \in A_x} \mu(\{k\})\).
+
+    {\kaishu 分母为\(2^N\)的有理数有两种展开式，所有实数都有至少一个二进制展开形式.}
+\end{proof}
+
+\begin{problem}[4]\label{2.C.4}
+    构造测度空间\((X, \mathcal{S}, \mu)\)满足\(\{\mu(E): E \in \mathcal{S}\}=\{\infty\} \cup \bigcup_{k=0}^\infty [3k,3k+1]\).
+\end{problem}
+
+\begin{proof}
+    设\(X=(0, \infty)\)，令\(\mathcal{S}=\{\bigcup_{k \in K_1} (k-1,k) \cup K_2: K_1, K_2 \subseteq \mathbb{Z}^+\}\).
+
+    定义测度\(\mu\)为\(\forall k \in \mathbb{Z}^+, \mu((k-1,k))=3, \mu(\{k\})=1/2^k\)，则\(\mu(X)=\infty\).
+    
+    \(\forall k \in \mathbb{Z}^+, \forall x \in [3k,3k+1], x=\mu(\bigcup_{k=1}^\infty (k-1,k))+c\)，其中\(c \in [0,1]\).
+
+    {\kaishu 上一题表明这样的\(c=\sum_{k \in A_c} 1/2^k=\sum_{k \in A_c} \mu(\{k\})\)可以被构造}.
+\end{proof}
+
+\begin{problem}[5]\label{2.C.5}
+    设\((X, \mathcal{S}, \mu)\)是满足\(\mu(X)<\infty\)的测度空间.若存在\(\mathcal{A} \subseteq \mathcal{S}\)，
+
+    \(\mathcal{A}\)中的集合互不相交，且\(\forall A \in \mathcal{A}, \mu(A)>0\).证明：\(\mathcal{A}\)是可数集.
+\end{problem}
+
+\begin{proof}
+    令\(\mathcal{A}_n=\{A \in \mathcal{A}: \mu(A)>\mu(X)/n\}\)，从而\(\mathcal{A}=\bigcup_{n=1}^\infty \mathcal{A}_n\).
+
+    对于任意\(n \in \mathbb{Z}^+\)，\(\mathcal{A}_n\)中的元素不能超过\(n\)个，否则\(\mu(\bigcup_{A \in \mathcal{A}_n} A)>\mu(X)\).
+
+    从而对于任意\(n \in \mathbb{Z}^+\)，\(\mathcal{A}_n\)是有限集，因此\(\mathcal{A}=\bigcup_{n=1}^\infty \mathcal{A}_n\)是至多可数的.
+\end{proof}
+
+\begin{problem}[6]\label{2.C.6}
+    若存在测度空间\((X, \mathcal{S}, \mu)\)满足\(\{\mu(E): E \in \mathcal{S}\}=[0,1] \cup [3,c]\)，
+
+    给出所有可能的\(c \in [3,\infty)\).
+\end{problem}
+
+\begin{proof}
+    显然\(\mu(X)=c\).\(\forall E \in \mathcal{S}, \mu(E) \in [0,1] \cup [3,c], \mu(X \setminus E)=c-\mu(E) \in [0,1] \cup [3,c]\).
+
+    只有\(c=4\)满足条件.令\(X=\mathbb{N}, \mathcal{S}=2^{\mathbb{N}}, \forall k \in \mathbb{Z}^+, \mu(k)=1/2^k, \mu(0)=3\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[7]\label{2.C.7}
+    给出测度空间\((X, \mathcal{S}, \mu)\)满足\(\{\mu(E): E \in \mathcal{S}\}=[0,1] \cup [3,\infty]\).
+\end{problem}
+
+\begin{proof}
+    设\(X=(0, \infty)\)，令\(\mathcal{S}=\{\bigcup_{k \in K_1} (k-1,k) \cup K_2: K_1, K_2 \subseteq \mathbb{Z}^+\}\).
+
+    定义测度\(\mu\)为\(\forall k \in \mathbb{Z}^+, \mu((k-1,k))=k+2, \mu(\{k\})=1/2^k\)，则\(\mu(X)=\infty\).
+
+    \(\forall k \geq 3, \forall x \in [k,k+1], x=\mu((k-1,k))+c\)，其中\(c \in [0,1]\).
+
+    {\kaishu 这样的\(c=\sum_{k \in A_c} 1/2^k=\sum_{k \in A_c} \mu(\{k\})\)可以被构造}.
+\end{proof}
+
+\begin{problem}[8]\label{2.C.8}
+    给出测度空间\((X, \mathcal{S})\)，一个集合族\(\mathcal{A} \subseteq \mathcal{S}\)和其上的两个测度\(\mu, \nu\).
+
+    其中\(\sigma(\mathcal{A})=\mathcal{S}\)且\(\mu(X)=\nu(X)<\infty, \forall A \in \mathcal{A}, \mu(A)=\nu(A)\)但\(\mu \ne \nu\).
+\end{problem}
+
+\begin{proof}
+    {\kaishu 本题的关键在于平衡\(\sigma-\)代数的生成能力和刚性之间的关系.
+    
+    对于一个原子\(\sigma-\)代数，\(\mathcal{A}\)必须通过可数交并生成\(\sigma-\)代数的所有原子.
+    
+    但是\(\mathcal{A}\)如直接包含其中所有原子，那么将因\(\sigma-\)代数的刚性导致所有集合测度唯一.
+    
+    因此我们需要选择\(\mathcal{A}\)为一些中间集合，从而\(\mathcal{A}\)自己通过集合运算得到\(\mathcal{S}\)的所有原子.}
+
+    令\(X=\{1,2,3,4\}, \mathcal{S}=2^X, \mathcal{A}=\{\{1,2\}, \{1,3\}\}\)，下证\(\sigma(\mathcal{A})=\mathcal{S}\).
+
+    \(\{1\}=\{1,2\} \cap \{1,3\}, \{2\}=\{1,2\} \cap \{1,3\}^c, \{3\}=\{1,2\}^c \cap \{1,3\}, \{4\}=\{1,2\}^c \cap \{1,3\}^c\).
+
+    于是\(\sigma(\mathcal{A})=\mathcal{S}\).令\(\mu(\{1\})=\mu(\{2\})=\mu(\{3\})=\mu(\{4\})=0.5\).
+
+    令\(\nu(\{1\})=\nu(\{4\})=0.6, \nu(\{2\})=\nu(\{3\})=0.4\)，构造完毕.
+\end{proof}
+
+\begin{problem}[10]\label{2.C.10}
+    给出一个测度空间\((X, \mathcal{S}, \mu)\)和\(E_1 \supseteq E_2 \supseteq \dots \in \mathcal{S}\)但不满足上连续性，
+    
+    即\(\lim_{k \to \infty} \mu(E_k) \ne \bigcap_{k=1}^\infty \mu(E_k)\).
+\end{problem}
+
+\begin{proof}
+    设\(X=\mathbb{N}, \mathcal{S}=2^X, \forall k \in \mathbb{N}, \mu(\{k\})=1\)，令\(E_k=\{k, k+1, \dots\}\).
+
+    设\(x \in \bigcap_{k=1}^\infty \mu(E_k)\)，但\(\exists k \in \mathbb{N}, k>x\)，从而\(x \notin \bigcap_{k=1}^\infty \mu(E_k), \bigcap_{k=1}^\infty \mu(E_k)=\varnothing\).
+
+    结合\(\forall k \in \mathbb{N}, \mu(E_k)=\infty\)，从而\(\infty=\lim_{k \to \infty} \mu(E_k) \ne \bigcap_{k=1}^\infty \mu(E_k)=0\).
+\end{proof}
+
+\begin{problem}[12]\label{2.C.12}
+    设\(\mathcal{S}\)是\(X\)上的可数-余可数\(\sigma-\)代数，给出\((X, \mathcal{S})\)上测度的特征刻画.
+\end{problem}
+
+\begin{proof}
+    {\kaishu 一个观察：令所有可数集测度为\(0\)，所有余可数集测度为\(\infty\)是最保守的策略.
+
+    如果\(X\)本身是可数集，那么它将成为一种纯原子测度，此时单点可以取有限值.
+    
+    因而只有可数点测度为正，而其补集的测度是一个常数，类似“宇宙微波背景辐射”.}
+
+    若\(A=\{x \in X: \mu(\{x\})>0\}\)是不可数集且\(A_n=\{x \in X: \mu(\{x\})>1/n\}\)，
+
+    那么\(A=\bigcup_{n=1}^\infty A_n, \exists n \in \mathbb{Z}^+, A_n\)是不可数集.对于所有余可数集\(D\)，\(D \cap A_n\)是不可数集.
+
+    根据单调性\(\mu(D) \geq \mu(D \cap A_n)=\infty\)，从而所有余可数集都有\(\mu(D)=\infty\).
+
+    可数集\(C\)的测度\(\mu(C) \in [0, \infty]\).{\kaishu 这是一类病态测度.}
+
+    若\(A=\{x \in X: \mu(\{x\})>0\}\)是可数集，那么测度\(\mu\)将被\((A, \left.\mu\right|_A, \mu(X \setminus A))\)决定.
+\end{proof}
