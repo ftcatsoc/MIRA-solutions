@@ -1,0 +1,96 @@
+\section{Basic Topology in MIRA}
+
+\begin{problem}[2.B.12]\label{1.C.1}
+    设函数\(f: \mathbb{R} \to \mathbb{R}\).令
+    \begin{align*}
+        \forall k \in \mathbb{Z}^+, G_k=\{a: \exists \delta>0, \forall a_1,a_2 \in B(a,\delta), \abs*{f(a_1)-f(a_2)}<1/k\}
+    \end{align*}
+    a.证明\(G_k\)是开集. \quad b.证明函数所有连续点的集合为\(\bigcap_{k=1}^\infty G_k\).
+\end{problem}
+
+\begin{proof}[证明a]
+    设\(a_0 \in G_k, \exists \delta>0\).下证\(\forall a \in B(a_0,\delta/2), a \in G_k\)，从而\(a_0\)是一个内点.
+
+    考虑\(\forall a_1,a_2 \in B(a,\delta/2)\)，则\(d(a_1,a_0) \leq d(a_1,a)+d(a,a_0)<\delta/2+\delta/2=\delta\).
+
+    因此\(B(a,\delta/2) \subseteq B(a_0,\delta)\)，故而\(\forall a_1,a_2 \in B(a,\delta/2), \abs*{f(a_1)-f(a_2)}<1/k\).
+
+    因此\(a \in G_k\)，即\(\forall a \in B(a_0,\delta/2), a \in G_k\)，证毕.
+\end{proof}
+
+\begin{proof}[证明b]
+    设\(x \in \bigcap_{k=1}^\infty G_k\).由于\(\forall \varepsilon>0, \exists k \in \mathbb{Z}^+, 1/k<\varepsilon, x \in G_k\).
+
+    固定\(a_1=x\)，得到\(\forall a_2 \in B(x,\delta), \abs*{f(x)-f(a_2)}<1/k<\varepsilon\)，即\(f\)在\(x\)处连续.
+
+    若\(f\)在\(x\)处连续，则\(\forall \varepsilon>0, \exists \delta>0, \forall a \in B(x,\delta), \abs*{f(x)-f(a)}<\varepsilon/2\).
+
+    那么\(\forall a_1, a_2 \in B(x,\delta), \abs*{f(a_1)-f(a_2)} \leq \abs*{f(x)-f(a_1)}+\abs*{f(x)-f(a_2)}<\varepsilon/2+\varepsilon/2=\varepsilon\).
+
+    因此\(\forall \varepsilon>0, \exists k \in \mathbb{N}, 1/k<\varepsilon, x \in G_k\)，从而\(x \in \bigcap_{k=1}^\infty G_k\).
+\end{proof}
+
+\begin{problem}[2.B.14]\label{1.C.2}
+    考虑函数列\(f_1, f_2, \dots: X \to \mathbb{R}\)，证明：
+    \begin{align*}
+        \{x \in X: \lim_{k \to \infty} f_k(x)\text{存在}\}
+        =\bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_k-f_j)^{-1}((-1/n, 1/n))
+    \end{align*}
+\end{problem}
+
+\begin{proof}
+    设\(x \in \bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_k-f_j)^{-1}((-1/n, 1/n))\).给定\(\forall \varepsilon>0, \exists n \in \mathbb{Z}^+, 1/n<\varepsilon\).
+
+    则\(\exists n,j \in \mathbb{N}, \forall k \geq j, \abs*{f_k(x)-f_j(x)}<1/n<\varepsilon\)，于是\(f_1(x), f_2(x), \dots\)是柯西序列.
+
+    根据{\kaishu 实数的完备性}，\(f_1(x), f_2(x), \dots\)在\(\mathbb{R}\)中必收敛，也即\(\lim_{k \to \infty}f_k(x)\)存在.
+
+    设\(\lim_{k \to \infty}f_k(x)=c\)，那么\(\forall n \in \mathbb{N}, \exists j \in \mathbb{N}, \forall k \geq j, \abs*{f_k(x)-c}<1/2n\).
+
+    则\(\forall n \in \mathbb{N}, \exists j,k \in \mathbb{N}, \abs*{f_k(x)-f_j(x)} \leq \abs*{f_k(x)-c}+\abs*{f_j(x)-c}< 1/2n+1/2n<1/n\).
+    
+    即\(x \in \bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_k-f_j)^{-1}((-1/n, 1/n))\).
+\end{proof}
+
+\begin{problem}[17]\label{2.B.17}
+    设\(f: X \to \mathbb{R}\)满足\(D=\{x \in X: f(x) \text{在} x \text{处不连续}\}\)是可数集.
+
+    其中\(X \subseteq \mathbb{R}\)是borel集.证明：\(f\)是borel可测函数.
+\end{problem}
+
+\begin{proof}
+    \(f^{-1}((a,\infty))=(\left.f\right|_{\mathbb{R} \setminus D})^{-1}((a,\infty)) \cup (\left.f\right|_{D})^{-1}((a,\infty))\)，则\(\left.f\right|_{\mathbb{R} \setminus D}\)是连续函数.
+    
+    由于\((a,\infty)\)是开集，于是\(A=(\left.f\right|_{\mathbb{R} \setminus D})^{-1}((a,\infty))\)相对于\(\mathbb{R} \setminus D\)是开集.
+
+    故存在\(\mathbb{R}\)中开集\(G\)使得\(A=G \cap (\mathbb{R} \setminus D)\)，从而\(A\)是\textit{borel}集.
+    
+    \(B=(\left.f\right|_{D})^{-1}((a,\infty))\)是可数集，也是\textit{borel}集，那么\(f^{-1}((a,\infty))=A \cup B\)是\textit{borel}集.
+\end{proof}
+
+\newpage
+
+\begin{problem}[2.B.22]\label{1.C.3}
+    设\(X \subseteq \mathbb{R}, f: X \to \mathbb{R}\)是增函数.证明：除可数点外\(f\)在\(X\)上连续.
+\end{problem}
+
+\begin{proof}
+    由于\(f\)是增函数，故对于不连续点\(\forall c_1<c_2, f(c_1^-)<f(c_1^+) \leq f(c_2^-)<f(c_2^+)\).
+
+    若\(c_1 \ne c_2\)，那么\((f(c_1^-), f(c_1^+)) \cap (f(c_2^-), f(c_2^+))=\varnothing\).令\(D\)是所有不连续点的集合.
+
+    {\kaishu 由于各不连续点的变差区间是互不相交的且含有至少一个有理数，故\(D\)是可数的.}
+\end{proof}
+
+\begin{problem}[2.B.23]\label{1.C.4}
+    设\(f: \mathbb{R} \to \mathbb{R}\)是严格增函数，证明\(f^{-1}: f(\mathbb{R}) \to \mathbb{R}\)是连续函数.
+\end{problem}
+
+\begin{proof}
+    考虑开集\(G \subseteq \mathbb{R}\).下证\((f^{-1})^{-1}(G)=f(G)\)在\(f(\mathbb{R})\)中是相对开集.
+
+    考虑\(\forall x \in G, \exists r>0, B(x,r) \subseteq G\).令\(V=(f(x-r),f(x+r))\)，则\(f(B(x,r))=f(\mathbb{R}) \cap V\).
+
+    由于\(V\)是开集，故\(f(B(x,r))\)相对\(f(\mathbb{R})\)是开集，从而\(f(G)\)在\(f(\mathbb{R})\)中是相对开集.
+\end{proof}
+

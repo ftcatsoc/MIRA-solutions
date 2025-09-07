@@ -1,0 +1,438 @@
+\section{2.D Lebesgue Measure}
+
+\begin{theorem}[2.62]\label{2.62}
+    若\(A \cap G=\varnothing\)且\(G\)是开集，那么\(\abs*{A \cup G}=\abs*{A}+\abs*{G}\).
+\end{theorem}
+
+\begin{proof}
+    只需证明\(\abs*{A \cup G} \geq \abs*{A}+\abs*{G}\)即可，设开集\(O\)满足\(A \cup G \subseteq O\).
+    
+    得到\(O=(O \cap G) \cup (O \cap (\mathbb{R} \setminus \overline{G})) \cup (O \cap (\overline{G} \setminus G))\)且{\kaishu 三者互不相交}.
+
+    故\((O \cap G), (O \cap (\mathbb{R} \setminus \overline{G}))\)都是开集且\(A \cap (\mathbb{R} \setminus \overline{G}) \subseteq O \cap (\mathbb{R} \setminus \overline{G}), O \cap G=G\).
+
+    由于\(\abs*{\overline{G} \setminus G}=0\)，故\(\abs*{A}=\abs*{A \cap (\mathbb{R} \setminus \overline{G})} \leq \abs*{O \cap (\mathbb{R} \setminus \overline{G})}\)且\(\abs*{G}=\abs*{O \cap G}\).
+
+    由单调性，得\(\abs*{A}+\abs*{G}=\abs*{A \cap (\mathbb{R} \setminus \overline{G})}+\abs*{G} \leq \abs*{O \cap (\mathbb{R} \setminus \overline{G})}+\abs*{O \cap G}=\abs*{O}\).
+
+    因此\(\forall O \supseteq A \cup G\)，都有\(\abs*{O} \geq \abs*{A}+\abs*{G}\)，取下确界\(\abs*{A \cup G} \geq \abs*{A}+\abs*{G}\).
+\end{proof}
+
+\begin{comment}
+\begin{proof}
+    若\(\abs*{G}=\infty\)，那么\(\abs*{A \cup G}=\abs*{A}+\abs*{G}=\infty\)，因此下设\(\abs*{G}<\infty\).
+
+    开集\(G\)可以写作可数不相交开区间之并，即\(G=\bigcup_{i=1}^\infty G_i\)，令\(G_i=(a_i,b_i)\).
+
+    先考虑有限情况，即\(G=\bigcup_{i=1}^n G_i\).设\(A \cup G\)的开覆盖序列为\(\bigcup_{k=1}^\infty I_k\).
+
+    使用\cref{2.A.8}相同的{\kaishu 归纳}和{\kaishu 区间分割}方法即可得到\(\sum_{k=1}^\infty \ell(I_k) \geq \abs*{A}+\abs*{G}\).
+
+        令\(\forall i \in \mathbb{N}, I_{k,2i-1}=I_k \cap (b_{i-1},a_i), I_{k,2i}=I_k \cap (a_i,b_i)\).特别地，\(b_0=-\infty,a_{n+1}=\infty\).
+
+        那么\(\bigcup_{k=1}^\infty \bigcup_{i=1}^{n+1} I_{k,2i-1}\)和\(\bigcup_{k=1}^\infty \bigcup_{i=1}^n I_{k,2i}\)分别是\(A\)和\(G\)的开覆盖序列.
+        \begin{align*}
+            \sum_{k=1}^\infty \ell(I_k)=\sum_{k=1}^\infty \sum_{i=1}^{n+1} \ell(I_{k,2i-1})+\sum_{k=1}^\infty \sum_{i=1}^n \ell(I_{k,2i}) \geq \abs*{A}+\abs*{G}
+        \end{align*}
+
+    取下确界得\(\abs*{A \cup G} \geq \abs*{A}+\abs*{G}\)，结合\(\abs*{A \cup G} \leq \abs*{A}+\abs*{G}\)得\(\abs*{A \cup G}=\abs*{A}+\abs*{G}\).
+
+    考虑\(G=\bigcup_{i=1}^\infty G_i\)的情况，使用\cref{2.A.11}相同的{\kaishu 单调收敛定理}即可得到\(\abs*{A \cup G}=\abs*{A}+\abs*{G}\).
+
+        下面考虑\(G=\bigcup_{i=1}^\infty G_i\)的情况，令\(c_n=\abs*{A \cup \bigcup_{i=1}^n G_i}=\abs*{A}+\sum_{i=1}^n \ell(G_i) \leq \abs*{A}+\abs*{\bigcup_{i=1}^\infty G_i}\).
+
+        那么\(\{c_n\}\)是单调有上界的序列，因此有上确界\(c\)，且\(c \leq \abs*{A}+\abs*{\bigcup_{i=1}^\infty G_i}\).
+
+        于是\(c=\abs*{A}+\sum_{i=1}^\infty \ell(G_i) \leq \abs*{A}+\abs*{\bigcup_{i=1}^\infty G_i}\)，
+        得到\(\abs*{A}+\sum_{i=1}^\infty \ell(G_i)=\abs*{A}+\abs*{\bigcup_{i=1}^\infty G_i}\).
+
+        所以对于\(G=\bigcup_{i=1}^n G_i\)，有\(\abs*{A \cup G}=\abs*{A}+\abs*{G}\).
+\end{proof}
+\end{comment}
+
+\begin{theorem}[2.63]\label{2.63}
+    若\(A \cap F=\varnothing\)且\(F\)是闭集，那么\(\abs*{A \cup F}=\abs*{A}+\abs*{F}\).
+\end{theorem}
+
+\begin{proof}
+    只需证明\(\abs*{A \cup F} \geq \abs*{A}+\abs*{F}\)即可.设开集\(O\)满足\(A \cup F \subseteq O\)，则\(A \subseteq O \setminus F\).
+    
+    \(O \setminus F\)是开集，故\(\abs*{A}+\abs*{F} \leq \abs*{O \setminus F}+\abs*{F}=\abs*{O}\)，取下确界得\(\abs*{A}+\abs*{F} \leq \abs*{A \cup F}\).
+\end{proof}
+
+\begin{theorem}[2.65]\label{2.65}
+    设\(B \subseteq \mathbb{R}\)是borel集.那么对于任意\(\varepsilon>0\)，存在闭集\(F \subseteq B\)使得\(\abs*{B \setminus F}<\varepsilon\).
+\end{theorem}
+
+\begin{proof}
+    定义\(\mathcal{L}=\{D \subseteq \mathbb{R}: \forall \varepsilon>0, \exists F \subseteq D, \abs*{D \setminus F}<\varepsilon\}\).下证\(\mathcal{L}\)是\(\sigma-\)代数.
+
+    {\kaishu 若得证，那么由于\(\mathcal{L}\)包含所有闭集，取补集则能包含所有开集，则证毕}.
+
+    设\(D_1, D_2, \dots \in \mathcal{L}\)，那么\(\forall k \in \mathbb{Z}^+, \exists F_k \subseteq D_k, \abs*{D_k \setminus F_k}<\varepsilon/2^k\).
+    \begin{align*}
+        (\bigcap_{k=1}^\infty D_k) \setminus (\bigcap_{k=1}^\infty F_k) \subseteq \bigcup_{k=1}^\infty (D_k \setminus F_k),
+        \abs*{\bigcup_{k=1}^\infty (D_k \setminus F_k)} \leq \sum_{k=1}^\infty \abs*{D_k \setminus F_k}=\sum_{k=1}^\infty \frac{\varepsilon}{2^k}=\varepsilon 
+    \end{align*}
+    于是\(\mathcal{L}\)对可数交运算封闭，而下证\(\mathcal{L}\)对补集运算封闭，先考虑\(\abs*{D}<\infty\)的情况.
+    
+    由于\(D \in \mathcal{L}\)，故\(\forall \varepsilon>0, \exists F \subseteq D, \abs*{D \setminus F}<\varepsilon/2\)，从而\(\abs*{D}-\abs*{F} \leq \abs*{D \setminus F}<\varepsilon/2\).
+    
+    由{\kaishu 外测度的外正则性}，存在开集\(G \supseteq D\)，\(\abs*{G}<\abs*{D}+\varepsilon/2\).利用\(\mathbb{R} \setminus G \subseteq \mathbb{R} \setminus D\)，得到
+    \begin{align*}
+        \abs*{(\mathbb{R} \setminus D) \setminus (\mathbb{R} \setminus G)}&=\abs*{G \setminus D} \leq \abs*{G \setminus F}=\abs*{G}-\abs*{F} \\
+        &=(\abs*{G}-\abs*{D})+(\abs*{D}-\abs*{F})<\varepsilon/2+\varepsilon/2=\varepsilon 
+    \end{align*}
+    若\(\abs*{D}=\infty\)，令\(\forall t \in \mathbb{Z}^+, D_t=[-t,t] \cap D \in \mathcal{L}\).从而\(D=\bigcup_{t=1}^\infty D_t, \mathbb{R} \setminus D=\bigcap_{t=1}^\infty (\mathbb{R} \setminus D_t)\).
+
+    由\(\forall t \in \mathbb{Z}^+, \mathbb{R} \setminus D_t \in \mathcal{L}\)，由\(\mathcal{L}\)对可数交封闭得\(\mathbb{R} \setminus D=\bigcap_{t=1}^\infty (\mathbb{R} \setminus D_t) \in \mathcal{L}\).
+
+    设\(D_1, D_2, \dots \in \mathcal{L}\)，那么\(\mathbb{R} \setminus D_1, \mathbb{R} \setminus D_2, \dots \in \mathcal{L}\)，因而\(\bigcap_{k=1}^\infty (\mathbb{R} \setminus D_k)=\bigcup_{k=1}^\infty D_k \in \mathcal{L}\).
+
+    取\(F=\varnothing\)得到\(\varnothing \in \mathcal{L}\)，因而综上\(\mathcal{L}\)是\(\sigma-\)代数.
+\end{proof}
+
+\newpage
+
+\begin{theorem}[2.71]\label{2.71}
+    如下条件都是集合\(A\)为Lebesgue可测集的等价判定条件.
+    \begin{equation*}
+        \begin{array}{cc}
+            \begin{aligned}
+                &a.\forall \varepsilon>0, \exists F \subseteq A, \abs*{A \setminus F}<\varepsilon \\
+                &b.\exists F_1, F_2, \dots \subseteq A, \abs*{A \setminus \bigcup_{k=1}^\infty F_k}=0 \\
+                &c.\exists B \subseteq A, \abs*{A \setminus B}=0
+            \end{aligned}
+            &
+            \begin{aligned}
+                &d.\forall \varepsilon>0, \exists G \supseteq A, \abs*{G \setminus A}<\varepsilon \\
+                &e.\exists G_1, G_2, \dots \supseteq A, \abs*{\bigcap_{k=1}^\infty G_k \setminus A}=0 \\
+                &f.\exists B \supseteq A, \abs*{B \setminus A}=0
+            \end{aligned}
+        \end{array}
+    \end{equation*}
+    其中\(F\)是闭集，\(G\)是开集，\(B\)是borel集.
+\end{theorem}
+
+{\kaishu 两组条件分别是从外部和内部逼近来证明可测性.
+
+注意到\cref{2.65}中定义的\(\mathcal{L}\)也包含了所有零测集，这一点在后文证明中会用到.}
+
+\begin{proof}[\(a \to b\)]
+    令\(F_n \subseteq A\)满足\(\abs*{A \setminus F_n}<1/n\).
+    显然\(\forall n \in \mathbb{N}, A \setminus \bigcup_{k=1}^\infty F_k \subseteq A \setminus F_n\).
+
+    所以\(\forall n \in \mathbb{N}, \abs*{A \setminus \bigcup_{k=1}^\infty F_k} \leq \abs*{A \setminus F_n}<1/n\)，
+    即\(\abs*{A \setminus \bigcup_{k=1}^\infty F_k}=0\).
+\end{proof}
+
+\begin{proof}[\(b \to c\)]
+    显然\(\bigcup_{k=1}^\infty F_k\)是\textit{borel}集，于是令\(B=\bigcup_{k=1}^\infty F_k\)即可.
+\end{proof}
+
+\begin{proof}[\(c \to a\)]
+    由于\(A=(A \setminus B) \cup B, \abs*{A \setminus B}=0\)，取\(F=\varnothing\)可知\(A \setminus B \in \mathcal{L}\)，则\(A \in \mathcal{L}\).
+\end{proof}
+
+\begin{proof}[\(d \to e\)]
+    令\(G_n \supseteq A\)满足\(\abs*{G_n \setminus A}<1/n\).
+    显然\(\forall n \in \mathbb{N}, \bigcap_{k=1}^\infty G_k \setminus A \subseteq G_n \setminus A\).
+
+    所以\(\forall n \in \mathbb{N}, \abs*{\bigcup_{k=1}^\infty G_k \setminus A} \leq \abs*{G_n \setminus A}<1/n\)，
+    即\(\abs*{\bigcup_{k=1}^\infty G_k \setminus A}=0\).
+\end{proof}
+
+\begin{proof}[\(e \to f\)]
+    显然\(\bigcup_{k=1}^\infty G_k\)是\textit{borel}集，于是令\(B=\bigcup_{k=1}^\infty G_k\)即可.
+\end{proof}
+
+\begin{proof}[\(f \to d\)]
+    由于\(B=(B \setminus A) \cup A, \abs*{B \setminus A}=0\)，取\(F=\varnothing\)可知\(B \setminus A \in \mathcal{L}\)，则\(A \in \mathcal{L}\).
+\end{proof}
+
+{\kaishu 至此，\(a \Leftrightarrow b \Leftrightarrow c\)和\(d \Leftrightarrow e \Leftrightarrow f\)均成立}.
+
+\begin{proof}[\(a \to d\)]
+    由于\(A \in \mathcal{L}\)，那么\(A^c \in \mathcal{L}\)，故存在闭集\(F \subseteq A^c\)使得\(\abs*{A^c \setminus F}<\varepsilon\).
+
+    由\(F^c\)是开集且\(F^c \setminus A=A^c \setminus F\)，故\(F^c \supseteq A\)且\(\abs*{F^c \setminus A}<\abs*{A^c \setminus F}<\varepsilon\).
+\end{proof}
+
+\begin{proof}[\(f \to a\)]
+    由于\(A=B \cap (B \setminus A)^c\)且\(B \in \mathcal{L}\)，同时\(B \setminus A \in \mathcal{L}, (B \setminus A)^c \in \mathcal{L}\)，于是\(A \in \mathcal{L}\).
+\end{proof}
+
+{\kaishu 最终\(a \Leftrightarrow b \Leftrightarrow c \Leftrightarrow d \Leftrightarrow e \Leftrightarrow f\)均成立}.
+
+\newpage
+
+\begin{theorem}\label{2.D.65.1}
+    令\(\mathcal{M}=\{A \subseteq \mathbb{R}: \forall E \subseteq \mathbb{R}, \abs*{E}=\abs*{E \cap A}+\abs*{E \setminus A}\}\)，则\(\mathcal{M}=\mathcal{L}\).
+\end{theorem}
+
+\begin{lemma}\label{2.D.65.1.1}
+    设\(G\)是任意开集，\(F\)是任意闭集，则\(G,F \in \mathcal{M}\).
+\end{lemma}
+
+\begin{proof}
+    设\(O \supseteq E\)是开集，从而\(E \cap G \subseteq O \cap G, E \setminus \overline{G} \subseteq O \setminus \overline{G}\).
+    
+    由于\(O \cap G, O \setminus \overline{G}\)都是开集且\(\abs*{\overline{G} \setminus G}=0\)，故\(\abs*{O}=\abs*{O \cap G}+\abs*{O \setminus \overline{G}}\).得到
+    \begin{align*}
+        \abs*{O}=\abs*{O \cap G}+\abs*{O \setminus \overline{G}} \geq \abs*{E \cap G}+\abs*{E \setminus \overline{G}}=\abs*{E \cap G}+\abs*{E \setminus G}
+    \end{align*}
+    因此\(\abs*{O} \geq \abs*{E \cap G}+\abs*{E \setminus G}\)，取下确界得到\(\abs*{E} \geq \abs*{E \cap G}+\abs*{E \setminus G}\)，故\(G\)可测.
+
+    取\(F=\mathbb{R} \setminus G\)，则\(\abs*{E}=\abs*{E \cap (\mathbb{R} \setminus G)}+\abs*{E \setminus (\mathbb{R} \setminus G)}=\abs*{E \setminus G}+\abs*{E \cap G}\)，故\(F\)可测.
+\end{proof}
+
+\begin{proof}
+    考虑\(B \in \mathcal{L}\)，只需证明\(\forall E \subseteq \mathbb{R}, \abs*{E} \geq \abs*{E \cap B}+\abs*{E \setminus B}\).
+
+    取闭集\(F\)满足\(\abs*{B \setminus F}<\varepsilon\)，且根据引理\(\abs*{E}=\abs*{E \setminus F}+\abs*{E \cap F}\).
+
+    由于\(E \cap B=(E \cap F) \cup (E \cap (B \setminus F))\)且\(E \setminus B \subseteq E \setminus F\)，故
+    \begin{align*}
+        \abs*{E \cap B} \leq \abs*{E \cap F}+\abs*{E \cap (B \setminus F)} \leq \abs*{E \cap F}+\abs*{B \setminus F}<\abs*{E \cap F}+\varepsilon
+    \end{align*}
+    于是\(\abs*{E \cap B}+\abs*{E \setminus B}<\abs*{E \setminus F}+\abs*{E \cap F}+\varepsilon=\abs*{E}+\varepsilon\).
+    
+    由于\(\varepsilon>0\)任取，故\(\abs*{E} \geq \abs*{E \cap B}+\abs*{E \setminus B}\)，即\(B \in \mathcal{M}\).充分性证毕.
+
+    考虑\(B \in \mathcal{M}, \abs*{B}<\infty\).取开集\(O \supseteq B\)使得\(\abs*{O}<\abs*{B}+\varepsilon\).
+
+    于是\(\abs*{O}=\abs*{O \cap B}+\abs*{O \setminus B}=\abs*{B}+\abs*{O \setminus B}\)，即\(\abs*{O \setminus B}=\abs*{O}-\abs*{B}<\varepsilon\).
+
+    根据\cref{2.71}\(a \Leftrightarrow d\)，故\(B \in \mathcal{L}\)，考虑\(\abs*{B}=\infty\).令\(B_k=B \cap (-k,k), B=\bigcup_{k=1}^\infty B_k\).
+
+    对于任意\(B_k\)，存在开集\(O_k \supseteq B_k\)使得\(\abs*{O_k \setminus B_k}<\varepsilon/2^k\)，令\(O=\bigcup_{k=1}^\infty O_k\).从而
+    \begin{align*}
+        \abs*{O \setminus B}=\abs*{\bigcup_{k=1}^\infty (O_k \setminus B_k)} \leq \sum_{k=1}^\infty \abs*{O_k \setminus B_k} \leq \sum_{k=1}^\infty \frac{\varepsilon}{2^k}=\varepsilon
+    \end{align*}
+    于是根据\cref{2.71}\(a \Leftrightarrow d\)，故\(B \in \mathcal{L}\)，必要性证毕.
+\end{proof}
+
+\begin{comment}
+\begin{theorem}\label{2.D.65.2}
+    \(A \subseteq \mathbb{R}\)的内测度\(\abs*{A}_*\)定义为\(\sup\{\abs*{F}: F \subseteq A \text{是有界闭集}\}\).
+    
+    令\(\mathcal{N}=\{A \subseteq \mathbb{R}: \abs*{A}=\abs*{A}_*\}\)，则\(\mathcal{N}=\mathcal{L}\).
+\end{theorem}
+
+\begin{lemma}\label{2.D.65.2.1}
+    若\(E\)满足\(\abs*{E}=\abs*{E}_*\)且\(I\)是可测集，则\(\abs*{E \cap I}=\abs*{E \cap I}_*\).
+\end{lemma}
+
+\begin{proof}
+    显然\(\abs*{E}=\abs*{E \cap I}+\abs*{E \setminus I}\).由超可加性，\(\abs*{E}_* \geq \abs*{E \cap I}_*+\abs*{E \setminus I}_*\).
+
+    因此\(\abs*{E \cap I}+\abs*{E \setminus I} \geq \abs*{E \cap I}_*+\abs*{E \setminus I}_*\)
+\end{proof}
+
+\begin{proof}
+    设\(A \in \mathcal{N}\).因而存在开集\(O \supseteq A\)，闭集\(F \subseteq A\)使得\(\abs*{O}-\abs*{A}<\varepsilon/2, \abs*{A}_*-\abs*{F}<\varepsilon/2\).
+    \begin{align*}
+        \abs*{O \setminus A} \subseteq \abs*{O \setminus F}&=\abs*{O}-\abs*{F}=(\abs*{O}-\abs*{A})+(\abs*{A}-\abs*{F}) \\
+        &=(\abs*{O}-\abs*{A})+(\abs*{A}_*-\abs*{F})<\varepsilon/2+\varepsilon/2=\varepsilon
+    \end{align*}
+    因此\(\forall \varepsilon>0, \exists O \supseteq A, \abs*{O \setminus A} \leq \abs*{O \setminus F}<\varepsilon\).因此\(\forall \abs*{A}<\infty, A \in \mathcal{L}\).
+
+    考虑\(\abs*{A}=\infty\)，令\(A_k=A \cap (-k,k), A=\bigcup_{k=1}^\infty A_k\)，则\(\forall k \in \mathbb{Z}^+, \abs*{A_k}<\infty\).
+
+    对于任意\(A_k\)，存在开集\(O_k \supseteq A_k\)使得\(\abs*{O_k \setminus A_k}<\varepsilon/2^k\)，令\(O=\bigcup_{k=1}^\infty O_k\).从而
+    \begin{align*}
+        \abs*{O \setminus A}=\abs*{\bigcup_{k=1}^\infty (O_k \setminus A_k)} \leq \sum_{k=1}^\infty \abs*{O_k \setminus A_k} \leq \sum_{k=1}^\infty \frac{\varepsilon}{2^k}=\varepsilon
+    \end{align*}
+    从而\(A\)是\textit{Lebesgue}可测集，即\(A \in \mathcal{L}\).
+
+    设\(A \in \mathcal{L}\)且\(\abs*{A}<\infty\).于是存在闭集\(F \subseteq A\)使得\(\abs*{A \setminus F}<\varepsilon\).
+
+    因而\(\abs*{A}=\abs*{F}+\abs*{A \setminus F}, \abs*{F}=\abs*{A}-\varepsilon\).由于\(\varepsilon\)任意，故\(\abs*{A}_*=\sup \abs*{F} \geq \abs*{A}\).
+
+    由于\(F \subseteq A\)，故\(\abs*{A}_* \leq \abs*{A}\)恒成立，结合之得到\(\abs*{A}_*=\abs*{A}\)，即\(A \in \mathcal{L}\).
+
+    考虑\(\abs*{A}=\infty\)，令\(A_k=A \cap (-k,k), A=\bigcup_{k=1}^\infty A_k\).\(\forall N>0, \exists k \in \mathbb{Z}^+, \abs*{A_k}>N+1\).
+
+    显然\(A_k\)是有界集，则存在有界闭集\(F\)使得\(\abs*{A_k}-\abs*{F}<1\).
+
+    从而\(\abs*{A}_* \geq \abs*{F}>\abs*{A_k}-1>(N+1)-1=N\)，故\(\abs*{A}=\infty=\abs*{A}_*\)，即\(A \in \mathcal{N}\).
+\end{proof}
+\end{comment}
+
+\newpage
+
+\begin{problem}[1]\label{2.D.1}
+    设\(a \in (0,1)\)的十进制展开形式是\(a=(0.d_1d_2 \dots)_{10}, d_k \in \{0, \dots,9\}\).
+
+    a.证明\(A=\{a \in (0,1): \exists k \in \mathbb{Z}^+, d_k=\dots=d_{k+99}=4\}\)是borel集. \enspace b.给出\(A\)的Lebesgue测度.
+\end{problem}
+
+\begin{proof}[证明a]
+    设\(A_n=\{a \in (0,1): d_n=\dots=d_{n+99}=4\}\)，那么\(A=\bigcup_{n=1}^\infty A_n\).
+
+    令\(A_{n,0}=[0.\underbrace{0 \dots 0}_{n-1} \underbrace{4 \dots 4}_{100}, 0.\underbrace{0 \dots 0}_{n-1} \underbrace{4 \dots 4}_{99} 5], A_{n,k}=k \cdot 10^{1-n}+A_{n,0}\)，那么\(A_n=\bigcup_{k=0}^{10^{n-1}-1} A_{n,k}\).
+
+    由于每个\(A_{n,k}\)都是闭集，也即\textit{borel}集，因此\(A=\bigcup_{n=1}^\infty \bigcup_{k=0}^{10^{n-1}-1} A_{n,k}\)是\textit{borel}集的可数并.
+\end{proof}
+
+\begin{proof}[证明b]
+    令\(B_n=A_n \setminus \bigcup_{k=1}^{n-1} A_k\)，这样\(A=\bigcup_{n=1}^\infty B_n\)且\(B_n\)互不相交.
+
+    由于\(A_1, \dots, A_n\)是\textit{borel}集，因而\(B_n\)是\textit{borel}集，从而\(\abs*{A}=\abs*{\bigcup_{n=1}^\infty B_n}=\sum_{n=1}^\infty \abs*{B_n}=1\).
+    %还需要更详细的论证，但是无穷级数求和的部分就暂时略去了.
+\end{proof}
+
+\begin{problem}[2]\label{2.D.2}
+    证明存在\(\mathbb{R}\)的有界子集\(A\)满足对所有闭集\(F \subseteq A\)都有\(\abs*{F} \leq \abs*{A}-1\).
+\end{problem}
+
+\begin{proof}
+    {\kaishu 我们要尝试着构造一个能够填满\([0,1]\)但包含闭集测度为\(0\)的集合.
+    
+    它需要与每个闭集都有交集，但不能包含任何一个闭集，这显然是不可测集.
+    
+    于是我们尝试着从每个闭集中挑出两个元素分别放进\(A\)和\(A^c\)中，这需要选择公理.}
+
+    令\(A \subseteq [0,1]\)满足对于任意不可数闭集\(F \subseteq [0,1]\)都有\(A \cap F \ne \varnothing, A^c \cap F \ne \varnothing\).
+
+    若不可数闭集\(F \subseteq A\)，那么\(F^c \cap A=\varnothing\)，因此所有闭集\(F \subseteq A\)都有\(\abs*{F}=0\).
+
+    因此\(\abs*{A}-1=0 \geq \abs*{F}\)，证毕.
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[3]\label{2.D.3}
+        证明存在\(\mathbb{R}\)的子集\(A\)满足对所有开集\(G \subseteq A\)都有\(\abs*{G \setminus A}=\infty\).
+    \end{problem}
+
+    \begin{proof}
+        {\kaishu 和上题一样，我们要构造一个不可测集，但是切割对象换成了所有开区间.}
+
+        令\(A \subseteq \mathbb{R}\)满足对于任意开区间\(I \subseteq \mathbb{R}\)都有\(A \cap I \ne \varnothing, A^c \cap I \ne \varnothing\).
+
+        显然任何包含\(A\)的开集只能是\(\mathbb{R}\)，且\(\abs*{G \setminus A}=\infty\).
+        %有关不可测集的构造需要等待以后补充.
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+\begin{problem}[4]\label{2.D.4}
+    设\(U\)是任意非平凡区间组成的集合\(\mathcal{I}\)之并\(\bigcup_{I \in \mathcal{I}}I\)，
+
+    证明：\(U\)可以表示为\(\mathcal{I}\)的可数子集的并集.
+\end{problem}
+
+\begin{proof}
+    设\(\mathcal{J}=\{(p,q): p,q \in \mathbb{Q}, (p,q) \subseteq I \in \mathcal{I}\}\)，则\(\mathcal{J}\)是可数集.
+    
+    为\(\mathcal{J}\)中的每个\((p,q)\)在\(\mathcal{I}\)中选择一个包含它的集合\(I_c\)，令\(\mathcal{R}=\{I_c \in \mathcal{I}: (p,q) \subseteq I_c\}\).
+
+    令\(U_c=\bigcup_{I \in \mathcal{R}}I\)，显然\(U_c \subseteq U\).考虑\(\forall x \in U, \exists p,q \in \mathbb{Q}, x \in (p,q) \in \mathcal{J}\).
+
+    于是\(\exists I_c \in \mathcal{R}, (p,q) \subseteq I_c \in \mathcal{R}, x \in I_c\)，故\(x \in I_c \subseteq U_c, U \subseteq U_c\)，证毕.
+\end{proof}
+\end{comment}
+
+\begin{comment}
+\begin{problem}[5]\label{2.D.5}
+    证明若\(A \subseteq \mathbb{R}\)是Lebesgue可测集，则存在闭集\(F_1 \subseteq F_2 \subseteq \dots \subseteq A\)，
+
+    且满足\(\abs*{A \setminus \bigcup_{n=1}^\infty F_n}=0\).
+\end{problem}
+
+\begin{proof}
+    令闭集\(D_k\)满足\(\abs*{A \setminus D_k}<1/k\)，令\(F_n=\bigcup_{k=1}^n D_k\).
+\end{proof}
+\end{comment}
+
+\begin{problem}[6]\label{2.D.6}
+    设\(A \subseteq \mathbb{R}\)且\(\abs*{A}<\infty\).证明：\(A\)是Lebesgue可测集等价于\(\forall \varepsilon>0, \exists G \subseteq \mathbb{R}\)，
+
+    \(G\)是有限多不相交开区间之并，且满足\(\abs*{A \setminus G}+\abs*{G \setminus A}<\varepsilon\).
+\end{problem}
+
+\begin{proof}
+    \(A\)是\textit{Lebesgue}可测集等价于存在开集\(O \supseteq A\)满足\(\abs*{O \setminus A}<\varepsilon/2\).
+
+    \(O\)是可数不相交开区间\(I_1, I_2, \dots\)的并\(\bigcup_{k=1}^\infty I_k\).选取\(N \in \mathbb{Z}^+\)使得\(\sum_{k=N+1}^\infty \abs*{I_k}<\varepsilon/2\).
+
+    令\(G=\bigcup_{k=1}^N I_k\)，那么\(G \setminus A \subseteq O \setminus A, \abs*{G \setminus A} \leq \abs*{O \setminus A}<\varepsilon/2\).
+
+    \(A \setminus G \subseteq O \setminus G, \abs*{A \setminus G} \leq \sum_{k=N+1}^\infty \abs*{I_k}<\varepsilon/2\)，于是\(\abs*{A \setminus G}+\abs*{G \setminus A}<\varepsilon\).
+\end{proof}
+
+\begin{comment}
+\begin{problem}[7]\label{2.D.7}
+    证明若\(A \subseteq \mathbb{R}\)是Lebesgue可测集，则存在开集\(G_1 \supseteq G_2 \supseteq \dots \supseteq A\)，
+
+    且满足\(\abs*{\bigcup_{n=1}^\infty G_n \setminus A}=0\).
+\end{problem}
+
+\begin{proof}
+    令开集\(D_k\)满足\(\abs*{D_k \setminus A}<1/k\)，令\(G_n=\bigcup_{k=1}^n D_k\).
+\end{proof}
+\end{comment}
+
+\begin{problem}[10]\label{2.D.10}
+    证明：若\(A,B \subseteq \mathbb{R}\)不相交且\(B\)是Lebesgue可测集，则\(\abs*{A}+\abs*{B}=\abs*{A \cup B}\).
+\end{problem}
+
+由于\(B\)是\textit{Lebesgue}可测集，令\(B_1 \subseteq B, B_1 \in \sigma(\mathcal{B})\)满足\(\abs*{B \setminus B_1}=0\).
+
+故\(\abs*{A}+\abs*{B_1}=\abs*{A \cup B_1} \leq \abs*{A \cup B}=\abs*{A \cup B_1 \cup (B \setminus B_1)} \leq \abs*{A}+\abs*{B_1}+\abs*{B \setminus B_1}\).
+
+显然由于\(\abs*{B \setminus B_1}=0, \abs*{B}=\abs*{B_1}\)，故\(\abs*{A \cup B_1}=\abs*{A \cup B}=\abs*{A}+\abs*{B}\).
+
+\begin{comment}
+    \begin{problem}[12]\label{2.D.12}
+        设\(b<c\)且\(A \subseteq (b,c)\).证明\(A\)是Lebesgue可测集等价于\(\abs*{A}+\abs*{(b,c) \setminus A}=c-b\).
+    \end{problem}
+
+    \begin{proof}
+        若\(A\)是\textit{Lebesgue}可测集，那么\((b,c) \setminus A\)也是\textit{Lebesgue}可测集且不相交.
+
+        于是\(\abs*{A}+\abs*{(b,c) \setminus A}=\abs*{(b,c)}=c-b\)，证毕.
+
+        \(\forall A \subseteq \mathbb{R}, \exists G_1 \supseteq G_2 \supseteq \dots A, \abs*{G_k}-\abs*{A}<1/n\)，令\(G=\bigcap_{k=1}^\infty G_k\)，则\(\abs*{G}=\abs*{A}\).
+
+        由于\(G\)是\textit{borel}集，故\(\abs*{G}+\abs*{(b,c) \setminus G}=c-b\)，得\(\abs*{(b,c) \setminus A}=\abs*{(b,c) \setminus G}\).
+
+        \(\abs*{G \setminus A}=\abs*{((b,c) \setminus A) \setminus ((b,c) \setminus G)} \geq \abs*{(b,c) \setminus A}-\abs*{(b,c) \setminus G}\)
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+\begin{problem}[24]\label{2.D.24}
+    \(\forall A \subseteq \mathbb{R}\)，\(A\)的内测度\(\abs*{A}_*\)定义为\(\sup\{\abs*{F}: F \subseteq A \text{是有界闭集}\}\).
+
+    a.证明若\(A\)是Lebesgue可测集，则\(A\)的内测度等于\(A\)的外测度. 
+
+    b.证明\(2^\mathbb{R}\)上的内测度不是测度.
+\end{problem}
+
+\begin{proof}[证明a]
+    若\(A\)是\textit{Lebesgue}可测集，那么\(\forall F \subseteq A, \abs*{F} \leq \abs*{A}\)，故\(\abs*{A} \geq \sup \abs*{F}=\abs*{A}_*\).
+
+    若\(A\)有界，则任意闭集\(F \subseteq A\)有界，此时存在\(F\)使得\(\abs*{A \setminus F}<\varepsilon/2\).
+
+    若\(A\)无界但\(\abs*{A}<\infty\)，令\(A_n=[-n,n] \cap A\)，则\(\forall \varepsilon>0, \exists m \in \mathbb{Z}^+, \abs*{A}-\abs*{A_m}<\varepsilon/2\).
+
+    显然\(A_m\)是有界集，则存在有界闭集\(F\)使得\(\abs*{A_m}-\abs*{F}<\varepsilon/2\).
+
+    最终\(\forall \varepsilon>0, \exists F \subseteq A, \abs*{A}-\abs*{F} \leq (\abs*{A}-\abs*{A_m})+(\abs*{A_m}-\abs*{F})<\varepsilon/2+\varepsilon/2=\varepsilon\).
+
+    因此\(\abs*{A}-\varepsilon<\abs*{F} \leq \abs*{A}\)，也即\(\sup \abs*{F} \geq \abs*{A}\)，得到\(\abs*{A}_*=\abs*{A}\).
+
+    若\(A\)无界且\(\abs*{A}=\infty\)，那么\(\forall M>0, \exists m \in \mathbb{Z}^+, \abs*{A_m}>M+1\).
+
+    显然\(A_m\)是有界集，则存在有界闭集\(F\)使得\(\abs*{A_m}-\abs*{F}<1\).
+
+    \(\abs*{A}_* \geq \abs*{F}>\abs*{A_m}-1>(M+1)-1=M\)，故\(\abs*{A}=\infty=\abs*{A}_*\).
+\end{proof}
+
+\begin{proof}[证明b]
+    考虑\([0,1]\)上的\textit{Vitali}集\(V\).\(\abs*{V}_*=0, \abs*{V}>0\).
+    
+    因此\(\abs*{V}_*+\abs*{[0,1] \setminus V}_*=1-\abs*{V}<1=\abs*{[0,1]}_*\)，\(\abs*{\cdot}_*\)不满足有限可加性.
+\end{proof}
+\end{comment}

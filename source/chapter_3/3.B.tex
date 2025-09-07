@@ -1,0 +1,291 @@
+\section{3.B Limits of Integrals \& Integrals of Limits}
+
+\begin{theorem}[3.26]\label{3.26}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(\mu(X)<\infty\).\(f_1, f_2, \dots: X \to \mathbb{R}\)逐点收敛至\(f\)，
+    
+    且满足\(\forall x \in X, k \in \mathbb{Z}^+, \exists c \in (0,\infty), \abs*{f_k(x)} \leq c\)，则\(\lim_{k \to \infty} \int f_k d\mu=\int f d\mu\).
+\end{theorem}
+
+\begin{proof}
+    根据\textit{egorov}定理，\(\forall \varepsilon>0, \exists E \in \mathcal{S}, \mu(X \setminus E)<\varepsilon/4c\)且\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).
+    \begin{align*}
+        \abs*{\int f_k d\mu-\int f d\mu}&=\abs*{\int_{X \setminus E} f_k d\mu-\int_{X \setminus E} f d\mu+\int_E (f_k-f) d\mu} \\
+        &\leq \abs*{\int_{X \setminus E} f_k d\mu}+\abs*{\int_{X \setminus E} f d\mu}+\abs*{\int_E (f_k-f) d\mu} \\
+        &<2c \mu(X \setminus E)+\sup_E \abs*{f_k-f} \mu(E)<\varepsilon/2+\sup_E \abs*{f_k-f} \mu(E)
+    \end{align*}
+    由于\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\)，故\(\forall \varepsilon>0, \exists k \in \mathbb{Z}^+, \forall m \geq k, \sup_E \abs*{f_m-f}<\varepsilon/2\mu(X)\).
+
+    于是\(\exists m \in \mathbb{Z}^+, \forall k \geq m, \sup_E \abs*{f_k-f} \mu(E)<\mu(E) \varepsilon/2\mu(X)<\varepsilon/2\)，证毕.
+
+    {\kaishu 在有限测度上可以直接考虑使用\textit{egorov}定理，分为一致收敛部分和小集合部分.
+    
+    对一致收敛部分控制函数差值的上确界，对小集合控制其测度即可.}
+\end{proof}
+
+\begin{theorem}[3.28]\label{3.28}
+    设\((X, \mathcal{S}, \mu)\)是测度空间，\(g: X \to [0,\infty]\)是\(\mathcal{S}-\)可测函数且\(\int g d\mu<\infty\).
+
+    则\(\forall \varepsilon>0, \exists \delta>0, \forall B \in \mathcal{S}, \mu(B)<\delta, \int_B g d\mu<\varepsilon\).
+\end{theorem}
+
+\begin{proof}
+    设简单\(\mathcal{S}-\)可测函数\(0 \leq h \leq g\)满足\(\int g d\mu-\int h d\mu<\varepsilon/2\)，定义\(H=\max_X h\).
+
+    令\(\delta<\varepsilon/2H\)，考虑\(\forall B \in \mathcal{S}, \mu(B)<\delta\).
+    \begin{align*}
+        \int_B g d\mu=\int_B (g-h) d\mu+\int_B h d\mu<\int (g-h) d\mu+\int_B h d\mu<\varepsilon/2+\mu(B)H<\varepsilon/2+\varepsilon/2=\varepsilon
+    \end{align*}
+    {\kaishu 这是控制收敛定理的一个引理，旨在通过简单函数控制小集合上的积分行为.}
+\end{proof}
+
+\begin{theorem}[3.29]\label{3.29}
+    设\((X, \mathcal{S}, \mu)\)是测度空间，\(g: X \to [0,\infty]\)是\(\mathcal{S}-\)可测函数且\(\int g d\mu<\infty\).
+
+    则\(\forall \varepsilon>0, \exists E \in \mathcal{S}, \mu(E)<\infty, \int_{X \setminus E} g d\mu<\varepsilon\).
+\end{theorem}
+
+\begin{proof}
+    设简单\(\mathcal{S}-\)可测函数\(h=\sum_{k=1}^m a_k \chi_{A_k} \leq g\)满足\(\int g d\mu-\int h d\mu<\varepsilon\)且\(a_1, \dots, a_m>0\).
+
+    显然\(\mu(A_k)<\infty\)，否则\(\int h d\mu \geq a_k \mu(A_k)=\infty>\int g d\mu\).令\(E=\bigcup_{k=1}^m A_k\).
+    \begin{align*}
+        \int_{X \setminus E} g d\mu=\int g d\mu-\int \chi_E g d\mu<\varepsilon+\int h d\mu-\int \chi_E h d\mu
+    \end{align*}
+    由于\(\chi_E h=h\)，故\(\int_{X \setminus E} g d\mu<\varepsilon+\int h d\mu-\int \chi_E h d\mu=\varepsilon\)，证毕.
+
+    {\kaishu 这是控制收敛定理的一个引理，旨在将可积函数的积分控制在有限区域以内.}
+\end{proof}
+
+\newpage
+
+\begin{theorem}[3.31]\label{3.31}
+    设\((X, \mathcal{S}, \mu)\)是测度空间.\(f_1, f_2, \dots: X \to [-\infty,\infty]\)逐点收敛至\(f\)，
+    
+    且满足\(\forall x \in X, k \in \mathbb{Z}^+\)，存在\(\mathcal{S}-\)可测函数\(g: X \to [0,\infty]\)使得\(\abs*{f_k(x)} \leq g(x), \int g d\mu<\infty\)，
+    
+    则\(\lim_{k \to \infty} \int f_k d\mu=\int f d\mu\).
+\end{theorem}
+
+\begin{proof}
+    设\(E \in \mathcal{S}\)且存在\(\mathcal{S}-\)可测函数\(g\)满足条件.
+    \begin{align*}
+        \abs*{\int f_k d\mu-\int f d\mu}&=\abs*{\int_{X \setminus E} f_k d\mu-\int_{X \setminus E} f d\mu+\int_E f_k d\mu-\int_E f d\mu} \\
+        &\leq \abs*{\int_{X \setminus E} f_k d\mu}+\abs*{\int_{X \setminus E} f d\mu}+\abs*{\int_E f_k d\mu-\int_E f d\mu} \\
+        &\leq 2\int_{X \setminus E} g d\mu+\abs*{\int_E f_k d\mu-\int_E f d\mu}
+    \end{align*}
+    考虑\(\mu(X)<\infty\)的情况.根据\cref{3.28}，\(\forall \varepsilon>0, \exists \delta>0, \forall B \in \mathcal{S}, \mu(B)<\delta, \int_B g d\mu<\varepsilon/4\).
+
+    同时根据\textit{egorov}定理\(\forall \delta>0, \exists E \in \mathcal{S}, \mu(X \setminus E)<\delta\)且\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).
+
+    那么\(2\int_{X \setminus E} g d\mu<2\varepsilon/4=\varepsilon/2\)，同时\(\abs*{\int_E (f_k-f) d\mu} \leq \mu(E) \sup_E\abs*{f_k-f}\).
+
+    由于\(f_1, f_2, \dots\)在\(E\)上一致收敛，故\(\forall \varepsilon>0, \exists m \in \mathbb{Z}^+, \forall k \geq m, \sup_E \abs*{f_k-f}<\varepsilon/2\mu(X)\).
+
+    于是\(\exists m \in \mathbb{Z}^+, \forall k \geq m, \sup_E \abs*{f_k-f} \mu(E)<\mu(E) \varepsilon/2\mu(X)<\varepsilon/2\)，证毕.
+
+    考虑\(\mu(X)=\infty\)的情况.根据\cref{3.29}，\(\forall \varepsilon>0, \exists E \in \mathcal{S}, \mu(E)<\infty\)且\(\int_{X \setminus E} g d\mu<\varepsilon/4\).
+    \begin{align*}
+        \abs*{\int f_k d\mu-\int f d\mu}<\frac{\varepsilon}{2}+\abs*{\int_E f_k d\mu-\int_E f d\mu}
+    \end{align*}
+    由于\(\mu(E)<\infty\)，按照{\kaishu 情况一}的方法.对于充分大的\(k\)，有\(\abs*{\int_E f_k d\mu-\int_E f d\mu}<\varepsilon/2\).
+\end{proof}
+
+\begin{problem}[1]\label{3.B.1}
+    构造函数序列\(\{f_k\}_{k \in \mathbb{Z}^+}: \mathbb{Z}^+ \to [0,\infty)\)满足\(\forall m \in \mathbb{Z}^+, \lim_{k \to \infty}f_k(m)=0\).
+
+    然而当\(\mu\)为计数测度时，\(\lim_{k \to \infty} \int f_k d\mu=1\).
+\end{problem}
+
+\begin{proof}
+    定义\(f_k(m)=\chi_{\{k\}}(m)\)，显然\(\forall m \in \mathbb{Z}^+, \lim_{k \to \infty}f_k(m)=0\)且\(\forall k \in \mathbb{Z}^+, \int f_k d\mu=1\).
+\end{proof}
+
+\begin{problem}[2]\label{3.B.2}
+    构造连续函数序列\(\{f_k\}_{k \in \mathbb{Z}^+}: \mathbb{R} \to [0,1]\)满足\(\forall x \in \mathbb{Z}^+, \lim_{k \to \infty}f_k(x)=0\).
+
+    然而当\(\lambda\)为lebesgue测度时，\(\lim_{k \to \infty} \int f_k d\lambda=\infty\).
+\end{problem}
+
+\begin{proof}
+    对于任意\(x \in \mathbb{R}\)，定义\(f_k(x)\)为
+    \begin{align*}
+        f_k(x)=
+        \begin{cases}
+            \abs*{\sin(2\pi x)}, x \geq k \\
+            0, x<k
+        \end{cases}
+    \end{align*}
+    显然\(f_k\)在\(x=k\)处连续，且满足\(\forall x \in \mathbb{Z}^+, \lim_{k \to \infty}f_k(x)=0\)和\(\lim_{k \to \infty} \int f_k d\lambda=\infty\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[3]\label{3.B.3}
+    设\(\lambda\)是\(\mathbb{R}\)上的lebesgue测度，\(f: \mathbb{R} \to \mathbb{R}\)是borel可测函数且\(\int \abs*{f} d\lambda<\infty\).
+
+    定义\(g: \mathbb{R} \to \mathbb{R}\)为\(g(x)=\int_{(-\infty,x)} f d\lambda\)，证明：\(g\)在\(\mathbb{R}\)上一致连续.
+\end{problem}
+
+\begin{proof}
+    根据\cref{3.28}，对于\(\forall \varepsilon>0, \exists \delta>0, \forall \lambda(B)<\delta, \int_B f d\lambda<\varepsilon\).
+    \begin{align*}
+        \abs*{g(x_1)-g(x_2)}=\abs*{\int_{(-\infty,x_1)} f d\lambda-\int_{(-\infty,x_2)} f d\lambda}=\abs*{\int_{(x_1,x_2)} f d\mu}<\varepsilon
+    \end{align*}
+    因此只要\(\abs*{x_1-x_2}<\delta\)，就有\(\abs*{g(x_1)-g(x_2)}<\varepsilon\).
+\end{proof}
+
+\begin{problem}[4]\label{3.B.4}
+    a.设\((X, \mathcal{S}, \mu)\)是测度空间且\(\mu(X)<\infty\).设\(f: X \to [0,\infty)\)是有界\(\mathcal{S}-\)可测函数.
+
+    证明：\(\int f d\mu=\inf\{\sum_{k=1}^m \mu(A_k)\sup_{A_k}f: A_1, \dots, A_m \text{是} X \text{的} \mathcal{S}\text{-划分}\}\).
+
+    b.证明在有界条件被替换为\(\int f d\mu<\infty\)后结论不成立.
+
+    c.证明去掉\(\mu(X)<\infty\)后结论不成立.
+\end{problem}
+
+\begin{proof}[证明a]
+    令上和集合的元素为\(U(P)\)，\(P\)是\(X\)的\(\mathcal{S}\)-划分，则下确界为\(\inf_P U(P)\).
+
+    设\(M\)是\(f\)的一个上界，令\(I_{m,k}=(M(k-1)/m, Mk/m], k=1, \dots, m\).
+
+    令\(A_{m,k}=f^{-1}(I_{m,k})\)，显然\(A_{m,1}, \dots, A_{m,m}\)是\(X\)的\(\mathcal{S}\)-划分，记为\(P_m\).
+
+    定义简单函数\(f_m(x)=\sum_{k=1}^m Mk/m \chi_{A_{m,k}}\)，因此\(0 \leq f_m(x)-f(x) \leq M/m\).
+
+    有\(\int f_m d\mu=U(P_m)<\infty\)且\(\lim_{m \to \infty} f_m(x)=f(x)\)，得到\(\inf_P U(P) \leq \lim_{k \to \infty} \int f_m d\mu\).
+
+    同时由于\(\int f_1 d\mu<\infty\)，根据\cref{3.A.20}有\(\lim_{m \to \infty} \int f_m d\mu=\int f d\mu\).
+
+    由于\(\int f d\mu \leq \inf_P U(P)\)，故\(\int f d\mu \leq \inf_P U(P) \leq \lim_{k \to \infty} \int f_m d\mu\)，证毕.
+
+    {\kaishu 证明的关键在于从上和集合中抽取一个递减的收敛子列.}
+\end{proof}
+
+\begin{proof}[证明b]
+    令\(X=[0,1], \mathcal{S}, \mu=\lambda\)是限制在\([0,1]\)上的\textit{borel}代数和\textit{lebesgue}测度.
+
+    令\(f(x)=1/\sqrt{x}\)，显然\(\int_0^1 f d\lambda=[2\sqrt{x}]_0^1=2<\infty\)，但\(\forall P, \inf_P U(P)=U(P)=\infty\).
+\end{proof}
+
+\begin{proof}[证明c]
+    令\(X=[0,\infty), \mathcal{S}, \mu=\lambda\)是限制在\([0,1]\)上的\textit{borel}代数和\textit{lebesgue}测度.
+
+    令\(f(x)=e^{-x}\)，显然\(\int_0^\infty f d\lambda=[-e^{-x}]_0^\infty=1<\infty\).
+
+    但是\(\forall P, \exists A_P \in \mathbb{S}, \lambda(A_P)=\infty\)，于是\(\inf_P U(P)=U(P)=\infty\).
+\end{proof}
+
+\begin{problem}[5]\label{3.B.5}
+    设\(f: \mathbb{R} \to \mathbb{R}\)是borel可测函数且\(\int \abs*{f} d\lambda<\infty\).证明\(\lim_{k \to \infty} \int_{[-k,k]} f d\mu=\int f d\mu\).
+\end{problem}
+
+\begin{proof}
+    令\(f_k(x)=\chi_{[-k,k]} f(x)\)，显然\(\lim_{k \to \infty}f_k(x)=f(x)\)且\(\forall k \in \mathbb{Z}^+, x \in X, f_k(x) \leq f(x)\).
+
+    由\(\int \abs*{f} d\lambda<\infty\)，根据控制收敛定理\(\lim_{k \to \infty} \int_{[-k,k]} f d\lambda=\lim_{k \to \infty} \int f_k d\lambda=\int f d\lambda\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[8]\label{3.B.8}
+    证明\(\{x \in [a,b]: f^L(x) \ne f^U(x)\}=\{x \in [a,b]: f \text{在} x \text{处不连续}\}\).
+\end{problem}
+
+\begin{proof}
+    显然\(\abs*{f^L(x)-f^U(x)}>0\)等价于\(\lim_{n \to \infty}(\sup_{J_n(x)} f-\inf_{J_n(x)} f)>0\).
+
+    若\(x=a+t(b-a)/2^n, t=0, \dots, 2^n\)，则\(J_n(x)=I_{t,2^n} \cup I_{t+1,2^n}\)，否则\(J_n(x)=I_{t,2^n}\).
+
+    因此\(\exists \varepsilon>0, k \in \mathbb{Z}^+, (\lim_{n \to \infty} \sup_{J_n(x)} f-\inf_{J_n(x)} f) \geq \varepsilon>1/k>0\).
+
+    因此总存在\(\delta>0, B(x,\delta) \subseteq J_n(x)\).定义\(G_k\)，则\(x \notin G_k\).
+
+    由于\(x \notin \bigcap_{k=1}^\infty G_k\)等价于\(f\)在\(x\)处不连续，结合\(x \notin G_k\)证毕.
+\end{proof}
+
+\begin{problem}[10]\label{3.B.10}
+    a.设\((X, \mathcal{S}, \mu)\)是测度空间且\(\mu(X)<\infty\).设\(f: X \to [0,\infty)\)是有界\(\mathcal{S}-\)可测函数.
+
+    证明：若\(0<p<r\)且\(\int f^r d\mu<\infty\)，则\(\int f^p d\mu<\infty\).
+
+    b.证明若无\(\mu(X)<\infty\)条件结论不成立.
+\end{problem}
+
+\begin{proof}[证明a]
+    令\(A=f^{-1}((1,\infty))\)，则\(\forall x \in A, f^p(x)<f^r(x)\)，因此\(\int_A f^p d\mu<\int_A f^r d\mu<\infty\).
+
+    而\(\int_{X \setminus A} f^p d\mu \leq \int \chi_{X \setminus A} d\mu=\mu(X \setminus A) \leq \mu(X)<\infty\)，故\(\int f^p d\mu<\int_A f^r d\mu+\int \chi_{X \setminus A}<\infty\).
+\end{proof}
+
+\begin{proof}[证明b]
+    设\(X=[1,\infty), \mu=\lambda\)，令\(f(x)=1/x, r=2, p=1\).
+
+    于是\(\int 1/x^2 d\lambda=\pi^2/6, \int 1/x d\lambda=[\ln x]_1^\infty=\infty\)，证毕.
+
+    {\kaishu 精髓在于那些值域小于\(1\)的函数不能再依赖有限测度控制，使用了调和级数和\(p\)级数.}
+\end{proof}
+
+\begin{problem}[11]\label{3.B.11}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(f \in \mathcal{L}^1(\mu)\).
+    
+    证明：\(\{x \in X: f(x) \ne 0\}\)由可数的有限测度集组成.
+\end{problem}
+
+\begin{proof}
+    令\(A_n=\{x \in X: \abs*{f(x)}>1/n\}\)，于是\(\{x \in X: f(x) \ne 0\}=\bigcup_{n=1}^\infty A_n\).
+
+    由于\(\forall n \in \mathbb{Z}^+, \int_{A_n} \abs*{f} d\mu<\int \abs*{f} d\mu<\infty\)，因此\(\forall n \in \mathbb{Z}^+, \mu(A_n)<\infty\)，证毕.
+\end{proof}
+
+\begin{problem}[12]\label{3.B.12}
+    令\(f_k(x)=\dfrac{(1-x)^k \cos(x/k)}{\sqrt{x}}\)，证明\(\lim_{k \to \infty} \int_0^1 f_k=0\).
+\end{problem}
+
+\begin{proof}
+    由于\(x \in (0,1)\)，故\(\lim_{k \to \infty} (1-x)^k=0, \lim_{k \to \infty} \cos(x/k)=1, \lim_{k \to \infty} f_k(x)=0\).
+
+    另一方面，由于\(\forall x \in (0,1), (1-x)^k \cos(x/k)<1\)，故令\(g(x)=1/\sqrt{x}, f_k(x) \leq g(x)\).
+
+    由于\(\int_0^1 g=[2\sqrt{x}]_0^1=2<\infty\)，故根据控制收敛定理\(\lim_{k \to \infty} \int_0^1 f_k=\int_0^1 \lim_{k \to \infty} f_k=0\).
+\end{proof}
+
+\begin{problem}[13]\label{3.B.13}
+    构造borel可测函数\(\{f_t\}_{t \in \mathbb{Z}^+}: [0,1] \to \mathbb{R}\)，
+    
+    满足\(\limsup_{k \to \infty} f_k(x)=\infty\)且\(\lim_{k \to \infty} \int f=0\).
+\end{problem}
+
+\begin{proof}
+    令\(g_{n,k}=n \chi_{[(k-1)/2^n, k/2^n]}, k=1, \dots, 2^n\).将\(g_{n,k}\)按照{\kaishu 字典顺序}排序得到\(\{f_k\}_{k \in \mathbb{Z}^+}\).
+
+    由于\(\forall x \in [0,1], \exists k_1, k_2, \dots \in \mathbb{Z}^+, f_{k_p}(x)=p\)，故\(\limsup_{k \to \infty} f_k(x)=\infty\).
+    
+    显然\(\lim_{k \to \infty} \int f_k d\mu=\lim_{k \to \infty} k/2^k=0\)，则证毕.
+
+    {\kaishu 本题使用“有丝分裂”的形式构造分层函数，意在指出\(\mathcal{L}^1\)收敛和点态收敛的无关性.}
+\end{proof}
+
+\newpage
+
+\begin{problem}[16]\label{3.B.16}
+    设\(f \in \mathcal{L}^1(\mathbb{R})\).
+
+    a.定义\(\forall t \in \mathbb{R}, f_t(x)=f(x-t)\).证明：\(\lim_{t \to 0} \norm*{f-f_t}_1=0\).
+
+    b.定义\(\forall t \in \mathbb{R}, f_t(x)=f(tx)\).证明：\(\lim_{t \to 1} \norm*{f-f_t}_1=0\).
+\end{problem}
+
+\begin{proof}[证明a]
+    根据定理3.48\(\forall \varepsilon>0, f \in \mathcal{L}^1(\mathbb{R}), \exists g \in \mathcal{L}^1(\mathbb{R}), \norm*{f-g}_1<\varepsilon/3\)，其中\(g\)是连续函数.
+
+    考虑\(\norm*{g-g_t}_1\)，令\(K=\{x \in X: g(x) \ne 0\}\)，则\(K+t=\{x \in X: g_t(x) \ne 0\}\).于是
+    \begin{align*}
+        \forall \varepsilon>0, \exists t \in \mathbb{R}, \norm*{g-g_t}_1=\int_{K \cup (K+t)} \abs*{g-g_t} \leq 2\abs*{K} \sup_{K \cup (K+t)}(g-g_t)<\varepsilon/3
+    \end{align*}
+    由于\(\norm*{f_t-g_t}_1=\norm*{f-g}_1<\varepsilon/3\)，因此
+    \begin{align*}
+        \norm*{f-f_t}_1 \leq \norm*{f-g}_1+\norm*{g-g_t}_1+\norm*{f_t-g_t}_1<\varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon
+    \end{align*}
+    {\kaishu \textit{b}部分的证明类似，将\(K+t\)改为\(1/t K\)即可.}
+\end{proof}

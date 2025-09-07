@@ -1,0 +1,308 @@
+\section{3.A Integration with Respect to a Measure}
+
+\begin{theorem}[3.11]\label{3.11}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(0 \leq f_1 \leq f_2 \leq \dots\)是\(\mathcal{S}-\)可测函数序列.
+
+    定义\(f: X \to [0,\infty]\)为\(f(x)=\lim_{k \to \infty}f_k(x)\)，则\(\lim_{k \to \infty} \int f_k d\mu=\int f d\mu\).
+\end{theorem}
+
+\begin{proof}
+    由于\(\forall k \in \mathbb{Z}^+, f_k \leq f\)，故\(\forall k \in \mathbb{Z}^+, \int f_k d\mu \leq \int f d\mu\)，因此\(\lim_{k \to \infty} \int f_k d\mu \leq \int f d\mu\).
+
+    设\(g=\sum_{i=1}^m c_i\chi_{A_i}\)满足\(g \leq f\)，其中\(A_1, \dots A_m \in \mathcal{S}\)互不相交且\(c_1, \dots, c_m \in [0, \infty)\).
+
+    令\(E_k=\{x \in X: f_k(x) \geq tg(x), t \in (0,1)\}\)，由单调性\(E_1 \subseteq E_2 \subseteq \dots\)且\(\lim_{k \to \infty}E_k=X\).
+
+    因此\(f_k \geq t\sum_{i=1}^m c_i\chi_{A_i \cap E_k}\)，从而\(\int f_k d\mu \geq t\sum_{i=1}^m c_i\mu(A_i \cap E_k)\).
+
+    得到\(\lim_{k \to \infty} \int f_k d\mu \geq \lim_{k \to \infty} t\sum_{i=1}^m c_i\mu(A_i \cap E_k)=t\sum_{i=1}^m c_i\mu(A_i)\).
+
+    由\(\lim_{t \to 1}(\sup \{t\sum_{i=1}^m c_i\mu(A_i)\})=\int f d\mu\)，故\(\lim_{k \to \infty} \int f_k d\mu \geq \int f d\mu\)，证毕.
+
+    {\kaishu 证明的思路较为常规，用\(\lim_{k \to \infty} \int f_k\)作为下和集合的一个上界来压制上确界.
+    
+    然而当简单函数过于逼近目标函数时，比如\(g=f\)，则可能\(\exists x \in X, \forall k \in \mathbb{Z}^+, f_k(x)<g(x)\).
+    
+    引入压缩因子\(t \in (0,1)\).由于极限函数为\(f>tg\)，故\(\forall x \in X, \exists k \in \mathbb{Z}^+, f_k(x) \leq g(x)\).
+    
+    此时重新得到\(\lim_{k \to \infty}E_k=X\)，当以此完成证明之后只需取极限回到更强的结论即可.
+    
+    \(t\)作为压缩因子是纯技术手段，只是为了合法化整体证明思路.}
+\end{proof}
+
+\begin{problem}[2]\label{3.A.2}
+    设\((X, \mathcal{S})\)是测度空间且\(c \in X\).在\((X, \mathcal{S})\)上定义Dirac测度\(\delta_c\).
+
+    证明：若\(f: X \to [0,\infty]\)是\(\mathcal{S}-\)可测函数，则\(\int f d\delta_c=f(c)\).
+\end{problem}
+
+\begin{proof}
+    构造非负简单\(\mathcal{S}-\)可测函数序列\(\{f_k\}_{k \in \mathbb{Z}^+}\)使得\(\lim_{k \to \infty}f_k(x)=f(x)\).
+
+    设\(f_k=\sum_{i=1}^m c_i \chi_{A_i}\).若\(f_k(c) \in \{c_1, \dots, c_m\}\)，则\(\int f_k d\delta_c=f_k(c)=c_i\).
+
+    若\(f_k(c) \notin \{c_1, \dots, c_m\}\)，则\(\int f_k d\delta_c=f_k(c)=0\)，综上\(\int f_k d\delta_c=f_k(c)\).
+
+    利用单调收敛定理，\(\int f d\delta_c=\lim_{k \to \infty} \int f_k d\delta_c=\lim_{k \to \infty}f_k(c)=f(c)\).
+\end{proof}
+
+\begin{problem}[4]\label{3.A.4}
+    构造borel可测函数\(f: [0,1] \to (0,\infty)\)满足\(L(f,[0,1])=0\).
+\end{problem}
+
+\begin{proof}
+    写出\(x \in [0,1] \cap \mathbb{Q}\)的{\kaishu 阶乘进制}.令\(x=\sum_{k=2}^N d_k/k!, d_k=0, \dots, k-1\).令
+    \begin{align*}
+        f(x)=
+        \begin{cases}
+            1/2^N, x \in [0,1] \cap \mathbb{Q} \\
+            1, x \in [0,1] \cap (\mathbb{R} \setminus \mathbb{Q})
+        \end{cases}
+    \end{align*}
+    因此\(\forall (a,b) \subseteq [0,1], \exists r_1, r_2, \dots \in \mathbb{Q}, r_1, r_2, \in (a,b), f(r_k)=1/2^k, \lim_{k \to \infty}f(r_k)=0\).
+    
+    因此\(\inf(a,b)=0\)，得到\(L(f,[0,1])=0\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[7]\label{3.A.7}
+    设\((X, \mathcal{S})\)是测度空间，\(\mathcal{S}\)是\(X\)上的幂集.定义函数\(w: X \to [0,\infty]\).
+
+    定义测度\(\mu\)为\(\forall E \in \mathcal{S}, \mu(E)=\sum_{x \in E}\mu(X)\).证明：\(f: X \to [0,\infty]\)满足\(\int f=\sum_{x \in X}w(x)f(x)\).
+\end{problem}
+
+\begin{proof}
+    设\(\{f_k\}_{k \in \mathbb{Z}^+}\)是单调非负简单可测函数序列，满足\(\lim_{k \to \infty}f_k(x)=f(x)\).
+    
+    设\(f_k=\sum_{i=1}^m c_i \chi_{A_i}\)，下证对于简单函数\(f_k\)，有\(\int f_k d\mu=\sum_{x \in X}w(x)f(x)\).
+    \begin{align*}
+        \int f_k d\mu=\sum_{i=1}^m c_i\mu(A_i)=\sum_{i=1}^m c_i \sum_{x \in A_i}w(x)=\sum_{x \in X}w(x)f(x)
+    \end{align*}
+    因此\(\int f d\mu=\lim_{k \to \infty} \int f_k d\mu=\sup_{k \in \mathbb{Z}^+} \int f_k d\mu=\sum_{x \in X}w(x)f(x)\).
+\end{proof}
+
+\begin{problem}[8]\label{3.A.8}
+    构造简单borel可测函数序列\(\{f_k\}_{k \in \mathbb{Z}^+}, f_k: \mathbb{R} \to [0,\infty)\).
+
+    其中\(\forall x \in \mathbb{R}, \lim_{k \to \infty} f_k(x)=0\)，但是\(\lim_{k \to \infty} \int f_k d\lambda=1\).
+\end{problem}
+
+\begin{proof}
+    令\(f_k=\chi_{[k,k+1]}\).则\(\forall x \in \mathbb{R}, \exists n \in \mathbb{Z}^+, n>x\)，故\(\forall k \geq n, f_k(x)=0, \lim_{k \to \infty} f_k(x)=0\).
+
+    然而\(\forall k \in \mathbb{Z}^+, \int f_k d\lambda=\lambda([k,k+1])=1\)，故\(\lim_{k \to \infty} \int f_k d\lambda=1\).
+
+    {\kaishu 以控制收敛定理的视角看，没有一个可积函数能控制序列，因此产生了“逃逸”.}
+\end{proof}
+
+\begin{problem}[9]\label{3.A.9}
+    设\((X, \mathcal{S}, \mu)\)是测度空间，\(f: X \to [0,\infty]\)是\(\mathcal{S}-\)可测函数.
+
+    令\(A \in \mathcal{S}, \nu(A)=\int \chi_A f d\mu\)，证明\(\nu\)是\((X, \mathcal{S})\)上的测度.
+\end{problem}
+
+\begin{proof}
+    设\(A_1, A_2, \dots \in \mathcal{S}\)互不相交，令\(g_n=\chi_{\bigcup_{k=1}^n A_k} f\).根据\cref{3.A.10}，有
+    \begin{align*}
+        \nu(\bigcup_{k=1}^\infty A_k)=\lim_{n \to \infty} \int \chi_{\bigcup_{k=1}^n A_k} f d\mu=\lim_{n \to \infty} \int g_n d\mu
+        =\sum_{k=1}^\infty \int \chi_{A_k} f d\mu
+    \end{align*}
+    显然\(\nu(\bigcup_{k=1}^\infty A_k)=\sum_{k=1}^\infty \int \chi_{A_k} f d\mu=\sum_{k=1}^\infty \nu(A_k)\)，证毕.
+\end{proof}
+
+\begin{problem}[10]\label{3.A.10}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(\{f_k\}_{k \in \mathbb{Z}^+}\)是非负\(\mathcal{S}-\)可测函数序列.
+
+    定义函数\(f: X \to [0,\infty]\)为\(f=\sum_{k=1}^\infty \int f_k d\mu\)，证明\(\int f d\mu=\sum_{k=1}^\infty \int f_k d\mu\).
+\end{problem}
+
+\begin{proof}
+    定义\(g_n=\sum_{k=1}^n f_k\)，则\(\{g_n\}_{n \in \mathbb{Z}^+}\)是非负单调可测函数序列.
+    \begin{align*}
+        \lim_{n \to \infty} \int g_n d\mu=\lim_{n \to \infty} \int \sum_{k=1}^n f_k d\mu
+        =\lim_{n \to \infty} \sum_{k=1}^n \int f_k d\mu=\sum_{k=1}^\infty \int f_k d\mu
+    \end{align*}
+    由单调收敛定理\(\int f d\mu=\lim_{n \to \infty} \int g_n d\mu\)，故\(\int f d\mu=\sum_{k=1}^\infty \int f_k d\mu\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[11]\label{3.A.11}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(\{f_k\}_{k \in \mathbb{Z}^+}: X \to \mathbb{R}\)满足\(\sum_{k=1}^\infty \int \abs*{f_k} d\mu<\infty\).
+
+    证明：\(\exists E \in \mathcal{S}, \mu(X \setminus E)=0\)且\(\forall x \in E, \lim_{k \to \infty}f_k(x)=0\).
+\end{problem}
+
+\begin{proof}
+    定义\(g(x)=\sum_{k=1}^\infty \abs*{f_k(x)}\)，根据\cref{3.A.10}有\(\sum_{k=1}^\infty \int \abs*{f_k} d\mu=\int g d\mu<\infty\).
+
+    定义\(E=\{x \in X: g(x)<\infty\}\)，于是\(\abs*{X \setminus E}=\abs*{\{x \in X: g(x)=\infty\}}=0\).
+
+    定义\(g_n(x)=g(x)-\sum_{k=1}^{n-1}\abs*{f_k(x)}\)，显然\(\lim_{n \to \infty} g_n(x)=\lim_{n \to \infty}\sum_{k=n}^\infty \abs*{f_k(x)}=0\).
+
+    因此\(\forall \varepsilon>0, \exists n \in \mathbb{Z}^+, \sum_{k=n}^\infty \abs*{f_k(x)}<\varepsilon\)，即\(\forall k \geq n, \abs*{f_k(x)}<\varepsilon\)，证毕.
+\end{proof}
+
+\begin{problem}[12]\label{3.A.12}
+    构造borel可测函数\(f: \mathbb{R} \to (0,\infty)\)使得\(\forall I \ne \varnothing, I \subseteq \mathbb{R}, \int \chi_I f d\lambda=\infty\).
+\end{problem}
+
+\begin{proof}
+    设\(r_1, r_2, \dots\)是有理数序列，定义\(f: \mathbb{R} \to (0,\infty)\)为
+    \begin{align*}
+        g(x)=
+        \begin{cases}
+            \sum_{k=1}^\infty 1/4^k \abs*{x-r_k}, x \notin \mathbb{Q}  \\
+            1, x \in \mathbb{Q} 
+        \end{cases}
+    \end{align*}
+    定义\(E=\bigcup_{k=1}^\infty \bigcap_{n=1}^\infty \{x \in \mathbb{R}: \abs*{x-r_n} \geq 1/2^n k\}\)，则\(\mu(X \setminus E)=0\)，令\(f(x)=\chi_E g(x)\).
+
+    则\(\forall I=(a,b) \subseteq \mathbb{R}, \exists r_k \in \mathbb{Q}, r_k \in (a,b)\)，且
+    \begin{align*}
+        \int \chi_I f d\mu=\int \chi_I g d\mu \geq \int \chi_{I \setminus \{q_k\}} 1/4^k \abs*{x-r_k}=\infty
+    \end{align*}
+    因此\(\forall I \ne \varnothing, I \subseteq \mathbb{R}, \int \chi_I f d\lambda=\infty\).
+\end{proof}
+
+\begin{problem}[13]\label{3.A.13}
+    证明单调收敛定理在没有非负条件的情况下不成立.
+\end{problem}
+
+\begin{proof}
+    构造测度空间\((\mathbb{R}, \mathcal{L}, \lambda)\).令\(\forall x \in \mathbb{R}, f_k(x)=-\chi_{(k,\infty)}(x), \lim_{k \to \infty}f_k(x)=f(x)=0\).
+
+    那么\(\lim_{k \to \infty} \int -\chi_{(k,\infty)} d\mu=-\infty\)，但\(\int f d\mu=0\).
+\end{proof}
+
+\begin{problem}[14]\label{3.A.14}
+    证明单调收敛定理在序列单调递减的情况下不成立.
+\end{problem}
+
+\begin{proof}
+    构造测度空间\((\mathbb{R}, \mathcal{L}, \lambda)\).令\(\forall x \in \mathbb{R}, f_k(x)=\chi_{(k,\infty)}(x), \lim_{k \to \infty}f_k(x)=f(x)=0\).
+
+    那么\(\lim_{k \to \infty} \int \chi_{(k,\infty)} d\mu=\infty\)，但\(\int f d\mu=0\).
+\end{proof}
+
+\begin{problem}[16]\label{3.A.16}
+    设\(\mathcal{S}, \mathcal{T}\)都是\(X\)上的\(\sigma-\)代数且\(\mathcal{S} \subseteq \mathcal{T}\).
+    
+    \(\mu_1, \mu_2\)分别是\((X, \mathcal{S}), (X, \mathcal{T})\)上的测度，且满足\(\forall E \in \mathcal{S}, \mu_1(E)=\mu_2(E)\).
+    
+    证明：若\(f: X \to [0, \infty]\)是\(\mathcal{S}-\)可测函数，则\(\int f d\mu_1=\int f d\mu_2\).
+\end{problem}
+
+\begin{proof}
+    设\(\{f_k\}_{k \in \mathbb{Z}^+}\)是单调非负简单\(\mathcal{S}-\)可测函数序列，满足\(\lim_{k \to \infty}f_k(x)=f(x)\).
+
+    设\(f_k=\sum_{i=1}^m c_i\chi_{A_i}, A_1, \dots, A_m \in \mathcal{S}\).那么\(\int f d\mu_1=\sum_{i=1}^m c_i\mu_1(A_i)=\sum_{i=1}^m c_i\mu_2(A_i)=\int f d\mu_2\).
+
+    于是\(\forall k \in \mathbb{Z}^+, \int f d\mu_1=\int f d\mu_2\).故\(\int f d\mu_1=\lim_{k \to \infty} \int f_k d\mu_1=\lim_{k \to \infty} \int f_k d\mu_2=\int f d\mu_2\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[17]\label{3.A.17}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(\{f_k\}_{k \in \mathbb{Z}^+}: X \to \mathbb{R}\)是非负\(\mathcal{S}-\)可测函数.
+
+    定义\(f(x)=\liminf_{k \to \infty}f_k(x)\).
+    
+    a.证明\(f\)是\(\mathcal{S}-\)可测函数.
+
+    b.证明\(\int f d\mu \leq \liminf_{k \to \infty} \int f_k d\mu\).
+
+    c.证明当\(\mu(X)<\infty\)且\(\{f_k\}_{k \in \mathbb{Z}^+}\)一致有界时b为严格不等式.
+\end{problem}
+
+\begin{proof}[证明a]
+    证明\(\forall a \in \mathbb{R}, r \in \mathbb{Q}, f^{-1}((a,\infty))=\bigcup_{r>a} \bigcup_{m=1}^\infty \bigcap_{k=m}^\infty f_k^{-1}((r,\infty))\)即可.
+
+    {\kaishu 总体可以直接参考\cref{2.46}的证明方法.}
+\end{proof}
+
+\begin{proof}[证明b]
+    定义\(g_n(x)=\inf_{k \geq n} f_k(x)\)，显然\(\{g_n\}_{n \in \mathbb{Z}^+}\)是非负递增序列.
+    \begin{align*}
+        f(x)=\liminf_{k \to \infty}f_k(x)=\lim_{n \to \infty} \inf_{k \geq n} f_k(x)=\lim_{k \to \infty}g_k(x), 
+        \int f d\mu=\lim_{k \to \infty} \int g_k d\mu
+    \end{align*}
+    显然由于\(g_n(x)=\inf_{k \geq n} f_k(x)\)，故\(\forall k \geq n, g_n(x) \leq f_k(x)\)，也即\(\forall k \geq n, \int g_n d\mu \leq \int f_k d\mu\).
+
+    因此\(\int g_n d\mu\)是一个下界，即\(\int g_n d\mu \leq \inf_{k \geq n} \int f_k d\mu\)，两边取极限.
+    \begin{align*}
+        \int f d\mu=\lim_{n \to \infty} \int g_n d\mu \leq \lim_{n \to \infty} \inf_{k \geq n} \int f_k d\mu
+        =\liminf_{k \to \infty} \int f_k d\mu
+    \end{align*}
+    {\kaishu 该引理和单调收敛定理的证明形式几乎一致，这里使用单调收敛定理推导之.}
+\end{proof}
+
+\begin{proof}[证明c]
+    {\kaishu 本题仍然使用滑动能量块的思想.}令
+    \begin{align*}
+        f_k(x)=
+        \begin{cases}
+            \chi_{[-1,0)}(x), k=2m-1, m \in \mathbb{Z}^+ \\
+            \chi_{[0,1]}(x), k=2m, m \in \mathbb{Z}^+
+        \end{cases}
+    \end{align*}
+    因此\(f=\liminf_{k \to \infty}f_k=0, \int f d\mu=0\)，但是\(\liminf_{k \to \infty} \int f_k d\mu=1\).
+\end{proof}
+
+\begin{problem}[18]\label{3.A.18}
+    给出一个实数序列\(\{x_k\}_{k \in \mathbb{Z}^+}\)满足\(\sum_{k=1}^\infty x_k\)存在但\(\int x d\mu\)不存在的例子.
+
+    其中\(x: \mathbb{Z}^+ \to \mathbb{R}\)满足\(x(k)=x_k\)，且\(\mu\)是计数测度.
+\end{problem}
+
+\begin{proof}
+    考虑\(\ln(1+x)\)的泰勒展开\(\ln(1+x)=\sum_{k=1}^\infty (-1)^{k+1}x^k/k\).
+
+    令\(x(k)=x_k=(-1)^{k+1}/k\)，代入\(x=1\)即得\(\sum_{k=1}^\infty x_k=\ln 2\)，因此\(\sum_{k=1}^\infty x_k\)存在.
+
+    但是\(\int x^+ d\mu=\sum_{k=1}^\infty 1/(2k-1), \int x^- d\mu=\sum_{k=1}^\infty 1/2k\).
+
+    两者都发散，故\(\int f d\mu=\int f^+ d\mu-\int f^- d\mu=\infty-\infty\)未定.
+\end{proof}
+
+\newpage
+
+\begin{problem}[20]\label{3.A.20}
+    设\((X, \mathcal{S}, \mu)\)是测度空间且\(\{f_k\}_{k \in \mathbb{Z}^+}\)是单调\(\mathcal{S}-\)可测函数.
+
+    定义\(f: X \to [-\infty,\infty]\)为\(f(x)=\lim_{k \to \infty}f_k(x)\).证明：若\(\int \abs*{f_1} d\mu<\infty\)，
+    
+    则\(\lim_{k \to \infty} \int f_k d\mu=\int f d\mu\).
+\end{problem}
+
+\begin{lemma}[20.1]\label{3.A.20.1}
+    若\(f_1 \geq f_2 \geq \dots \geq 0\)是\(\mathcal{S}-\)可测函数序列且\(\int f_1 d\mu<\infty\)，
+
+    定义\(f: X \to [0,\infty]\)为\(f(x)=\lim_{k \to \infty}f_k(x)\)，则\(\lim_{k \to \infty} \int f_k d\mu=\int f d\mu\).
+\end{lemma}
+
+\begin{proof}[引理证明]
+    定义\(g_k(x)=f_1(x)-f_k(x)\)，显然\(\{g_k\}_{k \in \mathbb{Z}^+}\)是非负增\(\mathcal{S}-\)可测函数序列.于是
+    \begin{align*}
+        \lim_{k \to \infty} \int (f_1-f_k) d\mu=\lim_{k \to \infty} \int g_k d\mu=\int (f_1-f) d\mu=\int f_1 d\mu-\int f d\mu
+    \end{align*}
+    由于\(\int f_1 d\mu<\infty\)，则\(\lim_{k \to \infty} \int (f_1-f_k) d\mu=\int f_1 d\mu-\lim_{k \to \infty} \int f_k d\mu\)，证毕.
+
+    {\kaishu 这个引理的证明类似上连续性，需要初始函数/集合的良好性质.}
+\end{proof}
+
+\begin{proof}[定理证明]
+    由于\(\{f_k\}_{k \in \mathbb{Z}^+}\)是单调的，故\(\{f_k^+\}_{k \in \mathbb{Z}^+}, \{f_k^-\}_{k \in \mathbb{Z}^+}\){\kaishu 拥有相反的单调性}.
+
+    不失一般性，设\(\{f_k^+\}_{k \in \mathbb{Z}^+}\)单调增而\(\{f_k^-\}_{k \in \mathbb{Z}^+}\)单调减，显然\(\lim_{k \to \infty} \int f_k^+ d\mu=\int f^+ d\mu\).
+
+    另一方面由\(\int \abs*{f_1} d\mu=\int f_1^+d\mu+\int f_1^- d\mu<\int f_1^- d\mu<\infty\)，故\(\lim_{k \to \infty} \int f_k^- d\mu=\int f^- d\mu\).
+    \begin{align*}
+        \lim_{k \to \infty} \int f_k d\mu=\lim_{k \to \infty} \int f_k^+ d\mu-\lim_{k \to \infty} \int f_k^- d\mu
+        =\lim_{k \to \infty} \int f^+ d\mu=\lim_{k \to \infty} \int f^- d\mu=\int f d\mu
+    \end{align*}
+    {\kaishu 这个证明的精髓在于它通过首项积分的有限性同时控制了正部和负部，
+    
+    形成了一边直接用单调收敛定理，另一边用可积性控制的对偶证明.}
+\end{proof}

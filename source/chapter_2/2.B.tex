@@ -1,0 +1,562 @@
+\section{2.B Measurable Spaces and Functions}
+
+\begin{theorem}[2.39]\label{2.39}
+    设\((X,\mathcal{S})\)是测度空间且\(f:X \to \mathbb{R}\)满足\(\forall a \in \mathbb{R}, f^{-1}((a,\infty)) \in \mathcal{S}\)，
+
+    那么\(f\)是\(\mathcal{S}-\)可测函数.
+\end{theorem}
+
+\begin{proof}
+    令\(\mathcal{R}=\{A \subseteq \mathbb{R}:f^{-1}(A) \in \mathcal{S}\}\)，下证\(\mathcal{R}\)是\(\sigma-\)代数.取\(A=\varnothing\)得\(\varnothing \in \mathcal{R}\).
+    
+    设\(A \in \mathcal{R}\)，则\(f^{-1}(\mathbb{R} \setminus A)=X \setminus f^{-1}(A) \in \mathcal{S}\)，即\(\mathbb{R} \setminus A \in \mathcal{R}\).
+
+    设\(A_1, A_2, \dots \in \mathcal{R}\)，则\(f^{-1}(\bigcup_{k=1}^\infty A_k)=\bigcup_{k=1}^\infty f^{-1}(A_k) \in \mathcal{S}\)，即\(\bigcup_{k=1}^\infty A_k \in \mathcal{R}\).
+
+    {\kaishu 于是\(\mathcal{R}\)是\(\sigma-\)代数.至于哪些集合族可以生成\textit{borel}代数，将在习题中详细讨论.}
+\end{proof}
+
+\begin{theorem}[2.46]\label{2.46}
+    若\(X,\mathcal{S}\)是测度空间且\(f,g:X \to \mathbb{R}\)都是\(\mathcal{S}-\)可测函数，
+
+    那么\(f+g, fg, f/g\)都是\(\mathcal{S}-\)可测函数，前提是\(\forall x \in X, g(x) \ne 0\).
+\end{theorem}
+
+\begin{comment}
+    \begin{proof}
+        考虑任意的\(a \in \mathbb{R}, r \in \mathbb{Q}\)，下面将证明
+        \begin{align*}
+            (f+g)^{-1}((a,\infty))=\bigcup_{r \in \mathbb{Q}}\left(f^{-1}((r,\infty)) \cap g^{-1}((a-r,\infty))\right)
+        \end{align*}
+        设\(x \in \bigcup_{r \in \mathbb{Q}}\left(f^{-1}((r,\infty)) \cap g^{-1}((a-r,\infty))\right)\)，即\(f(x)>r, g(x)>a-r, f(x)+g(x)>a\).
+
+        所以\(x \in (f+g)^{-1}((a,\infty))\)，得到\(\bigcup_{r \in \mathbb{Q}}\left(f^{-1}((r,\infty)) \cap g^{-1}((a-r,\infty))\right) \subseteq (f+g)^{-1}((a,\infty))\).
+
+        另一方面，设\(x \in (f+g)^{-1}((a,\infty))\)，即\(f(x)+g(x)>a\)，因此\((a-g(x),f(x)) \ne \varnothing\).
+
+        由有理数的稠密性，总存在\(r \in \mathbb{Q}, r \in (a-g(x),f(x))\)，同时满足\(f(x)>r, g(x)>a-r\).
+        
+        从而\(x \in f^{-1}((r,\infty))\)且\(g^{-1}((a-r,\infty))\)，等价于\(x \in f^{-1}((r,\infty)) \cap g^{-1}((a-r,\infty))\).
+        
+        于是\((f+g)^{-1}((a,\infty)) \subseteq \bigcup_{r \in \mathbb{Q}}\left(f^{-1}((r,\infty)) \cap g^{-1}((a-r,\infty))\right)\)，证毕.
+
+        可得\(\forall r \in \mathbb{Q}, f^{-1}((r,\infty)) \in \mathcal{S}, g^{-1}((a-r,\infty)) \in \mathcal{S}\)，
+        因而\(\forall a \in \mathbb{R}, (f+g)^{-1}((a,\infty)) \in \mathcal{S}\).
+
+        根据\thmref{2.39}，\(f+g\)是\(\mathcal{S}-\)可测函数.
+
+        由于\(fg=(f+g)^2-(f^2+g^2)\)，根据定理2.44，可测函数具有复合封闭性.
+        
+        那么\((f+g)^2, f^2, g^2\)都是\(\mathcal{S}-\)可测函数，从而\((f+g)^2-(f^2+g^2)=fg\)是\(\mathcal{S}-\)可测函数.
+
+        同理，\(1/g\)也为\(\mathcal{S}-\)可测函数，于是\(f(1/g)=f/g\)是可测函数.
+    \end{proof}
+\end{comment}
+
+\begin{proof}
+    下证\(\forall x \in X, a \in \mathbb{R}, f(x)+g(x)>a \Longleftrightarrow \exists r \in \mathbb{Q}, f(x)>r, g(x)>a-r\).
+
+    一边是显然的.对于另一边，\(f(x)>a-g(x)\)表明\((a-g(x),f(x)) \ne \varnothing\).
+
+    据有理数的稠密性，\(\exists r \in \mathbb{Q}, r \in (a-g(x),f(x))\)，于是\(f(x)>r, g(x)>a-r\).
+
+    定义\(A_{a,r}=f^{-1}((r,\infty)) \cap g^{-1}((a-r,\infty))\).由\(\sigma-\)代数的交并封闭性，\(A_{a,r} \in \mathcal{S}\).
+
+    于是\(\forall a \in \mathbb{R}, (f+g)^{-1}(a,\infty)=\bigcup_{r \in \mathbb{Q}}A_{a,r} \in \mathcal{S}\).根据\cref{2.39}，\(f+g\)是\(\mathcal{S}-\)可测函数.
+
+    由于\(fg=[(f+g)^2-(f-g)^2]/4\)，根据定理2.44，可测函数具有复合封闭性.
+        
+    那么\((f+g)^2, (f-g)^2\)都是\(\mathcal{S}-\)可测函数，从而\([(f+g)^2-(f-g)^2]/4=fg\)是\(\mathcal{S}-\)可测函数.
+
+    同理，\(1/g\)也为\(\mathcal{S}-\)可测函数，于是\(f(1/g)=f/g\)是可测函数.
+\end{proof}
+
+\begin{theorem}[2.48]\label{2.48}
+    若\(X,\mathcal{S}\)是测度空间且\(\mathcal{S}-\)可测函数列\(f_k:X \to \mathbb{R}\)逐点收敛于函数\(f\)，
+    
+    即\(\lim_{k \to \infty}f_k(x)=f(x)\)，那么\(f\)是\(\mathcal{S}-\)可测函数.
+\end{theorem}
+
+\begin{comment}
+    \begin{proof}
+        考虑任意的\(a \in \mathbb{R}, n \in \mathbb{N}, m \in \mathbb{N}\)，下面将证明
+        \begin{align*}
+            f^{-1}((a,\infty))=\bigcup_{n=1}^\infty \bigcup_{m=1}^\infty \bigcap_{k=m}^\infty f_k^{-1}\left(\left(a+\frac{1}{n},\infty\right)\right)
+        \end{align*}
+        设\(x \in f^{-1}((a,\infty)), f(x)>a\)，开集的所有点都是内点，因此\(\exists n \in \mathbb{N}, f(x)>a+\frac{1}{n}\).
+
+        由于\(\lim_{k \to \infty}f_k(x)=f(x)\)，因而\(\exists m \in \mathbb{N}, \forall k \geq m, f_k(x)>a+\frac{1}{n}\).
+
+        因此\(\forall k \geq m, x \in f_k^{-1}((a+\frac{1}{n}))\)，
+        则\(f^{-1}((a,\infty)) \subseteq \bigcup_{n=1}^\infty \bigcup_{m=1}^\infty \bigcap_{k=m}^\infty f_k^{-1}((a+\frac{1}{n},\infty))\).
+
+        设\(x \in \bigcup_{n=1}^\infty \bigcup_{m=1}^\infty \bigcap_{k=m}^\infty f_k^{-1}((a+\frac{1}{n},\infty))\)，
+        即\(\exists m,n \in \mathbb{N}, \forall k \geq m, f_k(x)>a+\frac{1}{n}\).
+
+        取\(k \to \infty\)，得到\(f(x)=\lim_{k \to \infty}f_k(x) \geq a+\frac{1}{n}>a, x \in f^{-1}((a,\infty))\).
+
+        由于\(\forall n,k \in \mathbb{N}, f_k^{-1}((a+\frac{1}{n},\infty)) \in \mathcal{S}\)，故\(f^{-1}((a,\infty)) \in \mathcal{S}\)，证毕.
+    \end{proof}
+\end{comment}
+
+\begin{proof}
+    \(\forall a \in \mathbb{R}, x \in X\)满足\(f(x)>a\)，那么\((a,f(x)) \ne \varnothing, \exists r \in \mathbb{Q}, r \in (a,f(x))\).
+
+    由\(f_k\)逐点收敛至\(f\)，固定\(x \in X\)，那么\(\exists m \in \mathbb{N}, \forall k \geq m, \abs*{f_k(x)-f(x)}<a-r, f_k(x)>r\).
+
+    定义\(\forall a \in \mathbb{R}, r \in \mathbb{Q}, A_r=\bigcup_{m=1}^\infty \bigcap_{k=m}^\infty f_k^{-1}((r,\infty)), A_a=\bigcup_{r>a}A_r\)，那么\(A_a \in \mathcal{S}\).
+
+    下证\(f^{-1}((a,\infty))=A_a\).若\(f(x)>a\)，则\( \exists r \in (f(x),a), x \in A_r\)，一边得证.
+
+    若\(x \in A_a\)，那么\(\exists r>a, m \in \mathbb{N}, \forall k \geq m, f_k(x)>r, f(x) \geq r>a\)，从而\(x \in f^{-1}((a,\infty))\).
+
+    于是\(f^{-1}((a,\infty))=\bigcup_{r>a} \bigcup_{m=1}^\infty \bigcap_{k=m}^\infty f_k^{-1}((r,\infty)) \in \mathcal{S}\)，根据\cref{2.39}，\(f\)是\(\mathcal{S}-\)可测函数.
+\end{proof}
+
+\newpage
+
+\begin{problem}\label{2.39.1}
+    证明：所有形如\((a,\infty), a \in \mathbb{R}\)的集合生成的\(\sigma-\)代数\(\mathcal{S}\)包含所有borel集.
+\end{problem}
+
+\begin{proof}
+    由\(\forall a \in \mathbb{R}, (a,\infty) \in \mathcal{S}\)，取补得\(\forall b \in \mathbb{R}, (-\infty,b] \in \mathcal{S}\)，
+    取并得\(\forall a \in \mathbb{R}, b \in \mathbb{R}, (a,b] \in \mathcal{S}\).
+    
+    由\((a,b)=\bigcup_{k=1}^\infty (a,b-1/k], (-\infty,b)=\bigcup_{k=1}^\infty (-k,b-1/k]\)得\(\forall a,b \in \mathbb{R}, (a,b) \in \mathcal{S}, (-\infty,b) \in \mathcal{S}\).
+
+    于是\(\forall a,b \in \mathbb{R}, (-\infty,b), (a,b), (a, \infty) \in \mathcal{S}\)，故\(\mathcal{S}\)包含了所有开集，即证毕.
+\end{proof}
+
+\begin{problem}[1]\label{2.B.1}
+    证明\(\mathcal{S}=\{\bigcup_{n \in K}(n,n+1]: K \subseteq \mathbb{Z}\}\)是\(\mathbb{R}\)上的\(\sigma-\)代数.
+\end{problem}
+
+\begin{proof}
+    若\(\bigcup_{n \in K}(n,n+1] \in \mathcal{S}\)，那么\(\mathbb{R} \setminus \bigcup_{n \in K}(n,n+1]=\bigcup_{n \in \mathbb{Z} \setminus K}(n,n+1] \in \mathcal{S}\).
+
+    若\(\bigcup_{n \in K_1}(n,n+1], \bigcup_{n \in K_2}(n,n+1], \dots \in \mathcal{S}\)则\(\bigcup_{k=1}^\infty \bigcup_{n \in K_k}(n,n+1]=\bigcup_{n \in \bigcup_{k=1}^\infty K_k}(n,n+1] \in \mathcal{S}\).
+
+    取\(K=\varnothing\)得到\(\varnothing \in \mathcal{S}\).综上，\(\mathcal{S}=\{\bigcup_{n \in K}(n,n+1]: K \subseteq \mathbb{Z}\}\)是\(\mathbb{R}\)上的\(\sigma-\)代数.
+\end{proof}
+
+\begin{problem}[4]\label{2.B.4}
+    证明：所有形如\((r,n], r \in \mathbb{Q}, n \in \mathbb{N}\)的集合生成的\(\sigma-\)代数\(\mathcal{S}\)包含所有borel集.
+\end{problem}
+
+\begin{proof}
+    下证\(\forall x \in \mathbb{R}, x>a \Longleftrightarrow \exists r>a \in \mathbb{Q}, x \in (r, \left\lceil r \right\rceil]\)，一边是显然的.
+
+    另一边，由\((a,x) \cap [\left\lfloor x \right\rfloor, \infty) \ne \varnothing\)，故\(\exists r \in \mathbb{Q}, a<r<x, x \geq \left\lfloor r \right\rfloor, \left\lceil r \right\rceil \geq x\).
+
+    那么\(\forall a \in \mathbb{R}, (a,\infty)=\bigcup_{r>a}(r, \left\lceil r \right\rceil]\).注意到\((r, \left\lceil r \right\rceil]\)生成的\(\sigma-\)代数是\((r,n]\)的子集.
+
+    于是根据\cref{2.B.4}，\(\mathcal{S}\)包含了所有开集，证毕.
+\end{proof}
+
+\begin{problem}[5]\label{2.B.5}
+    证明：所有形如\((r,r+1), r \in \mathbb{Q}\)的集合生成的\(\sigma-\)代数\(\mathcal{S}\)包含所有borel集.
+\end{problem}
+
+\begin{proof}
+    下证\(\forall x \in \mathbb{R}, x>a \Longleftrightarrow \exists r>a \in \mathbb{Q}, x \in (r,r+1)\)，一边是显然的.
+
+    另一边，由\((a,x) \cap (x-1, \infty) \ne \varnothing\)，故\(\exists r \in \mathbb{Q}, a<r<x, r>x-1, x \in (r,r+1)\).
+
+    那么\(\forall a \in \mathbb{R}, (a,\infty)=\bigcup_{r>a}(r,r+1)\)，于是根据\cref{2.B.4}，\(\mathcal{S}\)包含了所有开集.
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[7]\label{2.B.7}
+        证明：若\(B \subseteq \mathbb{R}\)是borel集，那么\(\forall t \in \mathbb{R}, t+B\)是borel集.
+    \end{problem}
+
+    \begin{proof}
+        任意开集\(G\)可以表示成可数不相交开区间之并，即\(G=\bigcup_{k=1}^\infty I_k\).
+        
+        显然\(t+G=\bigcup_{k=1}^\infty (t+I_k)\)，因此{\kaishu 开集具有平移不变性}，从而\(\sigma(t+G)=\sigma(G)\)，证毕.
+    \end{proof}
+\end{comment}
+
+\begin{problem}[9]\label{2.B.9}
+    设\((X,\mathcal{S})\)是可测集，给出函数\(f: X \to \mathbb{R}\)满足\(\abs*{f}\)是\(\mathcal{S}-\)可测的但\(f\)不可测.
+\end{problem}
+
+\begin{proof}
+    令\(X=\mathbb{R}, \mathcal{S}=\{\varnothing, X\}, f(x)=\chi_{[0,\infty)}(x)-\chi_{(-\infty,0)}(x)\).
+
+    显然\(\abs*{f}=1, \abs*{f}^{-1}(\{1\})=X\)，因此\(\abs*{f}\)是\(\mathcal{S}-\)可测的，但是\(f^{-1}(\{1\})=[0,\infty) \notin \mathcal{S}\).
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[10]\label{2.B.10}
+        证明：所有在十进制表示下的有无穷位是\(5\)的实数构成了一个borel集合.
+    \end{problem}
+
+    \begin{proof}
+        给出实数\(x\)的十进制表示\([a_N \dots a_0. a_{-1} \dots], x=\sum_{i=-\infty}^N a_i 10^i\).
+
+        此时题设集合\(A=\{x=[a_N \dots a_0. a_{-1} \dots]: \limsup_{i \to -\infty}\chi_{a_i=5}=1\}\).
+
+        据上极限的定义，设\(B_i=\{x=[a_N \dots a_0. a_{-1} \dots]: a_i=5\}\)，则\(A=\bigcap_{n=1}^\infty \bigcup_{i=n}^\infty B_i\).
+        \begin{align*}
+            B_i=\bigcup_{a_N, \dots, a_{i-1}} \left[\sum_{k=i-1}^N a_k 10^k +5 \cdot 10^i,\right. \left.\sum_{k=i-1}^N a_k 10^k +6 \cdot 10^i\right)
+        \end{align*}
+        作为区间的可数并，\(B_i\)是\textit{borel}集，因此\(A=\bigcap_{n=1}^\infty \bigcup_{i=n}^\infty B_i\)也是\textit{borel}集.
+    \end{proof}
+\end{comment}
+
+\begin{problem}[11]\label{2.B.11}
+    设\(\mathcal{R}\)是\(Y\)上的\(\sigma-\)代数，且\(X \in \mathcal{R}\).设\(\mathcal{S}=\{E \in \mathcal{R}: E \subseteq X\}\).
+
+    a.证明\(\mathcal{S}=\{F \cap X: F \in \mathcal{R}\}\). \quad b.证明\(\mathcal{S}\)是\(X\)上的\(\sigma-\)代数.
+\end{problem}
+
+\begin{proof}[证明a]
+    \(\forall E \subseteq X, E \in \mathcal{R} \Longleftrightarrow \exists F \in \mathcal{R}, E=F \cap X\).
+\end{proof}
+
+\begin{proof}[证明b]
+    令\(F=\varnothing\)得到\(\varnothing \in \mathcal{S}\).若\(F \in \mathcal{R}, Y \setminus F \in \mathcal{R}\)，则\(X \setminus (F \cap X)= (Y \setminus F) \cap X \in \mathcal{S}\).
+
+    若\(F_1, F_2, \dots \in \mathcal{R}, \bigcup_{k=1}^\infty F_k \in \mathcal{R}\)，那么\(\bigcup_{k=1}^\infty (F_k \cap X)=X \cap \bigcup_{k=1}^\infty F_k \in \mathcal{S}\).
+
+    综上，\(\mathcal{S}\)是\(X\)上的\(\sigma-\)代数.
+\end{proof}
+
+\newpage
+
+\begin{comment}
+    \begin{problem}[12]\label{2.B.12}
+        令\(B(a,\delta)=(a-\delta, a+\delta)\).设函数\(f: \mathbb{R} \to \mathbb{R}\).对于正整数\(k \in \mathbb{N}\)，令
+        \begin{align*}
+            G_k=\{a: \exists \delta>0, \forall a_1,a_2 \in B(a,\delta), \abs*{f(a_1)-f(a_2)}<1/k\}
+        \end{align*}
+        a.证明\(G_k\)是开集. \quad b.证明函数所有连续点的集合为\(\bigcap_{k=1}^\infty G_k\).
+    \end{problem}
+
+    \begin{proof}[证明a]
+        设\(a_0 \in G_k\)，则\(\exists \delta_0>0, \forall a_1, a_2 \in B(a_0,\delta_0), \abs*{f(a_1)-f(a_2)}<1/k\).
+        
+        设\(a \in B(a_0,\delta_0)\).令\(\delta=\delta_0-\abs*{a_0-a}>0\)，那么\(B(a,\delta) \subseteq B(a_0,\delta_0)\).
+
+        于是\(\forall a_1, a_2 \in B(a,\delta), \abs*{f(a_1)-f(a_2)}<1/k\)，故\(a \in G_k\)，因而\(B(a_0,\delta_0) \subseteq G_k\).
+    \end{proof}
+
+    \begin{proof}[证明b]
+        若\(x \in \bigcap_{k=1}^\infty G_k\)，下证\(f\)在\(x\)处连续.\(\forall \varepsilon>0, \exists k \in \mathbb{N}, 1/k<\varepsilon, \exists \delta>0,\)
+        \begin{align*}
+            \sup \{\abs*{f(x)-f(a)}: a \in B(x,\delta)\} 
+            \leq \sup \{\abs*{f(a_1)-f(a_2)}: a_1, a_2 \in B(x,\delta)\}<1/k<\varepsilon
+        \end{align*}
+        若\(f\)在\(x\)处连续，则\(\forall \varepsilon>0, \exists \delta>0, \forall a \in B(x,\delta), \abs*{f(x)-f(a)}<\varepsilon/2\).
+
+        那么\(\forall a_1, a_2 \in B(x,\delta), \abs*{f(a_1)-f(a_2)} \leq \abs*{f(x)-f(a_1)}+\abs*{f(x)-f(a_2)}<\varepsilon/2+\varepsilon/2=\varepsilon\).
+
+        因此\(\forall \varepsilon>0, \exists k \in \mathbb{N}, 1/k<\varepsilon, x \in \bigcap_{k=1}^\infty G_k\).
+    \end{proof}
+\end{comment}
+
+\begin{problem}[13]\label{2.B.13}
+    设\((X, \mathcal{S})\)是测度空间，\(E_1, \dots, E_n \subseteq X\)互不相交，\(c_1, \dots, c_n\)非零且互异.
+
+    证明：\(f=\sum_{k=1}^n c_k \chi_{E_k}\)是\(\mathcal{S}\)可测函数等价于\(E_1, \dots, E_n \in \mathcal{S}\).
+\end{problem}
+
+\begin{proof}
+    \(\sum_{k=1}^n c_k \chi_{E_k}(X)=\{c_1, \dots, c_n, 0\}\).若\(f\)是\(\mathcal{S}\)可测函数，
+
+    那么\(\forall k=1, \dots, n, \sum_{k=1}^n f^{-1}(\{c_k\})=E_k \in \mathcal{S}\)，从而\(E_1, \dots, E_n \in \mathcal{S}\).
+
+    若\(E_1, \dots, E_n \in \mathcal{S}\)，那么\(X \setminus \bigcup_{k=1}^n E_k \in \mathcal{S}\).因此\(f^{-1}(\{0\})=X \setminus \bigcup_{k=1}^n E_k \in \mathcal{S}\).
+
+    结合\(\forall k=1, \dots, n, f^{-1}(\{c_k\})=E_k \in \mathcal{S}\)，从而\(\sum_{k=1}^n c_k \chi_{E_k}\)是\(\mathcal{S}\)可测函数.
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[14]\label{2.B.14}
+        考虑函数列\(f_1, f_2, \dots: X \to \mathbb{R}\)，证明：
+        \begin{align*}
+            \{x \in X: \lim_{k \to \infty} f_k(x)\text{存在}\}
+            =\bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_k-f_j)^{-1}((-1/n, 1/n))
+        \end{align*}
+    \end{problem}
+
+    \begin{proof}
+        若\(x \in \bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_k-f_j)^{-1}((-1/n, 1/n))\)，给定\(\forall \varepsilon>0\)，那么\(\exists n \in \mathbb{N}, 1/n<\varepsilon\).
+
+        则\(\exists n,j \in \mathbb{N}, \forall k \geq j, \abs*{f_k(x)-f_j(x)}<1/n<\varepsilon\)，于是\(f_1(x), f_2(x), \dots\)是柯西序列.
+
+        根据{\kaishu 实数的完备性}，\(f_1(x), f_2(x), \dots\)在\(\mathbb{R}\)中必收敛，也即\(\lim_{k \to \infty}f_k(x)\)存在.
+
+        设\(\lim_{k \to \infty}f_k(x)=c\)，那么\(\forall n \in \mathbb{N}, \exists j \in \mathbb{N}, \forall k \geq j, \abs*{f_k(x)-c}<1/2n\).
+
+        则\(\forall n \in \mathbb{N}, \exists j,k \in \mathbb{N}, \abs*{f_k(x)-f_j(x)} \leq \abs*{f_k(x)-c}+\abs*{f_j(x)-c}< 1/2n+1/2n<1/n\).
+        
+        即\(x \in \bigcap_{n=1}^\infty \bigcup_{j=1}^\infty \bigcap_{k=j}^\infty (f_k-f_j)^{-1}((-1/n, 1/n))\).
+    \end{proof}
+\end{comment}
+
+\begin{problem}[15]\label{2.B.15}
+    设\(E_1, E_2, \dots \subseteq X\)互不相交且\(\bigcup_{k=1}^\infty E_k=X\).令\(\mathcal{S}=\{\bigcup_{k \in K} E_k: K \subseteq \mathbb{Z}^+\}\).
+
+    a.证明\(\mathcal{S}\)是\(\sigma-\)代数. \quad b.证明\(f: X \to \mathbb{R}\)是\(\mathcal{S}\)可测函数等价于\(\forall k \in \mathbb{Z}^+, \left.f\right|_{E_k}\)是常数.
+\end{problem}
+
+\begin{proof}[证明a]
+    令\(K=\varnothing\)，则\(\varnothing \in \mathcal{S}\).考虑\(\bigcup_{k \in K} E_k \in \mathcal{S}\)，则\(X \setminus \bigcup_{k \in K} E_k=\bigcup_{k \in \mathbb{Z}^+ \setminus K} E_k \in \mathcal{S}\).
+
+    若\(\bigcup_{k \in K_1} E_k, \bigcup_{k \in K_2} E_k, \dots \in \mathcal{S}\)，那么\(\bigcup_{n=1}^\infty \bigcup_{k \in K_n} E_k=\bigcup_{k \in \bigcup_{n=1}^\infty K_n} E_k \in \mathcal{S}\).
+\end{proof}
+
+\begin{proof}[证明b]
+    若\(\left.f\right|_{E_k}=c_k\)，那么\(f(X)=\{c_1, c_2, \dots\}\)，于是\(\forall k \in \mathbb{Z}^+, f^{-1}(\{c_k\})=E_k \in \mathcal{S}\).
+
+    若\(f\)是\(\mathcal{S}\)可测函数，那么\(\forall B \subseteq \mathbb{R}, k \in \mathbb{N}\)必有\(f^{-1}(B) \cap E_k=\varnothing\)或\(E_k \subseteq f^{-1}(B)\).
+
+    若\(\left.f\right|_{E_k}\)不是常值函数，即存在\(k_1, k_2 \in E_k, f(k_1)=c_1 \ne c_2=f(k_2)\).
+
+    那么\(f^{-1}(\{c_1\}) \cap E_k \ne \varnothing\)且\(E_k \nsubseteq f^{-1}(\{c_1\})\)，因此\(f\)不是\(\mathcal{S}\)可测函数，矛盾.
+\end{proof}
+
+\begin{problem}[16]\label{2.B.16}
+    设\(\mathcal{S}\)是\(X\)上的\(\sigma-\)代数且\(A \subseteq X\).令\(\mathcal{S}_A=\{E \in \mathcal{S}: A \subseteq E \text{或} A \cap E=\varnothing\}\).
+
+    a.证明\(\mathcal{S}_A\)是\(\sigma\)代数. \quad b.证明\(f: X \to \mathbb{R}\)是\(\mathcal{S}_A\)可测函数等价于\(f\)是\(\mathcal{S}\)可测函数且\(\left.f\right|_A\)是常函数.
+\end{problem}
+
+\begin{proof}[证明a]
+    若\(E \in \mathcal{S}\)，则\(E \cap A=\varnothing \Longleftrightarrow A \subseteq X \setminus E\).因此\(E \in \mathcal{S}_A \Longleftrightarrow X \setminus E \in \mathcal{S}_A\).
+    
+    若\(E_1, E_2, \dots \in \mathcal{S}_A\)，那么若\(\exists k \in \mathbb{N}, A \subseteq E_k\)，则\(A \subseteq \bigcup_{k=1}^\infty E_k, \bigcup_{k=1}^\infty E_k \in \mathcal{S}_A\).
+
+    若\(\forall k \in \mathbb{N}, E_k \nsubseteq A\)，那么\(E_k \cap A=\varnothing, \bigcup_{k=1}^\infty E_k \cap A=\varnothing\)，因此\(\bigcup_{k=1}^\infty E_k \in \mathcal{S}_A\).
+
+    因此二者之一总是成立，即\(\bigcup_{k=1}^\infty E_k \in \mathcal{S}_A\)，结合\(\varnothing \in \mathcal{S}_A\)，从而\(\mathcal{S}_A\)是\(\sigma\)代数.
+\end{proof}
+
+\begin{proof}[证明b]
+    若\(f\)是\(\mathcal{S}-\)可测函数，那么\(\exists B \subseteq \mathbb{R}, f^{-1}(B) \notin \mathcal{S}_A \subseteq \mathcal{S}\)，从而\(f\)是\(\mathcal{S}-\)可测函数.
+
+    若\(\left.f\right|_A\)不是常函数，即存在\(k_1, k_2 \in E_k, f(k_1)=c_1 \ne c_2=f(k_2)\).
+
+    那么\(f^{-1}(\{c_1\}) \cap A \ne \varnothing\)且\(A \nsubseteq f^{-1}(\{c_1\})\)，因此\(f^{-1}(\{c_1\}) \notin \mathcal{S}_A\)，从而\(f\)不是\(\mathcal{S}-\)可测函数.
+
+    {\kaishu 因此只有\(f\)是\(\mathcal{S}-\)可测函数且\(\left.f\right|_A\)是常函数，\(f\)才为\(\mathcal{S}_A-\)可测函数}.
+
+    设\(\left.f\right|_A=c\).考虑\(\forall B \subseteq \mathbb{R}, f^{-1}(B) \in \mathcal{S}\).若\(c \in B\)，则\(A \subseteq f^{-1}(B)\).
+
+    若\(c \notin B\)，则\(A \cap B=\varnothing\)，从而\(f^{-1}(B) \in \mathcal{S}_A\)，则\(f\)是\(\mathcal{S}_A-\)可测函数.
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[17]\label{2.B.17}
+        设\(f: X \to \mathbb{R}\)满足\(D=\{x \in X: f(x) \text{在} x \text{处不连续}\}\)是可数集.
+
+        其中\(X \subseteq \mathbb{R}\)是borel集.证明：\(f\)是borel可测函数.
+    \end{problem}
+
+    \begin{proof}
+        \(f^{-1}((a,\infty))=(\left.f\right|_{D^c})^{-1}((a,\infty)) \cup (\left.f\right|_{D})^{-1}((a,\infty))\)，则\(\left.f\right|_{D^c}\)是连续函数.
+        
+        于是存在开集\(G\)使得\(A=(\left.f\right|_{D^c})^{-1}((a,\infty))=G \cap D^c\)，从而\(A\)是\textit{borel}集.
+        
+        \(B=(\left.f\right|_{D})^{-1}((a,\infty))\)是可数集，也是\textit{borel}集，那么\(A \cup B\)是\textit{borel}集.
+    \end{proof}
+\end{comment}
+
+
+\begin{problem}[18]\label{2.B.18}
+    设\(f: \mathbb{R} \to \mathbb{R}\)是可微函数，证明\(f'\)是borel可测函数.
+\end{problem}
+
+\begin{proof}
+    构造\(g_n(x)=\dfrac{f(x+1/n)-f(x)}{1/n}\)，那么\(f'(x)=\lim_{n \to \infty}g_n(x)\).
+
+    \(f\)作为可微函数一定是连续的，于是\(g_n=n(f(x+1/n)-f(x))\)是\textit{borel}可测的.
+
+    根据\cref{2.48}，\(f'\)是\textit{borel}可测的.
+\end{proof}
+
+\newpage
+
+\begin{problem}[19]\label{2.B.19}
+    设\(X \subseteq \mathbb{R}\)是非空集合，\(\mathcal{S}\)是\(X\)上的可数-余可数\(\sigma-\)代数.
+
+    证明：\(f: X \to \mathbb{R}\)是\(\mathcal{S}-\)可测函数等价于存在常数\(c\)使得\(X \setminus f^{-1}(\{c\})\)是可数集.
+\end{problem}
+
+\begin{proof}
+    若\(X\)是可数的，那么任何\(f: X \to \mathbb{R}\)都是\(\mathcal{S}-\)可测函数且\(X \setminus f^{-1}(\{c\})\)可数.
+
+    假设\(X\)不可数.若存在常数\(c\)使得\(X \setminus f^{-1}(\{c\})\)是可数集，考虑\(\forall B \in \sigma(\mathcal{B})\).
+
+    若\(c \in B\)，那么\(f^{-1}(B)\)是余可数集，若\(c \notin B\)，那么\(f^{-1}(B)\)是可数集，从而\(B \in \mathcal{S}\).
+
+    设\(f\)是\(\mathcal{S}-\)可测函数.若\(f^{-1}((a_1, \infty))\)是可数集，则\(\forall a_2 \geq a_1, f^{-1}((a_2, \infty))\)是可数集；
+
+    若\(f^{-1}((a_1, \infty))\)是余可数集，则\(\forall a_2 \leq a_1, f^{-1}((a_2, \infty))\)是余可数集.
+
+    设\(S=\{a \in \mathbb{R}: f^{-1}((a, \infty)) \text{是可数集}\}\)，令\(\inf S=c\)，下证\(c \in \mathbb{R}\).
+
+    若\(c=+\infty\)，那么\(\forall a \in \mathbb{R}, f^{-1}((a, \infty))\)是不可数集，即\(\forall a \in \mathbb{R}, f^{-1}((-\infty, a])\)可数.
+
+    于是\(f^{-1}((-\infty, a)) \subseteq f^{-1}((-\infty, a])\)是可数集且\(X=\bigcup_{n=1}^\infty f^{-1}((-\infty, n))\)可数，矛盾.
+
+    若\(c=-\infty\)，那么\(\forall a \in \mathbb{R}, f^{-1}((a, \infty))\)是可数集，于是\(X=\bigcup_{n=1}^\infty f^{-1}((n, \infty))\)可数，矛盾.
+
+    于是\(c \in \mathbb{R}\).设\(\mathbb{Q}_1=\mathbb{Q} \cap (-\infty, c), \mathbb{Q}_2=\mathbb{Q} \cap (c, \infty)\)，则\(\mathbb{Q}_1, \mathbb{Q}_2\)均可数.
+    
+    令\(C_1=\bigcup_{q \in \mathbb{Q}_1} f^{-1}((-\infty, q)), C_2=\bigcup_{q \in \mathbb{Q}_2} f^{-1}((q, \infty))\)，则\(C_1 \cup C_2\)是可数集.
+   
+    注意到\(X \setminus f^{-1}(\{c\})=C_1 \cup C_2\)，因此\(\inf S=c\)即为所求.
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[20]\label{2.B.20}
+        设\((X, \mathcal{S})\)是测度空间，\(f,g: X \to \mathbb{R}\)都是\(\mathcal{S}-\)可测函数.
+
+        \(\forall x \in X, f(x)>0\).求证：\(f^g\)也是\(\mathcal{S}-\)可测函数.
+    \end{problem}
+
+    \begin{proof}
+        \(f^g=e^{g \ln f}\)，根据\cref{2.33}显然\(\ln f, g \ln f, e^{g \ln f}\)都是\(\mathcal{S}-\)可测函数.
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+    \begin{problem}[22]\label{2.B.22}
+        设\(X \subseteq \mathbb{R}, f: X \to \mathbb{R}\)是增函数.证明：除可数点外\(f\)在\(X\)上连续.
+    \end{problem}
+
+    \begin{proof}
+        由于\(f\)是增函数，故对于不连续点\(\forall c_1<c_2, f(c_1^-)<f(c_1^+) \leq f(c_2^-)<f(c_2^+)\).
+
+        若\(c_1 \ne c_2\)，那么\((f(c_1^-), f(c_1^+)) \cap (f(c_2^-), f(c_2^+))=\varnothing\).令\(D\)是所有不连续点的集合.
+
+        {\kaishu 由于各不连续点的变差区间是互不相交的且含有至少一个有理数，故\(D\)是可数的.}
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+    \begin{problem}[23]\label{2.B.23}
+        设\(f: \mathbb{R} \to \mathbb{R}\)是严格增函数，证明\(f^{-1}: f(\mathbb{R}) \to \mathbb{R}\)是连续函数.
+    \end{problem}
+
+    \begin{proof}
+        \(\forall y_0 \in f(\mathbb{R}), \exists x_0 \in \mathbb{R}, f(x_0)=y_0\).令\(\delta_1=f(x_0+\varepsilon)-y_0, \delta_2=y_0-f(x_0-\varepsilon)\).
+
+        取\(\delta=\min\{\delta_1, \delta_2\}\).从而\(\forall \abs*{y-y_0}<\delta, y<y_0+\delta \leq f(x+\varepsilon), y>y_0-\delta \geq f(x-\varepsilon)\).
+
+        得\(y \in (f(x_0-\varepsilon), f(x_0+\varepsilon))\)，由单调性\(f^{-1}(y) \in (x_0-\varepsilon, x_0+\varepsilon), \abs*{f^{-1}(y)-f^{-1}(y_0)}<\varepsilon\).
+
+        因此\(\forall \varepsilon>0, \exists \delta=\min\{\delta_1, \delta_2\}, \abs*{f^{-1}(y)-f^{-1}(y_0)}<\varepsilon\).
+    \end{proof}
+\end{comment}
+
+\begin{comment}
+    \begin{problem}[25]\label{2.B.25}
+        设\(X \subseteq \mathbb{R}, f: X \to \mathbb{R}\)是增函数.
+        
+        证明：存在严格增函数序列\(f_1, f_2, \dots: X \to \mathbb{R}\)使得\(\lim_{n \to \infty}f_n(x)=f(x)\).
+    \end{problem}
+
+    \begin{proof}
+        令\(f_k(x)=f(x)+x/n\)，易证\(f_k'(x)=f'(x)+1/n>0\)且\(\lim_{n \to \infty}f_n(x)=f(x)\).
+    \end{proof}
+\end{comment}
+
+\begin{problem}[26]\label{2.B.26}
+    设\(X \subseteq \mathbb{R}, f: X \to \mathbb{R}\)是有界增函数.
+    
+    证明：存在函数\(g: \mathbb{R} \to \mathbb{R}\)使得\(\forall x \in X, g(x)=f(x)\).
+\end{problem}
+
+\begin{proof}
+    定义\(g: \mathbb{R} \to \mathbb{R}\)为
+    \begin{align*}
+        g(x)=
+        \begin{cases}
+            \sup \{f(t): t \in X, t \leq x\}, t \in (-\infty, x) \cap X \\
+            \inf \{f(t): t \in X\}, t \notin (-\infty, x) \cap X
+        \end{cases}
+    \end{align*}
+    由于\(f\)是有界增函数，因此\(\forall x \in X, g(x)=\sup \{f(t): t \in X, t \leq x\}=f(x)\).
+\end{proof}
+
+\begin{problem}[27]\label{2.B.27}
+    设\((X, \mathcal{S})\)是测度空间，证明：存在\(f: X \to [-\infty, \infty]\)，
+    
+    满足\(\forall a \in \mathbb{R}, f^{-1}((a, \infty)) \in \mathcal{S}\)但是\(f\)不是\(\mathcal{S}-\)可测函数.
+\end{problem}
+
+\begin{proof}
+    {\kaishu 本构造在函数只能取到一端无穷时失效.} 设\(V\)是\textit{Vitali}集.
+    \begin{align*}
+        f(x)=
+        \begin{cases}
+            +\infty, x \in V \\
+            -\infty, x \in X \setminus V 
+        \end{cases}
+    \end{align*}
+    则\(\forall a \in \mathbb{R}, f^{-1}((a,\infty))=\varnothing \in \mathcal{S}\)，但\(f^{-1}(\{\infty\})=V \notin \mathcal{S}\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[28]\label{2.B.28}
+    设\(X \subseteq \mathbb{R}, f: X \to \mathbb{R}\)是borel可测函数.证明：\(g: \mathbb{R} \to \mathbb{R}\)
+    \begin{align*}
+        g(x)=
+        \begin{cases}
+            f(x), x \in X \\
+            0, x \in X^c
+        \end{cases}
+    \end{align*}
+    是borel可测函数.
+\end{problem}
+
+\begin{proof}
+    \(f^{-1}(\mathbb{R})=X \in \sigma(\mathcal{B})\).因此\(\forall a \geq 0, g^{-1}((a,\infty))=f^{-1}((a,\infty)) \in \sigma(\mathcal{B})\).
+
+    同时\(\forall a<0, g^{-1}((a,\infty))=f^{-1}((a,\infty)) \cup X^c \in \sigma(\mathcal{B})\).因此\(\forall a \in \mathbb{R}, g^{-1}((a,\infty)) \in \sigma(\mathcal{B})\).
+\end{proof}
+
+\begin{problem}[29]\label{2.B.29}
+    设\((X, \mathcal{S})\)是测度空间，\(\{f_t\}_{t \in \mathbb{R}}\)是\(\mathcal{S}-\)可测函数族，其中\(f_t: X \to [0,1]\).
+
+    定义\(f: X \to [0,1]\)为\(f(x)=\sup \{f_t(x): t \in \mathbb{R}\}\).证明：存在\(\{f_t\}_{t \in \mathbb{R}}\)使得\(f\)不是\(\mathcal{S}-\)可测函数.
+\end{problem}
+
+\begin{proof}
+    令\textit{Vitali}集为\(V\).定义\(\forall t \in V, f_t=\chi_{\{t\}}\)，于是\(\chi_{\{t\}}\)是\(\mathcal{S}-\)可测函数.
+
+    然而\(f=\sup \{f_t(x): t \in \mathbb{R}\}=\chi_V\)不是\(\mathcal{S}-\)可测函数.
+\end{proof}
+
+\begin{problem}[30]\label{2.B.30}
+    证明\(\forall x \in \mathbb{R}, \lim_{j \to \infty}(\lim_{k \to \infty} (\cos(j! \pi x))^{2k})=\chi_{\mathbb{Q}}(x)\).
+\end{problem}
+
+\begin{proof}
+    若\(x\)是有理数，则存在互质的\(p,q \in \mathbb{Z}, x=p/q\).\(\forall j \geq q, j! x=p(j!/q) \in \mathbb{Z}\).
+
+    从而\(\cos(j! \pi x)=\pm 1, \lim_{j \to \infty}(\cos(j! \pi x))^2=1\).
+
+    若\(x\)是无理数，那么\(\forall j \in \mathbb{N}, j! x \notin \mathbb{Z}\)，从而\(\abs*{\cos(j! \pi x)}<1, \lim_{k \to \infty}(\cos(j! \pi x))^{2k}=0\).
+\end{proof}
+
+\begin{comment}
+    {\newpage \kaishu
+        关于\cref{2.B.25}有一个在可数区间上可行的废案.
+        
+        为严格增区间和常值区间依次标号，索引为\(k\).\(n\)是函数列的索引号，令\(\delta_{n,k}=1/(n+k)\).
+
+        在严格增区间\((a_k, b_k)\)内，定义函数\(f_n(x)=f(x)-\delta_{n,k}\).
+
+        在常值区间\((a_l, b_l)\)内，则定义一次函数\(f_n(x)\)经过\(f_n(a_l)=f(a_l)-\delta_{l,k}, f_n(b_l)=f(b_l)-\delta_{l,k+1}\).
+
+        容易验证\(\forall n \in \mathbb{N}, f_n\)是严格增函数且\(f_1, f_2, \dots\)逐点收敛于\(f\).
+    }
+\end{comment}
+

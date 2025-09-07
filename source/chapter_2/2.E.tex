@@ -1,0 +1,358 @@
+\section{2.E Convergence of Measurable Functions}
+
+\begin{theorem}[2.85]\label{2.85}
+    设\((X, \mathcal{S}, \mu)\)是满足\(\mu(X)<\infty\)的测度空间.\(f_1, f_2, \dots :X \to \mathbb{R}\)逐点收敛至\(f\).
+
+    那么\(\forall \varepsilon>0, \exists E \in \mathcal{S}, \mu(X \setminus E)<\varepsilon\)且\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).
+\end{theorem}
+
+\begin{proof}
+    固定精度\(1/n\).令\(A_{m,n}=\bigcap_{k=m}^\infty (f_k-f)^{-1}((-1/n,1/n)), A_{m,n} \in \mathcal{S}\).
+
+    由逐点收敛\(A_{1,n} \subseteq A_{2,n} \subseteq \dots\)且\(\bigcup_{m=1}^\infty A_{m,n}=X\)，所以\(\lim_{m \to \infty} \mu(A_{m,n})=\mu(X)\).
+
+    那么\(\forall \varepsilon>0, n \in \mathbb{N}, \exists m_n \in \mathbb{N}, \mu(X)-\mu(A_{m_n,n})<1/2^n\)，令\(E=\bigcap_{n=1}^\infty A_{m_n,n}\).
+    \begin{align*}
+        \mu(X \setminus E)=\mu \left(\bigcup_{n=1}^\infty (X \setminus A_{m_n,n})\right) 
+        \leq \sum_{n=1}^\infty \mu(X \setminus A_{m_n,n})<\sum_{n=1}^\infty \frac{\varepsilon}{2^n}=\varepsilon 
+    \end{align*}
+    下证\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).由于\(\forall n \in \mathbb{N}, E \subseteq A_{m_n,n}\)，那么
+    \begin{align*}
+        \forall \varepsilon'>0, x \in E, \exists m_n \in \mathbb{N}, \forall k \geq m_n, \abs*{f_k(x)-f(x)}<1/n<\varepsilon'
+    \end{align*}
+    这就说明\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).
+\end{proof}
+
+\begin{theorem}[2.89]\label{2.89}
+    设\(X, \mathcal{S}\)是测度空间且\(f: X \to [-\infty,\infty]\).那么存在函数序列\(f_1, f_2, \dots\)满足
+
+    a.\(\forall k \in \mathbb{N}, f_k\)都是简单可测函数. \quad b.\(\forall k \in \mathbb{N}, x \in X, \abs*{f_k(x)} \leq \abs*{f_{k+1}(x)} \leq \abs*{f(x)}\).
+
+    c.\(\forall x \in X, \lim_{k \to \infty}f_k(x)=f(x)\). \quad d.若\(f\)是有界函数，则\(f_1, f_2, \dots\)在\(X\)上一致收敛至\(f\).
+\end{theorem}
+
+\begin{proof}
+    {\kaishu 本证明的本质是离散采样，在第\(k\)次近似时，将值域均匀划为\(2^k\)个区间取不足近似值.
+    
+    为了防止数据溢出，在第\(k\)层逼近时需要在\([-k,k]\)处截断.}
+
+    定义\(I_{k,m}^+=(f^+)^{-1} ([km/2^k , k(m+1)/2^k)), I_{k,m}^-=(f^-)^{-1} ([km/2^k , k(m+1)/2^k))\).
+
+    特别地，\(I_0^+=(f^+)^{-1}((k,\infty)), I_0^-=(f^-)^{-1}((k,\infty))\).定义\(f_k^+(x), f_k^-(x)\)为
+    \begin{align*}
+        f_k^+(x)=\sum_{m=0}^{2^k-1}\frac{km}{2^k} \chi_{I_{k,m}^+}(x)+k \chi_{I_0^+}(x),
+        f_k^-(x)=\sum_{m=0}^{2^k-1}\frac{km}{2^k} \chi_{I_{k,m}^-}(x)+k \chi_{I_0^-}(x)
+    \end{align*}
+    显然所有涉及到的区间都是可测的，那么\(f_k=f_k^+ - f_k^-\)是简单可测函数，且
+    \begin{align*}
+        \forall \varepsilon>0, x \in f^{-1}([-k,k]), \exists k \in \mathbb{N}, k/2^k<\varepsilon, \abs*{f_k(x)-f(x)} \leq k/2^k<\varepsilon 
+    \end{align*}
+    因此若\(f\)是有界函数，那么\(f_1, f_2, \dots\)在\(X\)上一致收敛至\(f\).
+\end{proof}
+
+\newpage
+
+\begin{theorem}[2.91]\label{2.91}
+    设\(g: \mathbb{R} \to \mathbb{R}\)是borel可测函数.那么\(\forall \varepsilon>0, \exists F \subseteq \mathbb{R}, \abs*{F^c}<\varepsilon\).
+    
+    其中\(F\)是闭集，且\(\left.g\right|_F\)是连续函数.
+\end{theorem}
+
+\begin{proof}
+    先考虑简单函数的情况，设\(D_1, \dots, D_n\)互不相交，\(d_1, \dots, d_n\)相异且各不为零.
+
+    设\(g=\sum_{k=1}^n d_k \chi_{D_k}\).由\textit{borel}集的{\kaishu 内正则性}和{\kaishu 外正则性}，有闭集\(F_k\)和开集\(G_k\)满足
+    \begin{align*}
+        \forall \varepsilon>0, k=1, \dots, n, \exists F_k \subseteq D_k, G_k \supseteq D_k, 
+        \abs*{D_k \setminus F_k}<\varepsilon/2n, \abs*{G_k \setminus D_k}<\varepsilon/2n.
+    \end{align*}
+    令\(F=\bigcup_{k=1}^n F_k \cup \bigcap_{k=1}^n G_k^c\)，那么\(\abs*{F^c} \leq \abs*{\bigcup_{k=1}^n (G_k \setminus F_k)}<n \cdot \varepsilon/n=\varepsilon\).
+
+    由于\(\forall k=1, \dots, n, F_k \subseteq D_k\)，所以\(\left.g\right|_{F_k}=d_k\)，因此\(g\)在每个\(D_k\)上连续；
+
+    由于\(\bigcap_{k=1}^n G_k^c \subseteq \bigcap_{k=1}^n D_k^c\)，所以\(\left.g\right|_{\bigcap_{k=1}^n G_k^c}=0\)，因此\(g\)在\(\bigcap_{k=1}^n G_k^c\)上连续.
+
+    {\kaishu 综上函数在各段上都连续，故\(\left.g\right|_F\)是连续函数.下面处理一般的\textit{borel}可测函数\(g: \mathbb{R} \to \mathbb{R}\).}
+
+    根据\cref{2.89}，存在简单可测函数列\(g_1, g_2, \dots\)逐点收敛至\(g\).
+
+    \(\forall k \in \mathbb{Z}^+, g_k\)是简单函数，故根据\cref{2.89}，\(\forall k \in \mathbb{Z}^+, \exists C_k \subseteq \mathbb{R}, \abs*{\mathbb{R} \setminus C_k}<\varepsilon/2^{k+1}, \left.g_k\right|_{C_k}\)连续.
+    
+    令\(C=\bigcap_{k=1}^\infty C_k\)，则\(\abs*{C^c}<\abs*{\bigcup_{k=1}^\infty C_k^c}<\sum_{k=1}^\infty \varepsilon/2^{k+1}=\varepsilon/2\).
+    
+    另一方面，\(\forall m \in \mathbb{Z}, \left.g_1\right|_{(m,m+1]}, \left.g_2\right|_{(m,m+1]}, \dots\)逐点收敛至\(\left.g\right|_{(m,m+1]}\).
+    
+    根据\cref{2.85}，\(\forall \varepsilon>0, m \in \mathbb{Z}, \exists E_m \subseteq (m,m+1], \abs*{(m,m+1] \setminus E_m}<\varepsilon/2^{\abs*{m}+3}\)，
+    
+    且满足\(\left.g_1\right|_{E_m}, \left.g_2\right|_{E_m}, \dots\)一致收敛于\(\left.g\right|_{E_m}\).令\(D=\bigcup_{m \in \mathbb{Z}}(C \cap E_m)\)，那么\(\left.g\right|_D\)是连续函数.
+    \begin{align*}
+        \abs*{D^c} \leq \abs*{\bigcup_{m \in \mathbb{Z}}((m,m+1] \cap E_m) \cup C^c} 
+        \leq \sum_{k=1}^\infty \frac{2\varepsilon}{2^{m+3}}+\frac{\varepsilon}{2}=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon 
+    \end{align*}
+    {\kaishu 通过合并\([-m-1,-m) \setminus E_{-m},(m,m+1] \setminus E_m\)，我们可以去掉绝对值再求和.}
+
+    由于\(D\)是\textit{borel}集，故存在闭集\(F \subseteq D, \abs*{D \setminus F}<\varepsilon-\abs*{D^c}\)，于是
+    \begin{align*}
+        \abs*{F^c}=\abs*{D^c \cup (D \setminus F)} \leq \abs*{D^c}+\abs*{D \setminus F}<\abs*{D^c}+\varepsilon-\abs*{D^c}<\varepsilon 
+    \end{align*}
+    所以闭集\(F\)满足\(\abs*{F}<\varepsilon\)，且\(\left.g\right|_F\)是连续函数.
+
+    {\kaishu \textit{Luzin}定理的证明思路是先在简单函数上证明之，再用简单函数逼近一般的\textit{borel}可测函数.
+    
+    简单函数逼近所得到的逐点收敛需要经由\textit{egorov}定理分段处理为一致收敛.
+    
+    因此，需要将误差分配在简单函数逼近部分和\textit{egorov}定理一致连续部分.}
+\end{proof}
+
+\newpage
+
+\begin{theorem}[2.95]\label{2.95}
+    设\(f: \mathbb{R} \to \mathbb{R}\)是Lebesgue可测函数，那么存在borel可测函数\(g: \mathbb{R} \to \mathbb{R}\).
+
+    且满足\(\abs*{\{x \in \mathbb{R}: f(x) \ne g(x)\}}=0\).
+\end{theorem}
+
+\begin{proof}
+    根据\cref{2.89}，存在\textit{Lebesgue}简单可测函数序列\(f_1, f_2, \dots\)逐点收敛于\(f\).
+
+    对于\(k \in \mathbb{Z}^+\)，设\(f_k=\sum_{i=1}^n c_i \chi_{A_i}\).\(A_1, \dots, A_n\)互不相交，\(c_1, \dots, c_n\)非零相异.
+
+    根据\cref{2.71}，存在\textit{borel}集\(B_1, \dots, B_n\)使得\(B_i \subseteq A_i, \abs*{A_i \setminus B_i}=0\)，令\(g_k=\sum_{i=1}^n c_i \chi_{B_i}\).
+
+    显然\(g_k\)是\textit{borel}简单可测函数且\(\abs*{\{x \in \mathbb{R}: f_k(x) \ne g_k(x)\}}=0\).
+
+    若\(\lim_{k \to \infty}g_k(x)\)存在，那么\(\lim_{k \to \infty}g_k(x)=\lim_{k \to \infty}f_k(x)=f(x)\).
+
+    令\(E=\{x \in \mathbb{R}: \lim_{k \to \infty}g_k(x)\text{存在}\} \in \sigma(\mathcal{B})\)，则\(E^c=\bigcup_{k=1}^\infty \{x \in \mathbb{R}: f_k(x) \ne g_k(x)\}\).
+
+    由于\(\forall k \in \mathbb{Z}^+, \abs*{\{x \in \mathbb{R}: f_k(x) \ne g_k(x)\}}=0\)，故\(\abs*{E^c}=0\).
+
+    定义\(g(x)=\lim_{k \to \infty}(\chi_E g_k)(x)\).若\(x \in E\)，则\(g(x)=f(x)\).若\(x \in E^c\)，则\(g(x)=0\).
+
+    显然\(g\)是\textit{borel}可测函数，且\(\{x \in \mathbb{R}: f(x) \ne g(x)\} \subseteq E^c\)，故\(\abs*{\{x \in \mathbb{R}: f(x) \ne g(x)\}}=0\).
+\end{proof}
+
+\begin{problem}[1]\label{2.E.1}
+    设\(X\)是有限集，\(f_1, f_2, \dots: X \to \mathbb{R}\)逐点收敛至\(f\).
+
+    证明：\(f_1, f_2, \dots: X \to \mathbb{R}\)一致收敛至\(f\).
+\end{problem}
+
+\begin{proof}
+    设\(X=\{x_1, \dots, x_m\}\).设\(\forall \varepsilon>0, n=1, \dots, m, \exists k_n \in \mathbb{Z}^+, \abs*{f_{k_n}(x_n)-f(x_n)}<\varepsilon\).
+
+    令\(k=\max\{k_1, \dots, k_m\}\)，那么\(\forall \varepsilon>0, \exists k \in \mathbb{Z}^+, \abs*{f_k(x_n)-f(x_n)} \leq \abs*{f_{k_n}(x_n)-f(x_n)}<\varepsilon\).
+\end{proof}
+
+\begin{problem}[2]\label{2.E.2}
+    给出\(f_1, f_2, \dots: X \to \mathbb{R}\)逐点收敛至\(f\)，但\(f_1, f_2, \dots: X \to \mathbb{R}\)不一致收敛至\(f\).
+\end{problem}
+
+\begin{proof}
+    令\(\forall n,k \in \mathbb{Z}^+, f_k(n)=n/k, f=0\)，下证\(f_1, f_2, \dots\)逐点收敛至\(f\).
+    
+    \(\forall \varepsilon>0, n \in \mathbb{Z}^+, \exists m \in \mathbb{Z}^+, \forall k \geq m, \abs*{f_m(n)-f(n)}=n/m<\varepsilon\).
+
+    但是\(\forall \varepsilon>0, m \in \mathbb{Z}^+, \exists n \in \mathbb{Z}^+, n>m \varepsilon\)，也即\(f_m(n)>\varepsilon\)，因此不一致收敛.
+\end{proof}
+
+\begin{problem}[3]\label{2.E.3}
+    构造\(f_1, f_2, \dots: [0,1] \to \mathbb{R}\)逐点收敛至\(f\)，但\(f\)是无界函数.
+\end{problem}
+
+\begin{proof}
+    {\kaishu 在有限区间内构造无界函数最自然的方法是\(f(x)=1/x\)，但是它在\(0\)处没有定义.
+    
+    为此我们需要在最陡峭的部分之前插一段线性函数以确保连续性.}
+    \begin{align*}
+        f_k(x)=
+        \begin{cases}
+            k^2 x, x \in [0,1/k] \\
+            1/x, x \in (1/k,1]
+        \end{cases}
+    \end{align*}
+    \(f_1, f_2\)逐点收敛至\(f(x)=1/x, x \in (0,1], f(0)=0\)，这是一个无界函数.
+\end{proof}
+
+\newpage
+
+\begin{problem}[4]\label{2.E.4}
+    证明：对于\(A \subseteq \mathbb{R}\)，\(f_1, f_2, \dots: A \to \mathbb{R}\)是一致连续的函数序列，
+
+    且\(f_1, f_2, \dots\)一致收敛至\(f\).证明：\(f\)是一致连续函数.
+\end{problem}
+
+\begin{proof}
+    由一致收敛得\(\forall a \in A, \exists m \in \mathbb{Z}^+, \forall k \geq m, \abs*{f_k(a)-f(a)}<\varepsilon/3\).
+
+    由一致连续得\(\forall a_1,a_2 \in A, \exists \delta \in \mathbb{Z}^+, \forall \abs*{a_1-a_2}<\delta, \abs*{f_m(a_1)-f_m(a_2)}<\varepsilon/3\).
+
+    因此\(\forall a_1,a_2 \in A, \forall \abs*{a_1-a_2}<\delta, \exists \delta>0, m \in \mathbb{Z}^+,\)
+    \begin{align*}
+        \abs*{f(a_1)-f(a_2)} &\leq \abs*{f(a_1)-f_m(a_1)}+\abs*{f_m(a_1)-f_m(a_2)}+\abs*{f(a_2)-f_m(a_2)} \\
+        &< \varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{problem}[5]\label{2.E.5}
+    证明在\(\mu(X)=\infty\)的情况下egorov定理不成立.
+\end{problem}
+
+\begin{proof}
+    令\((X, \mathcal{S}, \mu)=(\mathbb{R}, \mathcal{L}, \lambda), \forall k \in \mathbb{Z}^+, x \in \mathbb{R}, f_k(x)=x/k, f=0\).
+
+    根据\cref{2.E.2}，显然\(f_1, f_2, \dots\)逐点收敛至\(f\)，但\(f_1, f_2, \dots\)不一致收敛至\(f\).
+
+    除非\(E\)有界，否则\(f_1, f_2, \dots\)不可能在\(E\)上一致收敛至\(f\)，但\(\mu(X \setminus E)=\infty\)，矛盾.
+\end{proof}
+
+\begin{comment}
+    \begin{problem}[6]\label{2.E.6}
+        设\((X, \mathcal{S}, \mu)\)是测度空间且\(\mu(X)<\infty\).
+        
+        设\(\mathcal{S}-\)可测函数序列\(f_1, f_2, \dots: X \to \mathbb{R}\)满足\(\forall x \in X, \lim_{k \to \infty}f_k(x)=\infty\).
+
+        证明\(\forall \varepsilon>0, \exists E \in \mathcal{S}, \mu(X \setminus E)<\varepsilon\)且\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(\infty\).
+
+        这题是egorov定理的变体，可使用类似的方法证明以作为补充.
+    \end{problem}
+
+    \begin{proof}
+        固定精度\(t\)，令\(A_{n,t}=\bigcap_{k=n}^\infty f_k^{-1}((t,\infty)) \in \mathcal{S}\)，则\(X=\bigcap_{t=1}^\infty \bigcup_{n=1}^\infty A_{n,t}\).
+
+        由于\(A_{1,t} \subseteq A_{2,t} \subseteq \dots\)且\(\lim_{n \to \infty} A_{n,t}=X\)，故\(\lim_{n \to \infty}\mu(A_{n,t})=\mu(X)\).
+
+        那么\(\forall \varepsilon>0, t \in \mathbb{R}, \exists n_t \in \mathbb{Z}^+, \forall k \geq n_t, \mu(X)-\mu(A_{n_t,t})<\varepsilon/2^t\)，令\(E=\bigcap_{t=1}^\infty A_{n_t,t} \in \mathcal{S}\).
+        \begin{align*}
+            \mu(X \setminus E)=\mu \left(\bigcup_{t=1}^\infty(X \setminus A_{n_t,t})\right) \leq \sum_{t=1}^\infty \mu(X \setminus A_{n_t,t})<\sum_{t=1}^\infty \frac{\varepsilon}{2^n}=\varepsilon
+        \end{align*}
+        下证\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).由于\(\forall t \in \mathbb{R}, E \subseteq A_{n_t,t}\)，那么
+        \begin{align*}
+            \forall t \in \mathbb{R}, x \in E, \exists n_t \in \mathbb{N}, \forall k \geq n_t, f_k(x)>t
+        \end{align*}
+        这就说明\(f_1, f_2, \dots\)在\(E\)上一致收敛至\(f\).
+
+        {\kaishu \textit{egorov}定理的精髓在于按精度分层而非按点分类，按照精度筛选合格的点集.
+        
+        取交集得到对所有精度都合格的点集，下连续性保证了抽取子列来满足精度的合法性.}
+    \end{proof}
+\end{comment}
+
+\begin{problem}[7]\label{2.E.7}
+    设\(F \subseteq \mathbb{R}\)是有界闭集且\(g_1, g_2, \dots: F \to \mathbb{R}\)是递增的连续函数序列，
+
+    \(\forall x \in F, \sup\{g_1(x), g_2(x), \dots\}<\infty\)，定义\(g: F \to \mathbb{R}\)为\(\lim_{k \to \infty} g_k(x)=g(x)\).
+
+    证明：\(g\)在\(F\)上连续等价于\(g_1, g_2, \dots\)一致收敛至\(g\).
+\end{problem}
+
+\begin{proof}
+    定义\(f_k(x)=g(x)-g_k(x)\)，则\(\{f_k\}\)是{\kaishu 非负单调递减序列}且\(\lim_{k \to \infty}f_k(x)=0\).
+
+    定义\(E_k=\{x \in F: f_k(x)<\varepsilon\}\).由单调性，\(E_1 \subseteq E_2 \subseteq \dots\)且\(\lim_{k \to \infty}E_k=F\).
+
+    由\({f_k}\)是连续函数序列，故\(E_k=f_k^{-1}((0,\varepsilon))\)是开集，\(\bigcup_{k=1}^\infty E_k\)是\(F\)的可数开覆盖.
+
+    由\(F\)为紧集，可从中提取有限子覆盖\(E_{k_1}, \dots, E_{k_m}\).令\(N=\max\{k_1, \dots, k_m\}\)，则\(E_N=F\).
+
+    这表明\(\forall \varepsilon>0, \exists N \in \mathbb{Z}^+, \forall k \geq N, x \in F, \abs*{g(x)-g_k(x)}<\varepsilon\)，即一致收敛.
+\end{proof}
+
+\begin{comment}
+    \begin{proof}
+        充分性：由\cref{2.E.4}相同的{\kaishu 误差分配}方法可得.
+
+        必要性：令\(B(a,\delta)=(a-\delta, a+\delta)\).先证\(\forall a \in F, \exists \delta_a>0, g_1, g_2, \dots\)在\(B(a,\delta_a)\)上一致收敛至\(f\).
+
+        由\(g_1, g_2, \dots\)逐点收敛得\(\forall \varepsilon>0, \exists n_a \in \mathbb{Z}^+, \abs*{g_{n_a}(a)-g(a)}<\varepsilon/3\).
+
+        由\(g_{n_a}\)的连续性得\(\forall \varepsilon>0, \exists \delta_{a,1}>0, \forall x \in B(a,\delta_{a,1}), \abs*{g_{n_a}(x)-g_{n_a}(a)}<\varepsilon/3\).
+
+        由\(g\)的连续性得\(\forall \varepsilon>0, \exists \delta_{a,2}>0, \forall x \in B(a,\delta_{a,2}), \abs*{g(x)-g(a)}<\varepsilon/3\).
+
+        取\(\delta_a=\min\{\delta_{a,1}, \delta_{a_2}\}\).\(\forall \varepsilon>0, \exists \delta_a>0, n_a \in \mathbb{Z}^+, \forall x \in B(a,\delta_a), k \geq n_a,\)
+        \begin{align*}
+            \abs*{g_k(x)-g(x)} &\leq \abs*{g_{n_a}(x)-g(x)}
+            \leq \abs*{g_{n_a}(x)-g_{n_a}(a)}+\abs*{g_{n_a}(a)-g(a)}+\abs*{g(x)-g(a)} \\
+            &< \varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon
+        \end{align*}
+        第一步据\(g_1, g_2, \dots\)的单调性成立.因此\(g_1, g_2, \dots\)在\(B(a,\delta_a)\)上一致收敛.
+
+        由于\(F\)是紧集，故有一个有限子覆盖\(\bigcup_{i=1}^m B(a_i, \delta_{a_i})\)，\(g_1, g_2, \dots\)在\(B(a_i,\delta_{a_i})\)上一致收敛.
+
+        取\(n=\max\{n_{a_1}, \dots, n_{a_m}\}\).\(\forall x \in F, \exists n \in \mathbb{Z}^+, \forall k \geq n, \abs*{g_k(x)-g(x)} \leq \abs*{g_n(a_i)-g(a_i)}<\varepsilon\).
+
+        {\kaishu 这题的重点是利用单调性和连续性让序列在各邻域内各自一致收敛，随后利用紧集性质确保有限邻域覆盖，从而实际上转化为有限定义域下的逐点收敛和一致收敛等价.}
+    \end{proof}
+\end{comment}
+
+\begin{problem}[8]\label{2.E.8}
+    \(\mu\)是定义在\((\mathbb{Z}^+, 2^{\mathbb{Z}^+})\)上的测度.\(\forall E \in 2^{\mathbb{Z}^+}, \mu(E)=\sum_{n \in E}1/2^n\).
+
+    证明\(\forall \varepsilon>0, \exists E \subseteq \mathbb{Z}^+, \mu(X \setminus E)<\varepsilon\)使得在\(\mathbb{Z}^+\)上逐点收敛的序列\(f_1, f_2, \dots\)在\(E\)上都一致收敛.
+\end{problem}
+
+\begin{proof}
+    \(\forall \varepsilon>0, \exists N \in \mathbb{Z}^+, 1/2^N<\varepsilon\).令\(E=\{1, \dots, N\}\)，则\(\mu(X \setminus E)=1/2^N<\varepsilon\).
+
+    由于\(f_1, f_2, \dots\)逐点收敛而\(E\)是有限集，故根据\cref{2.E.1}\(f_1, f_2, \dots\)在\(E\)上一致收敛.
+
+    {\kaishu 这题的重点在于其尾部的测度可以任意小，故在尾部截断后变为有限集.}
+\end{proof}
+
+\begin{problem}[9]\label{2.E.9}
+    设\(F_1, \dots, F_n \subseteq \mathbb{R}\)是互不相交的闭集.
+
+    证明：若\(f: \bigcup_{i=1}^n F_i \to \mathbb{R}\)满足\(\forall i=1, \dots, n, \left.f\right|_{F_i}\)是连续函数，则\(f\)是连续函数.
+\end{problem}
+
+\begin{proof}
+    由\(\left.f\right|_{F_1}\)连续，故\(\forall \varepsilon>0, a \in F_1, \exists \delta_1>0, \forall x \in B(a,\delta_1) \cap F_1, \abs*{f(x)-f(a)}<\varepsilon\).
+
+    由于\(F_1, \dots, F_n \subseteq \mathbb{R}\)是互不相交的闭集，故\(\forall i=2, \dots, n, F_1 \subseteq F_2^c\)，且\(F_i^c\)是开集.
+
+    于是\(F_1\)中的所有点都是\(F_2^c, \dots, F_n^c\)的内点.\(\forall i=2, \dots, n, \exists \delta_i, B(a,\delta_i) \subseteq F_i\).
+
+    取\(\delta=\min\{\delta_1, \dots, \delta_n\}\)，从而\(\forall x \in B(a,\delta)=\bigcap_{i=1}^n B(a,\delta_i), \abs*{f(x)-f(a)}<\varepsilon\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[10]\label{2.E.10}
+    若\(F \subseteq \mathbb{R}\)且\(f: F \to \mathbb{R}\)是任意连续函数，
+    
+    \(f\)可以被延拓为\(\mathbb{R}\)上的连续函数，证明\(F\)是闭集.
+\end{problem}
+
+\begin{proof}
+    设\(F\)不是闭集，则存在聚点\(x_0 \notin F\).选取序列\(x_1, x_2, \dots \in F\)且\(\lim_{n \to \infty}x_n=x_0\).
+
+    设\(f(x_n)=(-1)^n\)，那么\(\lim_{n \to \infty}(x_n)\)不存在.由\(f\)在\(x_0\)处应连续，则\(f(x_0)\)无法定义.
+\end{proof}
+
+\begin{problem}[14]\label{2.E.14}
+    设\(b_1, b_2, \dots\)是实数序列，定义\(f: \mathbb{R} \to [0,\infty]\)为
+    \begin{align*}
+        f(x)=
+        \begin{cases}
+            \sum_{k=1}^\infty 1/4^k \abs*{x-b_k}, x \notin \{b_1, b_2, \dots\} \\
+            \infty, x \in \{b_1, b_2, \dots\}
+        \end{cases}
+    \end{align*}
+    证明：\(\abs*{f^{-1}([0,1))}=\infty\).
+\end{problem}
+
+\begin{proof}
+    下证若\(\forall k \in \mathbb{Z}^+, \abs*{x-b_k}>1/2^k\)，那么\(f(x)<1\).
+    \begin{align*}
+        \sum_{k=1}^\infty \frac{1}{4^k \abs*{x-b_k}} \leq \sum_{k=1}^\infty \frac{2^k}{4^k}=\sum_{k=1}^\infty \frac{1}{2^k}=1
+    \end{align*}
+    因此\(\forall f(x) \geq 1, \exists k \in \mathbb{Z}^+, \abs*{x-b_k} \leq 1/2^k\)，也即\(x \in \bigcup_{k=1}^\infty B(b_k, 1/2^k)\).
+
+    对于\(\bigcup_{k=1}^\infty B(b_k, 1/2^k)\)，有\(\abs*{\bigcup_{k=1}^\infty B(b_k, 1/2^k)} \leq 2\sum_{k=1}^\infty 1/2^k=2\).因此
+    \begin{align*}
+        f^{-1}([1,\infty)) \subseteq \bigcup_{k=1}^\infty B(b_k, 1/2^k),
+        \abs*{f^{-1}([1,\infty))} \leq \abs*{\bigcup_{k=1}^\infty B(b_k, 1/2^k)} \leq 2
+    \end{align*}
+    于是\(\abs*{f^{-1}([0,1))}=\abs*{f^{-1}(\mathbb{R})}-\abs*{f^{-1}([1,\infty))}=\infty\)，证毕.
+\end{proof}

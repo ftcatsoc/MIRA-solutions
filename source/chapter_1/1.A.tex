@@ -1,0 +1,247 @@
+\section{1.A Construction of the Real Number System}
+
+\begin{theorem}\label{1.A.1}
+    有理数域\(\mathbb{Q}\)中的柯西序列\(\{a_n\}\)满足\(\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall m,n>N, \abs*{a_m-a_n}<\varepsilon\).
+
+    定义柯西序列\(\{a_n\}\)等价于\(\{b_n\}\)为\(\{a_n\} \sim \{b_n\} \Leftrightarrow \lim_{n \to \infty}\abs*{a_n-b_n}=0\).
+
+    所有和\(\{a_n\}\)等价的柯西序列被称为\(\{a_n\}\)的等价类\([\{a_n\}]\).定义实数集\(\mathbb{R}\)为
+    \begin{align*}
+        \mathbb{R}=\{\left.[\{a_n\}]\right|\{a_n\}\text{是}\mathbb{Q}\text{中的柯西序列}\}.
+    \end{align*}
+    则\(\mathbb{R}\)是一个具有序关系和完备性的数域.
+\end{theorem}
+
+\begin{proof}[域公理证明]
+    先证明\(\mathbb{R}\)是一个域.设\([\{a_n\}],[\{b_n\}]\)为实数，定义实数的加法和乘法为
+    \begin{align*}
+        [\{a_n\}]+[\{b_n\}]=[\{a_n+b_n\}] \quad
+        [\{a_n\}] \cdot [\{b_n\}]=[\{a_nb_n\}]
+    \end{align*}
+    验证其良定义性.设\([\{a_n^1\}] \sim [\{a_n^2\}],[\{b_n^1\}] \sim [\{b_n^2\}]\).下证
+    \begin{align*}
+        [\{a_n^1\}]+[\{b_n^1\}] \sim [\{a_n^2\}]+[\{b_n^2\}] \quad
+        [\{a_n^1\}] \cdot [\{b_n^1\}] \sim [\{a_n^2\}] \cdot [\{b_n^2\}]
+    \end{align*}
+    \(\forall \varepsilon>0, \exists N_1,N_2 \in \mathbb{N}, \forall n>N_1, \abs*{a_n^1-a_n^2}<\varepsilon/2, \forall n>N_2, \abs*{b_n^1-b_n^2}<\varepsilon/2\).
+    
+    取\(N=\max\{N_1,N_2\}\)，下证\(\lim_{n \to \infty}\abs*{(a_n^1+b_n^1)-(a_n^2+b_n^2)}=0\).
+    \begin{align*}
+        \forall n>N, \abs*{(a_n^1+b_n^1)-(a_n^2+b_n^2)} \leq \abs*{a_n^1-a_n^2}+\abs*{b_n^1-b_n^2}<\varepsilon/2+\varepsilon/2=\varepsilon
+    \end{align*}
+    由于柯西序列是有界的，故\(\forall n \in \mathbb{N}, \exists M>0, \abs*{a_n^1},\abs*{a_n^2},\abs*{b_n^1},\abs*{b_n^2}<M\).
+
+    \(\forall \varepsilon>0, \exists N_1,N_2 \in \mathbb{N}, \forall n>N_1, \abs*{a_n^1-a_n^2}<\varepsilon/2M, \forall n>N_2, \abs*{b_n^1-b_n^2}<\varepsilon/2M\).
+
+    取\(N=\max\{N_1,N_2\}\)，下证\(\lim_{n \to \infty}\abs*{a_n^1b_n^1-a_n^2b_n^2}=0\).
+    \begin{align*}
+        \forall n>N, \abs*{a_n^1b_n^1-a_n^2b_n^2}&=\abs*{(a_n^1b_n^1-a_n^1b_n^2)+(a_n^1b_n^2-a_n^2b_n^2)} \\
+        &\leq \abs*{a_n^1}\abs*{b_n^1-b_n^2}+\abs*{b_n^2}\abs*{a_n^1-a_n^2}
+        <M\frac{\varepsilon}{2M}+M\frac{\varepsilon}{2M}=\varepsilon
+    \end{align*}
+    {\kaishu 因此实数的加法和乘法都是良定义的，且它们分别满足结合律和交换律，加法和乘法间满足分配律，这些性质均继承自有理数域.}
+
+    实数域的加法零元和乘法零元分别为\(0_{\mathbb{R}}=[\{(0,0,\dots)\}], 1_{\mathbb{R}}=[\{(1,1,\dots)\}]\).
+
+    实数域的加法逆元为\(-[\{a_n\}]=[\{-a_n\}]\)，考虑到\(0_{\mathbb{R}}\)没有逆元，选择\([\{a_n\}] \ne 0_{\mathbb{R}}\).
+
+    因此\(\exists M>0, N \in \mathbb{N}, \forall n \geq N, \abs*{a_n} \geq M\).定义有理序列\(\{b_n\}\)为
+    \begin{align*}
+        b_n=
+        \begin{cases}
+            a_n^{-1}, n \geq N \\
+            0, 1 \leq n<N
+        \end{cases}
+    \end{align*}
+    由于\(\{a_n\}\)是柯西序列，则\(\forall \varepsilon>0, N \in \mathbb{N}, \forall m,n>N, \abs*{a_m-a_n}<\varepsilon M^2\).
+    \begin{align*}
+        \forall m,n>N, \abs*{b_m-b_n}=\abs*{a_m^{-1}-a_n^{-1}}=\abs*{\frac{a_m-a_n}{a_ma_n}}<\frac{\varepsilon M^2}{M^2}=\varepsilon
+    \end{align*}
+    因此\(\{b_n\}\)是柯西序列，下证若\(\{a_n^1\} \sim \{a_n^2\}\)，则对应逆元\(\{b_n^1\},\{b_n^2\}\)满足\(\{b_n^1\} \sim \{b_n^2\}\).
+
+    由于\(\{a_n^1\},\{a_n^2\} \ne 0_{\mathbb{R}}\)，因此\(\exists M>0, N \in \mathbb{N}, \forall n \geq N, \abs*{a_n^1},\abs*{a_n^2} \geq M\).
+
+    又\(\{a_n^1\} \sim \{a_n^2\}\)，则\(\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall n>N, \abs*{a_n^1-a_n^2}<\varepsilon M^2\).
+    \begin{align*}
+        \forall n>N, \abs*{b_n^1-b_n^2}=\abs*{\frac{1}{a_n^1}-\frac{1}{a_n^2}}=\abs*{\frac{a_n^1-a_n^2}{a_n^1a_n^2}}<\frac{\varepsilon M^2}{M^2}=\varepsilon 
+    \end{align*}
+    从而\(\lim_{n \to \infty}\abs*{b_n^1-b_n^2}=0, [\{b_n^1\}] \sim [\{b_n^2\}]\)，逆元良定义性得证.
+
+    此时\([\{a_n\}] \cdot [\{b_n\}]=[\{a_nb_n\}]=[(0,\dots,0,1,\dots)]=(1,\dots)=1_{\mathbb{R}}\)，证毕.
+
+    {\kaishu 至此，实数域的加法及乘法的结合律、交换律、分配律、零元、逆元存在性均得证.}
+\end{proof}
+
+\begin{proof}[序关系证明]
+    设\(x=[\{a_n\}],y=[\{b_n\}] \in \mathbb{R}\)，定义序关系
+    \begin{align*}
+        x<y \Leftrightarrow \exists \varepsilon>0, N \in \mathbb{N}, \forall n>N, \abs*{b_n-a_n} \geq \varepsilon 
+    \end{align*}
+    实数域的度量定义为\(d(x,y)=\lim_{n \to \infty}\abs*{a_n-b_n}\).
+
+    {\kaishu 实数域的序关系性质和良定义性直接继承自有理数域.}
+\end{proof}
+
+\begin{proof}[完备性证明]
+    考虑实数域中的柯西序列\(\{x_j\}, x_j \in \mathbb{R}\)，其中\(x_j=[\{a_{i,j}\}], a_{i,j} \in \mathbb{Q}\).
+
+    由于\(\{x_j\}\)是柯西序列，则\(\forall \varepsilon>0, \exists N_0 \in \mathbb{N}, \forall m,n>N_0, d(x_j,x_k)<\varepsilon/2\).
+
+    由于\(\{a_{i,j}\}\)也是柯西序列，则\(\forall n \in \mathbb{N}, \exists N_n \in \mathbb{N}, \forall m>N_n, d(a_{m,j},x_j)<1/n\).
+
+    取\(\{a_{i,j}\}\)的收敛子列\(\{c_n\}\)满足\(c_n=a_{N_n,n}\)，下证\(\{c_n\}\)是柯西序列且\(\lim_{n \to \infty}x_n=[\{c_n\}]\).
+
+    \(\forall \varepsilon>0, \exists M \in \mathbb{N}, \forall m,n>M, 1/m,1/n<\varepsilon/3\)，于是\(\forall m,n>\max\{N_0,M\}\)，有
+    \begin{align*}
+         \abs*{a_{N_m,m}-a_{N_n,n}} &\leq d(a_{N_m,m},x_m)+d(x_m,x_n)+d(a_{N_n,n},x_n) \\
+        &<1/m+\varepsilon/3+1/n<\varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon
+    \end{align*}
+    于是\(\{c_n\}\)是柯西序列，下证\(\lim_{n \to \infty}x_n=[\{c_n\}]\).\(\forall \varepsilon>0, \exists M' \in \mathbb{N}, \forall n>M', 1/n<\varepsilon\).
+    \begin{align*}
+        \forall n>M', d(c_n,x_n)=d(a_{N_n,n},x_n)<1/n<\varepsilon 
+    \end{align*}
+    {\kaishu 因此任意实数域中的柯西序列在域中的收敛，即实数域具有完备性.}
+\end{proof}
+
+\begin{comment}
+\begin{proof}[完备性证明]
+    考虑实数域中的柯西序列\(\{x_j\}, x_j \in \mathbb{R}\)，其中\(x_j=[\{a_{i,j}\}], a_{i,j} \in \mathbb{Q}\).
+
+    由于\(\{x_j\}\)是柯西序列，则\(\forall n \in \mathbb{N}, \exists N_n \in \mathbb{N}, \forall j,k>N_n, d(x_j,x_k)<n^{-1}\).
+
+    由于\(\{a_{i,j}\}\)也是柯西序列，则\(\forall n \in \mathbb{N}, \exists M_n \in \mathbb{N}, \forall m>M_n, d(a_{m,j},x_j)<n^{-1}\).
+
+    取\(\{a_{i,j}\}\)的收敛子列\(\{c_n\}\)满足\(c_n=a_{M_n,N_n}\)，下证\(\{c_n\}\)是柯西序列且\(\lim_{n \to \infty}x_n=[\{c_n\}]\).
+
+    \(\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall m>N, m^{-1}<\varepsilon/3\)，于是\(\forall m>n>N\)，有
+    \begin{align*}
+         \abs*{a_{M_m,N_m}-a_{M_n,N_n}} &\leq d(a_{M_m,N_m},x_{N_m})+d(x_{N_m},x_{N_n})+d(a_{M_n,N_n},x_{N_n}) \\
+        &<1/m+1/n+1/n<\varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon
+    \end{align*}
+    于是\(\{c_n\}\)是柯西序列，下证\(\lim_{n \to \infty}x_n=[\{c_n\}]\).
+
+    由于\(N_n\)随\(n\)单调增且\(\{x_n\}\)是柯西序列，故\(\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall n,N_n>N, d(x_{N_n},x_n)<\varepsilon/2\).
+    \begin{align*}
+        d(c_n,x_n)=d(a_{M_n,N_n},x_n) \leq d(a_{M_n,N_n},x_{N_n})+d(x_{N_n},x_n)<1/n+\varepsilon/2<\varepsilon/2+\varepsilon/2=\varepsilon 
+    \end{align*}
+    {\kaishu 因此任意实数域中的柯西序列在域中的收敛，即实数域具有完备性.}
+\end{proof}
+\end{comment}
+
+\begin{comment}
+\begin{proof}[完备性证明]
+    考虑实数域中的柯西序列\(\{x_k\}, x_k \in \mathbb{R}\)，其中\(x_k=[\{a_i^k\}], a_i^k \in \mathbb{Q}\).
+
+    设\(x_m=[\{a_i^m\}], x_n=[\{a_i^n\}] \in \mathbb{R}\)，定义实数度量\(d(x_m,x_n)=\lim_{i \to \infty}\abs*{a_i^m-a_i^n}\).
+
+    设有理序列\(\{c_n\}\)满足\(c_n=a_n^n\)，下证\(\{c_n\}\)是柯西序列且\(\lim_{n \to \infty}x_n=[\{c_n\}]\).
+
+    {\kaishu 有理数列内的柯西性}表明\(\forall \varepsilon>0, k \in \mathbb{N}, \exists N_k \in \mathbb{N}, \forall i>N_k, \abs*{a_i^k-a_{N_k}^k}<\varepsilon/3\).
+
+    {\kaishu 有理数列间的柯西性}表明\(\forall \varepsilon>0, \exists N_1 \in \mathbb{N}, \forall m,n>N_1, d(x_m,x_n)<\varepsilon/3\).
+
+    这等价于\(\lim_{i \to \infty}\abs*{a_i^m-a_i^n}<\varepsilon/3\)，故\(\forall \varepsilon>0, \exists N_2 \in \mathbb{N}, \forall i>N_2, \abs*{a_i^m-a_i^n}<\varepsilon/3\).
+
+    因此\(\forall m,n>N=\max\{N_1,N_2,N_m,N_n\}, \abs*{c_m-c_n}=\abs*{a_m^m-a_n^n}<\varepsilon\)，如下：
+    \begin{align*}
+        \abs*{a_m^m-a_n^n} \leq \abs*{a_m^m-a_N^m}+\abs*{a_N^m-a_N^n}+\abs*{a_n^n-a_N^n}<\varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon 
+    \end{align*}
+    下证\(\lim_{n \to \infty}x_n=[\{c_n\}]\)，利用{\kaishu 有理数列间的柯西性}，有
+    \begin{align*}
+        \forall \varepsilon>0, \exists N, \forall i,j>N, \abs*{a_i^i-a_i^j} \leq \abs*{a_i^i-a_i^N}+\abs*{a_i^N-a_i^j}
+        <\varepsilon/2+\varepsilon/2=\varepsilon
+    \end{align*}
+    {\kaishu 因此任意实数域中的柯西序列在域中的收敛，即实数域具有完备性.}
+\end{proof}
+\end{comment}
+
+\newpage
+
+\begin{theorem}\label{1.A.2} 区间套定理 \:
+    考虑区间套\([a_1,b_1] \supseteq [a_2,b_2] \supseteq \dots\)满足\(\lim_{n \to \infty}(b_n-a_n)=0\).
+
+    其中\(\forall n \in \mathbb{N}, a_n,b_n \in \mathbb{R}\).求证：\(\exists c \in \mathbb{R}\)为该区间序列的唯一公共点.
+\end{theorem}
+
+\begin{proof}
+    先证明\(\{a_n\},\{b_n\}\)都是柯西序列.由于\(\lim_{n \to \infty}(b_n-a_n)=0\)，即
+    \begin{align*}
+        \forall \varepsilon>0, \exists N \in \mathbb{N}, 
+        \forall m,n>N, \abs*{a_m-a_n}<b_n-a_n<\varepsilon, \abs*{b_m-b_n}<b_n-a_n<\varepsilon
+    \end{align*}
+    因此\(\{a_n\},\{b_n\}\)都是柯西序列.由于实数域中柯西序列必收敛和\(\lim_{n \to \infty}(b_n-a_n)=0\)，
+
+    故\(\{a_n\},\{b_n\}\)收敛于同一点\(c \in \mathbb{R}\)，下证其唯一性.考虑\(\exists c' \ne c\)为第二公共点.
+
+    若\(c'<c\)，则\(\exists N \in \mathbb{N}, \forall n>N, a_n>c', b_n>c'\)，即\(c' \notin [a_n,b_n]\).
+
+    若\(c'>c\)，则\(\exists N \in \mathbb{N}, \forall n>N, b_n<c', a_n<c'\)，即\(c' \notin [a_n,b_n]\).
+
+    {\kaishu 根据实数的全序性，不存在这样的\(c'\).}
+\end{proof}
+
+\begin{theorem}\label{1.A.3} 确界原理 \:
+    任何非空有上界的集合\(A \subset R\)有上确界.
+\end{theorem}
+
+\begin{proof}
+    由于\(A\)有上界，考虑\(a_1,b_1 \in \mathbb{Q}\).其中\(a_1 \in A\)，\(b_1\)是\(A\)的上界.
+    考虑\((a_n+b_n)/2 \in \mathbb{Q}\).
+
+    若\((a_n+b_n)/2 \in A\)，则令\(a_{n+1}=a_n, b_{n+1}=(a_n+b_n)/2\)；
+
+    若\((a_n+b_n)/2\)是\(A\)的上界，则令\(a_{n+1}=(a_n+b_n)/2, b_{n+1}=b_n\).
+
+    因此\([a_1,b_1] \supseteq [a_2,b_2] \supseteq \dots\)且\(\lim_{n \to \infty}(b_n-a_n)=0\)，
+    则\(\lim_{n \to \infty}a_n=\lim_{n \to \infty}b_n=c \in \mathbb{R}\).
+
+    下证\(c=\sup A\).若\(\exists a \in A, a>c\)，那么\(\exists N \in \mathbb{N}, \forall n>N, b_n<a\)，矛盾.
+
+    若\(\exists b<c\)为\(A\)的上界，那么\(\exists N \in \mathbb{N}, \forall n>N, a_n<b\)，矛盾，因此只能有\(c=\sup A\).
+\end{proof}
+
+\begin{theorem}\label{1.A.4}
+    单调递增且有上界的实数列\(\{a_n\} \in \mathbb{R}\)一定收敛.
+\end{theorem}
+
+\begin{proof}
+    根据确界原理，\(\{a_n\}\)有上确界\(\sup\{a_n\}=c\).下证\(\lim_{n \to \infty}a_n=c\).
+
+    由于\(c\)为上确界，因此\(\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall n>N, a_n>c-\varepsilon\).
+
+    改写为\(\forall \varepsilon>0, \exists N \in \mathbb{N}, \forall n>N, \abs*{a_n-c}<\varepsilon\)，
+    这显然就是\(\lim_{n \to \infty}a_n=c\)的\(\varepsilon-N\)定义.
+\end{proof}
+
+\begin{theorem}\label{1.A.5} 波尔查诺定理 \:
+    有界实数列\(\{c_n\}\)必有收敛子列.
+\end{theorem}
+
+\begin{proof}
+    设\(\forall n \in \mathbb{N}, c_n \in [a_1,b_1]\)，考虑区间\(A_n=[a_n,(a_n+b_n)/2]\)和\(B_n=[(a_n+b_n)/2,b_n]\).
+
+    必有其中之一包含无限项\(\{c_n\}\)，若为\(A_n\)则令\(a_{n+1}=(a_n+b_n)/2, b_{n+1}=b_n\)，若为\(B_n\)则反之.
+
+    得到区间序列\([a_1,b_1] \supseteq [a_2,b_2] \supseteq \dots\)且\(\lim_{n \to \infty}(b_n-a_n)=0\)，
+    \(\lim_{n \to \infty}a_n=\lim_{n \to \infty}b_n=c\).
+
+    根据区间套定理，从每一\([a_i,b_i]\)中抽取\(\{c_{n_i}\}\)，形成\(\{c_n\}\)的子列\(c_{n_i}\).
+    于是\(\lim_{i \to \infty}c_{n_i}=c\).
+\end{proof}
+
+\begin{theorem}\label{1.A.6} 有限覆盖定理 \:
+    每个有界闭区间都有一个有限子覆盖.
+\end{theorem}
+
+\begin{proof}
+    用反证法.设\(\forall n \in \mathbb{N}, a_n \in [a_1,b_1]\)，考虑\(A_n=[a_n,(a_n+b_n)/2]\)和\(B_n=[(a_n+b_n)/2,b_n]\).
+
+    必有其中之一没有有限子覆盖，若为\(A_n\)则令\(a_{n+1}=(a_n+b_n)/2, b_{n+1}=b_n\)，若为\(B_n\)则反之.
+
+    得到区间序列\([a_1,b_1] \supseteq [a_2,b_2] \supseteq \dots\)且\(\lim_{n \to \infty}(b_n-a_n)=0\)，
+    \(\lim_{n \to \infty}a_n=\lim_{n \to \infty}b_n=c\).
+
+    考虑开区间\(c \in (\alpha,\beta)\)，则\(\exists N \in \mathbb{N}, \forall n>N, a_n>\alpha, b_n<\beta\).
+
+    显然\([a_n,b_n] \subset (\alpha,\beta)\)，即\([a_n,b_n]\)有一个有限子覆盖，矛盾.
+\end{proof}
