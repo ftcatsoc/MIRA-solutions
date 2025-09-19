@@ -1,7 +1,9 @@
-\section{2.B Measurable Spaces and Functions}
+\section{Part III. Continuity and Measurability}
+
+\subsection{MIRA 2.B Measurable Spaces and Functions}
 
 \begin{theorem}[2.39]\label{2.39}
-    设\((X,\mathcal{S})\)是测度空间且\(f:X \to \mathbb{R}\)满足\(\forall a \in \mathbb{R}, f^{-1}((a,\infty)) \in \mathcal{S}\)，
+    设\((X,\mathcal{S})\)是测度空间且\(f:X \to \mathbb{R}\).\(O\)是任意开集，且\(f^{-1}(O) \in \mathcal{S}\)，
 
     那么\(f\)是\(\mathcal{S}-\)可测函数.
 \end{theorem}
@@ -13,7 +15,15 @@
 
     设\(A_1, A_2, \dots \in \mathcal{R}\)，则\(f^{-1}(\bigcup_{k=1}^\infty A_k)=\bigcup_{k=1}^\infty f^{-1}(A_k) \in \mathcal{S}\)，即\(\bigcup_{k=1}^\infty A_k \in \mathcal{R}\).
 
-    {\kaishu 于是\(\mathcal{R}\)是\(\sigma-\)代数.至于哪些集合族可以生成\textit{borel}代数，将在习题中详细讨论.}
+    于是\(\mathcal{R}\)是\(\sigma\)-代数，且包含所有开集\(O\)，则它是\textit{borel}代数.
+
+    下证\(\{(a,\infty): a \in \mathbb{R}\}\)生成的\(\sigma-\)代数\(\mathcal{S}\)包含所有\textit{borel}集.
+
+    由\(\forall a \in \mathbb{R}, (a,\infty) \in \mathcal{S}\)，取补得\(\forall b \in \mathbb{R}, (-\infty,b] \in \mathcal{S}\)，取并得\(\forall a \in \mathbb{R}, b \in \mathbb{R}, (a,b] \in \mathcal{S}\).
+
+    由\((a,b)=\bigcup_{k=1}^\infty (a,b-1/k], (-\infty,b)=\bigcup_{k=1}^\infty (-k,b-1/k]\)得\(\forall a,b \in \mathbb{R}, (a,b) \in \mathcal{S}, (-\infty,b) \in \mathcal{S}\).
+
+    于是\(\forall a,b \in \mathbb{R}, (-\infty,b), (a,b), (a, \infty) \in \mathcal{S}\)，故\(\mathcal{S}\)包含了所有开集，即证毕.
 \end{proof}
 
 \begin{theorem}[2.46]\label{2.46}
@@ -64,9 +74,7 @@
 
     于是\(\forall a \in \mathbb{R}, (f+g)^{-1}(a,\infty)=\bigcup_{r \in \mathbb{Q}}A_{a,r} \in \mathcal{S}\).根据\cref{2.39}，\(f+g\)是\(\mathcal{S}-\)可测函数.
 
-    由于\(fg=[(f+g)^2-(f-g)^2]/4\)，根据定理2.44，可测函数具有复合封闭性.
-        
-    那么\((f+g)^2, (f-g)^2\)都是\(\mathcal{S}-\)可测函数，从而\([(f+g)^2-(f-g)^2]/4=fg\)是\(\mathcal{S}-\)可测函数.
+    由于\(fg=[(f+g)^2-(f-g)^2]/4\)，从而\(fg\)是\(\mathcal{S}-\)可测函数.
 
     同理，\(1/g\)也为\(\mathcal{S}-\)可测函数，于是\(f(1/g)=f/g\)是可测函数.
 \end{proof}
@@ -115,19 +123,6 @@
 
 \newpage
 
-\begin{problem}\label{2.39.1}
-    证明：所有形如\((a,\infty), a \in \mathbb{R}\)的集合生成的\(\sigma-\)代数\(\mathcal{S}\)包含所有borel集.
-\end{problem}
-
-\begin{proof}
-    由\(\forall a \in \mathbb{R}, (a,\infty) \in \mathcal{S}\)，取补得\(\forall b \in \mathbb{R}, (-\infty,b] \in \mathcal{S}\)，
-    取并得\(\forall a \in \mathbb{R}, b \in \mathbb{R}, (a,b] \in \mathcal{S}\).
-    
-    由\((a,b)=\bigcup_{k=1}^\infty (a,b-1/k], (-\infty,b)=\bigcup_{k=1}^\infty (-k,b-1/k]\)得\(\forall a,b \in \mathbb{R}, (a,b) \in \mathcal{S}, (-\infty,b) \in \mathcal{S}\).
-
-    于是\(\forall a,b \in \mathbb{R}, (-\infty,b), (a,b), (a, \infty) \in \mathcal{S}\)，故\(\mathcal{S}\)包含了所有开集，即证毕.
-\end{proof}
-
 \begin{problem}[1]\label{2.B.1}
     证明\(\mathcal{S}=\{\bigcup_{n \in K}(n,n+1]: K \subseteq \mathbb{Z}\}\)是\(\mathbb{R}\)上的\(\sigma-\)代数.
 \end{problem}
@@ -166,17 +161,21 @@
     那么\(\forall a \in \mathbb{R}, (a,\infty)=\bigcup_{r>a}(r,r+1)\)，于是根据\cref{2.B.4}，\(\mathcal{S}\)包含了所有开集.
 \end{proof}
 
-\begin{comment}
-    \begin{problem}[7]\label{2.B.7}
-        证明：若\(B \subseteq \mathbb{R}\)是borel集，那么\(\forall t \in \mathbb{R}, t+B\)是borel集.
-    \end{problem}
+\begin{problem}[7]\label{2.B.7}
+    证明：若\(B \subseteq \mathbb{R}\)是borel集，那么\(\forall t \in \mathbb{R}, t+B\)是borel集.
+\end{problem}
 
-    \begin{proof}
-        任意开集\(G\)可以表示成可数不相交开区间之并，即\(G=\bigcup_{k=1}^\infty I_k\).
-        
-        显然\(t+G=\bigcup_{k=1}^\infty (t+I_k)\)，因此{\kaishu 开集具有平移不变性}，从而\(\sigma(t+G)=\sigma(G)\)，证毕.
-    \end{proof}
-\end{comment}
+\begin{proof}
+    定义\(\mathcal{A}=\{B: \forall t \in \mathbb{R}, t+B \text{\kaishu 是\textit{borel}集}\}\)，下证\(\mathcal{A}\)是一个\(\sigma\)-代数.
+
+    首先\(\varnothing \in \mathcal{A}\).考虑\(B \in \mathcal{A}\)，那么\(t+(\mathbb{R} \setminus B)=\mathbb{R} \setminus (t+B) \in \mathcal{A}\)，即\(\mathcal{A}\)对补集封闭.
+
+    设\(B_1, B_2, \dots \in \mathcal{A}\)，那么\(t+\bigcup_{k=1}^\infty B_k=\bigcup_{k=1}^\infty (t+B_k) \in \mathcal{A}\)，因此\(\mathcal{A}\)对可数并封闭.
+
+    综上\(\mathcal{A}\)是\(\sigma-\)代数.而对于开集\(O=\bigcup_{k=1}^\infty I_k, t+O=t+\bigcup_{k=1}^\infty I_k=\bigcup_{k=1}^\infty (t+I_k) \in \mathcal{A}\).
+
+    因此\(\mathcal{A}\)包含所有开集.而\(\mathcal{A}\)又是\(\sigma\)-代数，故\(\mathcal{A}\)包含所有\textit{borel}集，证毕.
+\end{proof}
 
 \begin{problem}[9]\label{2.B.9}
     设\((X,\mathcal{S})\)是可测集，给出函数\(f: X \to \mathbb{R}\)满足\(\abs*{f}\)是\(\mathcal{S}-\)可测的但\(f\)不可测.

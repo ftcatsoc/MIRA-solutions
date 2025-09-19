@@ -4,17 +4,23 @@
 
 % === 页面布局 ===
 \usepackage{geometry}
-\geometry{a4paper,scale=0.8} 
+\geometry{a4paper,scale=0.8}
 \setlength{\parindent}{0pt}
 
 % === 标题样式 ===
 \usepackage{titlesec}
 \titleformat{\section}[block]
-{\normalfont\itshape\Large} % 正常字体，斜体，略大
-{\thesection}
-{0.8em} % 章节号与标题的间距
-{} % 标题前不添加额外内容
-[\titlerule] % 标题下方添加横线，横线在标题下方
+{\normalfont\itshape\Large}  % 正常字体，斜体，大
+{\thesection}                % 编号
+{0.8em}                      % 编号与标题间距
+{}                           % 标题前不添加额外内容
+[\titlerule]                 % 标题下方添加横线，横线在标题下方
+
+\titleformat{\subsection}[block]
+{\normalfont\itshape\large}  % 正常字体，斜体，略大
+{\thesubsection}             % 编号
+{0.4em}                      % 编号与标题间距
+{}                           % 标题前不添加额外内容
 
 % === 页眉页脚 ===
 \usepackage{fancyhdr}
@@ -25,4 +31,3 @@
 \fancyfoot[R]{\thepage}
 
 \endinput
-

@@ -1,4 +1,6 @@
-\section{2.A Outer Measure on \(\mathbb{R}\)}
+\sectionmark{Part II. Topology and Measure}
+
+\subsection{MIRA 2.A Outer Measure on R}
 
 \begin{problem}[1]\label{2.A.1}
     证明：对于任意的\(A,B \subseteq \mathbb{R}\)满足\(\abs*{B}=0\)，\(\abs*{A \cup B}=\abs*{A}\).
@@ -34,6 +36,7 @@
     有\(\abs*{B}=\abs*{(B \cap A) \cup (B \setminus A)} \leq \abs*{B \setminus A}+\abs*{B \cap A} \leq \abs*{B \setminus A}+\abs*{A}\).
 \end{proof}
 
+\begin{comment}
 \begin{problem}[5]\label{2.A.5}
     设\(\mathcal{A}\)是\(\mathbb{R}\)的闭子集集合，满足\(\bigcap_{F \in \mathcal{A}}F=\varnothing\).
 
@@ -47,6 +50,7 @@
 
     得到\(K \subset \bigcup_{i=1}^n F_i^c=(\bigcap_{i=1}^n F_i)^c\)，即\(K \cap \bigcap_{i=1}^n F_i=\varnothing\).
 \end{proof}
+\end{comment}
 
 \begin{comment}
     \begin{problem}[7]\label{2.A.7}
@@ -137,9 +141,9 @@
 \begin{proof}
     由于\(\{I_k\}_{k \in \mathbb{Z}^+}\)本身是\(G\)的可数开覆盖，故\(\sum_{k=1}^\infty \ell(I_k) \geq \abs*{G}\).
 
-    取\(G\)的任意开区间覆盖\(\mathcal{S}=\{J_j\}_{j \in \mathbb{Z}^+}\)，定义\(J_i \sim J_j\)当且仅当\(\exists J_1^{(i,j)}, \dots, J_m^{(i,j)} \in \mathcal{S}\)，
+    取\(G\)的任意开区间覆盖\(\mathcal{S}=\{J_j\}_{j \in \mathbb{Z}^+}\)，定义\(J_i \sim J_j\)当且仅当\(\exists J_1, \dots, J_m \in \mathcal{S}\)，
 
-    使得\(J_p=J_1^{(i,j)}, J_q=J_m^{(i,j)}, \forall p=1, \dots, m-1, J_p^{(i,j)} \cap J_{p+1}^{(i,j)} \ne \varnothing\).
+    使得\(J_p=J_1, J_q=J_m, \forall p=1, \dots, m-1, J_p \cap J_{p+1} \ne \varnothing\).
 
     定义等价类\(\mathcal{U}_j=\{J_i \in \mathcal{S}: J_i \sim J_j\}\)，有\([J_j]=\bigcup_{J_i \in \mathcal{U}_j} J_i, \ell([J_j]) \leq \sum_{J_i \in \mathcal{U}_j} \ell(J_i)\).
 
@@ -153,7 +157,7 @@
 
     因此\(\sum_{k=1}^\infty \ell(I_k) \leq \sum_{[J_\alpha] \in \mathcal{A}} \ell([J_\alpha]) \leq \sum_{j=1}^\infty \ell(J_j)\)，故\(\sum_{k=1}^\infty \ell(I_k) \leq \abs*{G}, \abs*{G}=\sum_{k=1}^\infty \ell(I_k)\).
 
-    {\kaishu 证明分为两步.首先将任意选取的开覆盖按照最大连通分支合并，按照可数次可加性得到第一个不等式；随后由于\(G\)的任意开区间均包含于这些开覆盖，于是它们只能属于其中一个分支，否则开区间将是分离集.将\(G\)的所有开区间归入分别所有等价类，得到包含关系和第二个不等式.}
+    {\kaishu 证明分为两步.首先将任意选取的开覆盖按照最大连通分支合并，按照可数次可加性得到第一个不等式；随后由于\(G\)的任意开区间均包含于这些开覆盖，于是它们只能属于其中一个分支，否则开区间将是分离集.将\(G\)的开区间分别归入所有等价类，得到第二个不等式.}
 \end{proof}
 
 \begin{lemma}\label{2.A.11.1}
