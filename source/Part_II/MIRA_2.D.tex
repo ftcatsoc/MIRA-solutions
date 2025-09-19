@@ -1,4 +1,6 @@
-\section{2.D Lebesgue Measure}
+\sectionmark{Part II. Topology and Measure}
+
+\subsection{MIRA 2.D Lebesgue Measure}
 
 \begin{theorem}[2.62]\label{2.62}
     若\(A \cap G=\varnothing\)且\(G\)是开集，那么\(\abs*{A \cup G}=\abs*{A}+\abs*{G}\).
@@ -354,11 +356,11 @@
 \begin{proof}
     \(A\)是\textit{Lebesgue}可测集等价于存在开集\(O \supseteq A\)满足\(\abs*{O \setminus A}<\varepsilon/2\).
 
-    \(O\)是可数不相交开区间\(I_1, I_2, \dots\)的并\(\bigcup_{k=1}^\infty I_k\).选取\(N \in \mathbb{Z}^+\)使得\(\sum_{k=N+1}^\infty \abs*{I_k}<\varepsilon/2\).
+    令\(O=\bigcup_{k=1}^\infty I_k\).选取\(N \in \mathbb{Z}^+\)使得\(\sum_{k=N+1}^\infty \abs*{I_k}<\varepsilon/2\)，令\(G=\bigcup_{k=1}^N I_k\).
+    
+    则\(G \setminus A \subseteq O \setminus A, \abs*{G \setminus A} \leq \abs*{O \setminus A}<\varepsilon/2, A \setminus G \subseteq O \setminus G, \abs*{A \setminus G} \leq \sum_{k=N+1}^\infty \abs*{I_k}<\varepsilon/2\).
 
-    令\(G=\bigcup_{k=1}^N I_k\)，那么\(G \setminus A \subseteq O \setminus A, \abs*{G \setminus A} \leq \abs*{O \setminus A}<\varepsilon/2\).
-
-    \(A \setminus G \subseteq O \setminus G, \abs*{A \setminus G} \leq \sum_{k=N+1}^\infty \abs*{I_k}<\varepsilon/2\)，于是\(\abs*{A \setminus G}+\abs*{G \setminus A}<\varepsilon\).
+    于是\(\abs*{A \setminus G}+\abs*{G \setminus A}\leq \abs*{A \setminus O}+\abs*{O \setminus A}<\varepsilon/2+\varepsilon/2=\varepsilon\).
 \end{proof}
 
 \begin{comment}

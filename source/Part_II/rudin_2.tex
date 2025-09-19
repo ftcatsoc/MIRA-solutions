@@ -1,4 +1,6 @@
-\section{1.B Basic Topology}
+\section{Part II. Topology and Measure}
+
+\subsection{rudin 2 Basic Topology}
 
 \begin{theorem}\label{br2.30}
     设\(Y \subseteq X\)，则\(E \subseteq Y\)是\(Y\)的开子集等价于存在\(X\)的开子集\(G\)使得\(E=Y \cap G\).
@@ -361,19 +363,20 @@
 \end{problem}
 
 \begin{proof}
-    由\(G_1\)为开集，\(\exists x_1 \in G_1, r>0, B(x_1,r) \subseteq G_1\).下面{\kaishu 归纳地构造\(B(x_k,r_k)\)序列}.
+    由\(G_1\)为开集，\(\exists x_1 \in G_1, r_1 \in (0,1), \overline{B}(x_1,r_1) \subseteq G_1\).下面{\kaishu 归纳地构造\(B(x_k,r_k)\)序列}.
 
-    假设\(B(x_k,r_k)\)已经被构造.由\(G_{k+1}\)是\(\mathbb{R}^n\)的稠密子集，故\(\exists x_{k+1} \in G_{k+1}, d(x_k,x_{k+1})<r/2^{k+1}\).
-
-    由\(G_{k+1}\)是开集，故\(\exists r_{k+1}'>0, B(x_{k+1},r_{k+1}') \subseteq G_{k+1}\).取\(r_{k+1} \in (0, \min\{r/2^{k+1}, r_{k+1}'\})\).
-
-    于是\(B(x_{k+1},r_{k+1})\)被构造，考虑\(\forall x \in \overline{B}(x_{k+1},r_{k+1})\)，有
+    假设\(B(x_1,r_1), \dots, B(x_n,r_n)\)已经被构造，且满足
     \begin{align*}
-        d(x,x_k) \leq d(x,x_{k+1})+d(x_{k+1},x_k) \leq r_{k+1}+r/2^{k+1}<r/2^k \leq r_k
+        \overline{B}(x_1,r_1) \supseteq \dots \supseteq \overline{B}(x_n,r_n), 
+        \forall k=1, \dots, n, B(x_k,r_k) \subseteq G_k, r_k \in(0,1/k).
     \end{align*}
-    这即表明\(\overline{B}(x_{k+1},r_{k+1}) \subseteq B(x_k,r_k)\).由于\(\forall k \in \mathbb{Z}^+, \overline{B}(x_k,r_k) \subseteq G_k\)，考虑\(\bigcap_{k=1}^\infty \overline{B}(x_k,r_k)\).
+    由于\(G_{k+1}\)在\(\mathbb{R}^n\)中稠密，故\(\exists x_{k+1} \in G_{k+1}, x_{n+1} \in B(x_n,r_n)\).
 
-    显然\(\bigcap_{k=1}^\infty G_k \supseteq \bigcap_{k=1}^\infty \overline{B}(x_k,r_k) \ne \varnothing\)，证毕.
+    选取\(r_{n+1} \in (0,1/(n+1))\)使得\(\overline{B}(x_{n+1},r_{n+1}) \subseteq \overline{B}(x_n,r_n) \cap G_{n+1}\).
+
+    因此\(\forall k \geq n, d(x_n,x_k)<1/n\)，即\(\lim_{n \to \infty} x_n=x\)存在，且\(x \in \bigcap_{k=1}^\infty \overline{B}(x_k,r_k)\).
+    
+    因此\(x \in \bigcap_{k=1}^\infty G_k \supseteq \bigcap_{k=1}^\infty \overline{B}(x_k,r_k)\)，证毕.
 \end{proof}
 
 \begin{comment}
