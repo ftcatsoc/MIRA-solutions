@@ -1,0 +1,118 @@
+\sectionmark{Part I. Foundations}
+
+\subsection{rudin 3 Numerical Sequences and Series}
+
+\begin{problem}[4]\label{pb3.4}
+    定义序列\(\{a_n\}\)为\(a_1=0, a_{2n}=a_{2n-1}/2, a_{2n+1}=1/2+a_{2n}\)，求\(\{a_n\}\)的上下极限.
+\end{problem}
+
+\begin{proof}
+    有\(a_{2n+1}=(a_{2n-1}+1)/2, a_{2n+1}-1=(a_{2n-1}-1)/2\).定义\(b_n=a_{2n-1}-1, b_{n+1}=b_n/2\).
+
+    由于\(b_1=-1\)，故\(b_n=-1/2^{n-1}, a_{2n-1}=1-1/2^{n-1}\)，所以\(\lim_{n \to \infty} a_{2n-1}=1\).
+
+    同时\(a_{2n}=a_{2n-1}/2=1/2-1/2^n\)，所以\(\lim_{n \to \infty} a_{2n}=1/2\).
+
+    最终\(\limsup_{n \to \infty} a_n=1, \liminf_{n \to \infty} a_n=1/2\).
+\end{proof}
+
+\begin{problem}[6]\label{pb3.6}
+    考虑\(a_n=(\sqrt{n+1}-\sqrt{n})/n\)和\(a_n=(\sqrt[n]{n}-1)^n\)的敛散性.
+\end{problem}
+
+\begin{proof}
+    \((\sqrt{n+1}-\sqrt{n})/n\)收敛，注意到
+    \begin{align*}
+        a_n=\frac{\sqrt{n+1}-\sqrt{n}}{n} \leq \frac{\sqrt{n+1}}{n+1}-\frac{\sqrt{n}}{n}, 
+        \sum_{n=1}^\infty a_n \leq \lim_{n \to \infty} \frac{\sqrt{n+1}}{n+1}=1
+    \end{align*}
+    \(a_n=(\sqrt[n]{n}-1)^n\)收敛，注意到\(\limsup_{n \to \infty} \sqrt[n]{a_n}=\limsup_{n \to \infty} (\sqrt[n]{n}-1)\).
+
+    由于\(\sqrt[n]{n}-1=e^{\ln n/n}-1=O(\ln n/n)\)，故\(\limsup_{n \to \infty} (\sqrt[n]{n}-1)=0\)，级数收敛.
+\end{proof}
+
+\begin{problem}[7]\label{pb3.7}
+    设\(\forall n \in \mathbb{Z}^+, a_n \geq 0\)且\(\sum_{n=1}^\infty a_n\)收敛，则\(\sum_{n=1}^\infty (\sqrt{a_n}/n)\)收敛.
+\end{problem}
+
+\begin{proof}
+    由平均值不等式有\(\sqrt{a_n}/n=\sqrt{a_n \cdot 1/n^2} \leq a_n/2+1/2n^2\)，
+    
+    故\(\sum_{n=1}^\infty (\sqrt{a_n}/n) \leq \sum_{n=1}^\infty a_n/2+\sum_{n=1}^\infty 1/2n^2\)，且\(\sum_{n=1}^\infty a_n, \sum_{n=1}^\infty 1/n^2\)收敛.
+\end{proof}
+
+\begin{problem}[8]\label{pb3.8}
+    设\(\sum_{n=1}^\infty a_n\)收敛且\(\{b_n\}\)单调有界，证明\(\sum_{n=1}^\infty a_nb_n\)收敛.
+\end{problem}
+
+\begin{proof}
+    {\kaishu 不失一般性，设\(\{b_n\}\)单调增有上界}.设\(\sup b_n=b\)，考虑\(c_n=b-b_n\).
+
+    从而\(\sum_{n=1}^\infty a_nb_n=\sum_{n=1}^\infty a_n(b-c_n)=b \sum_{n=1}^\infty a_n-\sum_{n=1}^\infty a_nc_n\).
+
+    显然\(\lim_{n \to \infty} c_n=0\)且\(\{c_n\}\)单调递减，故\(b \sum_{n=1}^\infty a_n, \sum_{n=1}^\infty a_nc_n\)均收敛.
+\end{proof}
+
+\begin{problem}[10]\label{pb3.10}
+    幂级数\(\sum_{n=1}^\infty a_nx_n\)的系数\(a_n \in \mathbb{Z}\)，且其中有无穷多个不是\(0\).
+
+    证明\(\sum_{n=1}^\infty a_nx_n\)的收敛半径最大为\(1\).
+\end{problem}
+
+\begin{proof}
+    由于\(\{a_n\}\)含有无穷多非零元素，故\(\forall N \in \mathbb{Z}^+, \exists n>N, \abs*{a_n} \ne 0\).
+
+    令\(a_{n_k}\)为第\(k\)个不为零的系数，构造子列\(\{a_{n_k}\}\).由于\(a_{n_k} \in \mathbb{Z}^+\)，故\(\abs*{a_{n_k}} \geq 1\).
+
+    于是\(\lim_{k \to \infty} a_{n_k} \geq 1\)，即\(\limsup_{n \to \infty} a_n \geq 1\)，从而\(R=1/\limsup_{n \to \infty} a_n \leq 1\).
+\end{proof}
+
+\newpage
+
+\begin{problem}[11]\label{pb3.11}
+    设\(\forall n \in \mathbb{Z}^+, a_n \geq 0\)且\(\sum_{n=1}^\infty a_n\)发散.定义\(S_n=\sum_{k=1}^n a_n\).
+    
+    a.证明\(\sum_{n=1}^\infty a_n/(1+a_n)\)发散.
+
+    b.证明\(\forall N,n \in \mathbb{Z}^+, \sum_{k=1}^n (a_{N+k}/S_{N+k}) \geq 1-(S_N/S_{N+k})\)且\(\sum_{n=1}^\infty a_n/S_n\)发散.
+
+    c.证明\(\forall a_n/S_n^2 \leq 1/S_{n-1}-1/S_n\)且\(\sum_{n=1}^\infty (a_n/S_n^2)\)收敛.
+
+    d.证明\(\sum_{n=1}^\infty a_n/(1+n^2 a_n)\)收敛，\(\sum_{n=1}^\infty a_n/(1+n a_n)\)既可能发散也可能收敛.
+\end{problem}
+
+\begin{proof}[证明a]
+    \(a_n/(a_n/(1+a_n))=1+a_n>1\)且\(\sum_{n=1}^\infty a_n\)发散，因此\(\sum_{n=1}^\infty a_n/(1+a_n)\)发散.
+\end{proof}
+
+\begin{proof}[证明b]
+    注意到\(\forall k=1, \dots, n, S_{N+k} \leq S_{N+n}\)，故\(a_{N+k}/S_{N+k} \geq a_{N+k}/S_{N+n}\).
+    \begin{align*}
+        \sum_{k=1}^n \frac{a_{N+k}}{S_{N+k}} \geq \sum_{k=1}^n \frac{a_{N+k}}{S_{N+n}}=\frac{1}{S_{N+n}} \sum_{k=1}^n a_{N+k}
+        =\frac{S_{N+n}-S_N}{S_{N+n}}=1-\frac{S_N}{S_{N+n}}
+    \end{align*}
+    由于\(\lim_{n \to \infty} S_n=\infty\)，故\(\exists 0=n_0, n_1, \dots \in \mathbb{Z}^+, S_{n_j} \geq 2S_{n_{j-1}}\).
+    \begin{align*}
+        \sum_{k=1}^\infty \frac{a_n}{S_n}=\sum_{j=1}^\infty \sum_{k=n_{j-1}+1}^{n_j} \frac{a_n}{S_n} 
+        \geq \sum_{j=1}^\infty 1-\frac{S_{n_j}}{S_{n_{j-1}}} \geq \sum_{j=1}^\infty 1-\frac{2S_{n_{j-1}}}{S_{n_{j-1}}}=\sum_{j=1}^\infty \frac{1}{2}=\infty
+    \end{align*}
+    因此\(\sum_{n=1}^\infty a_n/S_n\)发散.
+\end{proof}
+
+\begin{proof}[证明c]
+    显然\(a_n/S_n^2=(S_n-S_{n-1})/S_n^2 \leq (S_n-S_{n-1})/S_nS_{n-1}=1/S_{n-1}-1/S_n\).
+
+    因此\(\sum_{k=1}^n a_n/S_n^2 \leq 1-1/S_n, \sum_{n=1}^\infty a_n/S_n^2 \leq 1\)，故收敛.
+\end{proof}
+
+\begin{proof}[证明d]
+    由于\(a_n/(1+n^2 a_n)=1/(1/a_n+n^2) \leq 1/n^2\)，故\(\sum_{n=1}^\infty a_n/(1+n^2 a_n) \leq \sum_{n=1}^\infty 1/n^2\).
+
+    令\(a_n=1/n\)，则\(\sum_{n=1}^\infty a_n\)发散，且\(\sum_{n=1}^\infty 1/(1+na_n)=\sum_{n=1}^\infty 1/2\)发散.
+
+    令\(a_n=1, \exists k \in \mathbb{Z}^+, n=k^2; a_n=1/n^2, n \ne k^2\).显然\(\sum_{n=1}^\infty a_n \geq \sum_{n=1}^\infty a_{n^2}=\infty\)发散.
+    \begin{align*}
+        \sum_{n=1}^\infty \frac{a_n}{1+na_n}=\sum_{k=1}^\infty \frac{1}{1+k^2}+\sum_{n \ne k^2} \frac{1}{n^2+n}
+    \end{align*}
+    显然两者均收敛，故\(\sum_{n=1}^\infty a_n/(1+n a_n)\)既可能发散也可能收敛.
+\end{proof}
