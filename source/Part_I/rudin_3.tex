@@ -74,9 +74,9 @@
     
     a.证明\(\sum_{n=1}^\infty a_n/(1+a_n)\)发散.
 
-    b.证明\(\forall N,n \in \mathbb{Z}^+, \sum_{k=1}^n (a_{N+k}/S_{N+k}) \geq 1-(S_N/S_{N+k})\)且\(\sum_{n=1}^\infty a_n/S_n\)发散.
+    b.证明\(\forall N,n \in \mathbb{Z}^+, \sum_{k=1}^n a_{N+k}/S_{N+k} \geq 1-(S_N/S_{N+k})\)且\(\sum_{n=1}^\infty a_n/S_n\)发散.
 
-    c.证明\(\forall a_n/S_n^2 \leq 1/S_{n-1}-1/S_n\)且\(\sum_{n=1}^\infty (a_n/S_n^2)\)收敛.
+    c.证明\(\forall \alpha>1, \sum_{n=1}^\infty a_n/S_n^\alpha\)收敛.
 
     d.证明\(\sum_{n=1}^\infty a_n/(1+n^2 a_n)\)收敛，\(\sum_{n=1}^\infty a_n/(1+n a_n)\)既可能发散也可能收敛.
 \end{problem}
@@ -91,18 +91,21 @@
         \sum_{k=1}^n \frac{a_{N+k}}{S_{N+k}} \geq \sum_{k=1}^n \frac{a_{N+k}}{S_{N+n}}=\frac{1}{S_{N+n}} \sum_{k=1}^n a_{N+k}
         =\frac{S_{N+n}-S_N}{S_{N+n}}=1-\frac{S_N}{S_{N+n}}
     \end{align*}
-    由于\(\lim_{n \to \infty} S_n=\infty\)，故\(\exists 0=n_0, n_1, \dots \in \mathbb{Z}^+, S_{n_j} \geq 2S_{n_{j-1}}\).
+    由于\(\lim_{n \to \infty} S_n=\infty\)，故\(\exists N_0, N_1, \dots \in \mathbb{Z}^+, \forall j \in \mathbb{Z}^+, S_{N_j} \geq 2S_{N_{j-1}}\)，其中\(N_0=1\).
     \begin{align*}
-        \sum_{k=1}^\infty \frac{a_n}{S_n}=\sum_{j=1}^\infty \sum_{k=n_{j-1}+1}^{n_j} \frac{a_n}{S_n} 
-        \geq \sum_{j=1}^\infty 1-\frac{S_{n_j}}{S_{n_{j-1}}} \geq \sum_{j=1}^\infty 1-\frac{2S_{n_{j-1}}}{S_{n_{j-1}}}=\sum_{j=1}^\infty \frac{1}{2}=\infty
+        \sum_{k=1}^\infty \frac{a_n}{S_n}=\sum_{j=1}^\infty \sum_{k=N_{j-1}+1}^{N_j} \frac{a_n}{S_n} 
+        \geq \sum_{j=1}^\infty 1-\frac{S_{n_j}}{S_{n_{j-1}}} \geq \sum_{j=1}^\infty 1-\frac{S_{N_{j-1}}}{2S_{N_{j-1}}}=\sum_{j=1}^\infty \frac{1}{2}=\infty
     \end{align*}
     因此\(\sum_{n=1}^\infty a_n/S_n\)发散.
 \end{proof}
 
 \begin{proof}[证明c]
-    显然\(a_n/S_n^2=(S_n-S_{n-1})/S_n^2 \leq (S_n-S_{n-1})/S_nS_{n-1}=1/S_{n-1}-1/S_n\).
-
-    因此\(\sum_{k=1}^n a_n/S_n^2 \leq 1-1/S_n, \sum_{n=1}^\infty a_n/S_n^2 \leq 1\)，故收敛.
+    显然\(a_n/S_n^\alpha=(S_n-S_{n-1})/S_n^\alpha\)，因此\(\forall x \in [S_{n-1},S_n], 1/x^\alpha \geq 1/S_n^\alpha\).
+    \begin{align*}
+        \frac{S_n-S_{n-1}}{S_n^\alpha}=\int_{S_{n-1}}^{S_n} \frac{dx}{S_n^\alpha} \leq \int_{S_{n-1}}^{S_n} \frac{dx}{x^\alpha},
+        \sum_{n=1}^\infty \frac{a_n}{S_n^\alpha}=\int_{a_1}^\infty \frac{dx}{S_n^\alpha} \leq \int_{a_1}^\infty \frac{dx}{x^\alpha}<\infty
+    \end{align*}
+    因此\(\sum_{n=1}^\infty a_n/S_n^\alpha\)收敛.
 \end{proof}
 
 \begin{proof}[证明d]
@@ -110,9 +113,111 @@
 
     令\(a_n=1/n\)，则\(\sum_{n=1}^\infty a_n\)发散，且\(\sum_{n=1}^\infty 1/(1+na_n)=\sum_{n=1}^\infty 1/2\)发散.
 
-    令\(a_n=1, \exists k \in \mathbb{Z}^+, n=k^2; a_n=1/n^2, n \ne k^2\).显然\(\sum_{n=1}^\infty a_n \geq \sum_{n=1}^\infty a_{n^2}=\infty\)发散.
+    令\(a_n=1, \exists k \in \mathbb{Z}^+, n=k^2\)，否则\(a_n=1/n^2\).显然\(\sum_{n=1}^\infty a_n \geq \sum_{n=1}^\infty a_{n^2}=\infty\)发散.
     \begin{align*}
         \sum_{n=1}^\infty \frac{a_n}{1+na_n}=\sum_{k=1}^\infty \frac{1}{1+k^2}+\sum_{n \ne k^2} \frac{1}{n^2+n}
     \end{align*}
     显然两者均收敛，故\(\sum_{n=1}^\infty a_n/(1+n a_n)\)既可能发散也可能收敛.
+\end{proof}
+
+\newpage
+
+\begin{problem}[12]\label{pb3.12}
+    设\(\forall n \in \mathbb{Z}^+, a_n>0\)且\(\sum_{n=1}^\infty a_n\)收敛.定义\(r_n=\sum_{k=n}^\infty a_k\).
+
+    a.证明\(\forall m<n \in \mathbb{Z}^+, \sum_{k=m}^n a_k/r_k>1-(r_n/r_m)\)且\(\sum_{n=1}^\infty a_n/r_n\)发散.
+
+    b.证明\(\forall n \in \mathbb{Z}^+, a_n/\sqrt{r_n}<2(\sqrt{r_n}-\sqrt{r_{n+1}})\)且\(\sum_{n=1}^\infty a_n/\sqrt{r_n}\)收敛.
+\end{problem}
+
+\begin{proof}[证明a]
+    由于\(a_k/r_k>a_k/r_m\)，故\(\sum_{k=m}^n a_k/r_k>\sum_{k=m}^n a_k/r_m=(r_m-r_n)/r_m=1-r_n/r_m\).
+
+    由于\(\sum_{n=1}^\infty a_n\)收敛，故\(\exists N_0, N_1, \dots \in \mathbb{Z}^+, \forall j \in \mathbb{Z}^+, r_{N_j} \leq r_{N_{j-1}}/2\)，其中\(N_0=1\).
+    \begin{align*}
+        \sum_{n=1}^\infty \frac{a_n}{r_n}=\sum_{j=1}^\infty \sum_{k=N_{j-1}+1}^{N_j} \frac{a_n}{r_n} 
+        >\sum_{j=1}^\infty 1-\frac{r_{N_j}}{r_{N_{j-1}}} \geq \sum_{j=1}^\infty 1-\frac{r_{N_{j-1}}}{2r_{N_{j-1}}}=\sum_{n=1}^\infty \frac{1}{2}=\infty
+    \end{align*}
+    因此\(\sum_{n=1}^\infty a_n/r_n\)发散.
+\end{proof}
+
+\begin{proof}[证明b]
+    显然\(a_n/\sqrt{r_n}=(r_n-r_{n+1})/\sqrt{r_n}\)，进一步有
+    \begin{align*}
+        \frac{r_n-r_{n+1}}{\sqrt{r_n}}=\frac{(\sqrt{r_n}+\sqrt{r_{n+1}})(\sqrt{r_n}-\sqrt{r_{n+1}})}{\sqrt{r_n}} 
+        \leq \frac{2\sqrt{r_n}(\sqrt{r_n}-\sqrt{r_{n+1}})}{\sqrt{r_n}}=2(\sqrt{r_n}-\sqrt{r_{n+1}})
+    \end{align*}
+    因此\(\sum_{k=1}^n a_k/\sqrt{r_k} \leq 2(\sqrt{r_1}-\sqrt{r_{n+1}})\)，即\(\sum_{n=1}^\infty a_n/\sqrt{r_n} \leq 2\sqrt{r_1}\)收敛.
+\end{proof}
+
+\begin{problem}[13]\label{pb3.13}
+    证明若\(\sum_{n=0}^\infty a_n, \sum_{n=0}^\infty b_n\)绝对收敛，则\(\sum_{n=0}^\infty c_n, c_n=\sum_{k=0}^n a_kb_{n-k}\)也绝对收敛.
+\end{problem}
+
+\begin{proof}
+    \(\sum_{n=1}^N \abs*{c_n}=\sum_{n=1}^N \abs*{\sum_{k=0}^n a_kb_{n-k}} \leq \sum_{n=1}^N \sum_{k=0}^n \abs*{a_kb_{n-k}}\).
+    \begin{align*}
+        \sum_{n=0}^N \abs*{a_n} \cdot \sum_{n=0}^N \abs*{b_n}=\sum_{n=0}^{2N} \sum_{j+k=n}^{j,k \leq N} \abs*{a_jb_k}
+        \geq \sum_{n=0}^N \sum_{j+k=n} \abs*{a_jb_k}=\sum_{n=0}^N \sum_{k=0}^n \abs*{a_kb_{n-k}} \geq \sum_{n=0}^N \abs*{c_n}
+    \end{align*}
+    由于\(\sum_{n=0}^\infty \abs*{a_n}, \sum_{n=0}^\infty \abs*{b_n}\)收敛，故\(\sum_{n=0}^N \abs*{c_n} \leq \sum_{n=0}^N \abs*{a_n} \cdot \sum_{n=0}^N \abs*{b_n}\)有界.
+
+    结合\(\sum_{n=0}^N \abs*{c_n}\)的单调性，故\(\sum_{n=0}^\infty c_n\)绝对收敛.
+\end{proof}
+
+\newpage
+
+\begin{problem}[14]\label{pb3.14}
+    对于序列\(\{a_n\}_{n \in \mathbb{Z}^+}\)构造\(\{S_n\}_{n \in \mathbb{Z}^+}, S_n=\sum_{k=1}^n a_k/n\).
+
+    a.若\(\lim_{n \to \infty} a_n=a\)，证明\(\lim_{n \to \infty} S_n=a\).
+
+    b.构造序列\(\{a_n\}_{n \in \mathbb{Z}^+}\)使得\(\lim_{n \to \infty} S_n=0\)但\(\{a_n\}\)不收敛.
+
+    c.构造序列\(\{a_n\}_{n \in \mathbb{Z}^+}\)使得\(\lim_{n \to \infty} S_n=0\)但\(\forall n \in \mathbb{Z}^+, a_n>0, \limsup_{n \to \infty} a_n=\infty\).
+
+    d.令\(r_n=a_{n+1}-a_n\)，证明若\(\lim_{n \to \infty} nr_n=0\)，则\(\lim_{n \to \infty} S_n=\lim_{n \to \infty} a_n\).
+\end{problem}
+
+\begin{proof}[证明a]
+    由于\(\lim_{n \to \infty} a_n=a\)，则\(\forall \varepsilon>0, \exists N_1 \in \mathbb{Z}^+, \forall n>N_1, \abs*{a_1-a}<\varepsilon/2\).
+    \begin{align*}
+        \forall n>N_1, \abs*{S_n-a}=\abs*{\sum_{k=1}^n \frac{a_k-a}{n}} 
+        \leq \abs*{\sum_{k=1}^{N_1} \frac{a_k-a}{n}}+\abs*{\sum_{k=N_1+1}^{n} \frac{a_k-a}{n}}
+    \end{align*}
+    令\(C=\sum_{k=1}^{N_1} (a_k-a)\).选取\(N_2 \in \mathbb{Z}^+\)使得\(\forall n>N_2, C/n<\varepsilon/2\)，即\(N_2=\left\lceil 2C/\varepsilon \right\rceil\).
+
+    选取\(N=\max \{N_1,N_2\}\).因此\(\forall \varepsilon>0, \exists N \in \mathbb{Z}^+, \forall n>N,\)
+    \begin{align*}
+        \abs*{\sum_{k=1}^{N_1} \frac{a_k-a}{n}}=\frac{C}{n}<\frac{\varepsilon}{2},
+        \abs*{\sum_{k=N_1+1}^n \frac{a_k-a}{n}}<\abs*{\sum_{k=N_1+1}^n \frac{\varepsilon}{2n}}<\frac{(n-N_1)\varepsilon}{2n}<\frac{\varepsilon}{2}
+    \end{align*}
+    因此\(\abs*{S_n-a} \leq \abs*{\sum_{k=1}^{N_1} (a_k-a)/n}+\abs*{\sum_{k=N_1+1}^{n} (a_k-a)/n}<\varepsilon/2+\varepsilon/2=\varepsilon\).
+\end{proof}
+
+\begin{proof}[证明b]
+    令\(a_n=(-1)^{n-1}\)，显然\(a_n\)不收敛，但\(\lim_{n \to \infty} S_n=\lim_{n \to \infty} 1/n=0\).
+\end{proof}
+
+\begin{proof}[证明c]
+    令\(a_n=n, \exists k \in \mathbb{Z}^+, n=2^k\)，否则\(a_n=1/n^2\).显然\(\limsup_{n \to \infty} a_n=\infty\).
+    \begin{align*}
+        \frac{\sum_{k=1}^n a_k}{n} \leq \frac{1}{n} \left(\frac{\left\lfloor \log_2 n\right\rfloor (\left\lfloor \log_2 n\right\rfloor+1)}{2}+\sum_{k=1}^\infty \frac{1}{k^2}\right)
+    \end{align*}
+    由于\(\sum_{k=1}^\infty 1/k^2=\pi^2/6\)为有限值且\(\left\lfloor \log_2 n \right\rfloor \leq \log_2 n\)，故\(S_n \leq (\log_2 n)^2/n+o((\log_2 n)^2/n)\).
+
+    由于\(\lim_{n \to \infty} (\log_2 n)^2/n=0\)，故\(\lim_{n \to \infty} S_n=0\).
+\end{proof}
+
+\begin{proof}[证明d]
+    先证明\(a_n-S_n=\sum_{k=1}^{n-1} kr_k/n\)，因为
+    \begin{align*}
+        \sum_{k=1}^{n-1} kr_k=(n-1)a_n-\sum_{k=1}^{n-1} a_k=na_n-\sum_{k=1}^n a_n, 
+        \frac{\sum_{k=1}^{n-1} kr_k}{n}=a_n-\frac{\sum_{k=1}^n a_k}{n}
+    \end{align*}
+    视\(p_n=\sum_{k=1}^{n-1} kr_k/(n-1)\)为\(nr_n\)的平均值序列，同证明1得到\(\lim_{n \to \infty} nr_n=\lim_{n \to \infty} p_n=0\).
+
+    然而\(\sum_{k=1}^{n-1} kr_k/n \leq \sum_{k=1}^{n-1} kr_k/(n-1)=p_n\)且\(\sum_{k=1}^{n-1} kr_k/n \geq 0\)，故\(\lim_{n \to \infty} \sum_{k=1}^{n-1} kr_k/n=0\).
+
+    因此\(\lim_{n \to \infty} (a_n-S_n)=\lim_{n \to \infty} nr_n=0\)，即\(\lim_{n \to \infty} a_n=\lim_{n \to \infty} S_n\).
 \end{proof}

@@ -229,21 +229,21 @@
 
     由于\(\lim_{n \to \infty}(\varphi(x_n))=[\{x_n\}], \lim_{n \to \infty}(\varphi(y_n))=[\{y_n\}]\)，
     
-    故\(\exists N_1,N_2 \in \mathbb{Z}^+, \forall n>N_1, d(\varphi(x_n),[\{x_n\}])<\varepsilon_0/3, \forall n>N_2, d(\varphi(y_n),[\{y_n\}])<\varepsilon_0/3\).
+    故\(\exists N_1,N_2 \in \mathbb{Z}^+, \forall n>N_1, d(\varphi(x_n),[\{x_n\}])<\varphi(\varepsilon_0/4), \forall n>N_2, d(\varphi(y_n),[\{y_n\}])<\varphi(\varepsilon_0/4)\).
 
     令\(N=\max\{N_0,N_1,N_2\}+1, q=(x_N+y_N)/2\)，下证\([\{x_n\}]<\varphi(q)<[\{y_n\}]\).
 
-    由于\(N>N_1, d(\varphi(x_N),[\{x_n\}])<\varphi(\varepsilon_0/3)\)，即\(\varphi(x_N)-[\{x_n\}]>-\varphi(\varepsilon_0/3)\).
+    由于\(N>N_1, d(\varphi(x_N),[\{x_n\}])<\varphi(\varepsilon_0/4)\)，即\(\varphi(x_N)-[\{x_n\}]>-\varphi(\varepsilon_0/4)\).
 
     同时\(N>N_0, \varphi(q)-\varphi(x_N)=\varphi((x_N+y_N)/2-x_N)=\varphi((y_N-x_N)/2)>\varphi(\varepsilon_0/2)\).
 
-    因此\(\varphi(q)-[\{x_n\}]=(\varphi(q)-\varphi(x_N))+(\varphi(x_N)-[\{x_n\}])>\varphi(\varepsilon_0/6)\)，即\(\varphi(q)>[\{x_n\}]\).
+    因此\(\varphi(q)-[\{x_n\}]=(\varphi(q)-\varphi(x_N))+(\varphi(x_N)-[\{x_n\}])>\varphi(\varepsilon_0/4)\)，即\(\varphi(q)>[\{x_n\}]\).
 
-    由于\(N>N_1, d(\varphi(y_N),[\{y_n\}])<\varphi(\varepsilon_0/3)\)，即\([\{y_n\}]-\varphi(y_N)>-\varphi(\varepsilon_0/3)\).
+    由于\(N>N_1, d(\varphi(y_N),[\{y_n\}])<\varphi(\varepsilon_0/4)\)，即\([\{y_n\}]-\varphi(y_N)>-\varphi(\varepsilon_0/4)\).
 
     同时\(N>N_0, \varphi(y_N)-\varphi(q)=\varphi(y_N-(x_N+y_N)/2)=\varphi((y_N-x_N)/2)>\varphi(\varepsilon_0/2)\).
 
-    因此\([\{y_n\}]-\varphi(q)=([\{y_n\}]-\varphi(y_N))+(\varphi(y_N)-\varphi(q))>\varphi(\varepsilon_0/6)\)，即\([\{y_n\}]>\varphi(q)\).
+    因此\([\{y_n\}]-\varphi(q)=([\{y_n\}]-\varphi(y_N))+(\varphi(y_N)-\varphi(q))>\varphi(\varepsilon_0/4)\)，即\([\{y_n\}]>\varphi(q)\).
 \end{proof}
 
 \begin{comment}
@@ -337,10 +337,7 @@
         \end{align*}
         {\kaishu 因此任意实数域中的柯西序列在域中的收敛，即实数域具有完备性.}
     \end{proof}
-\end{comment}
 
-
-\begin{comment}
     \begin{proof}[完备性证明]
         考虑实数域中的柯西序列\(\{x_j\}, x_j \in \mathbb{R}\)，其中\(x_j=[\{a_{i,j}\}], a_{i,j} \in \mathbb{Q}\).
 
@@ -363,9 +360,7 @@
         \end{align*}
         {\kaishu 因此任意实数域中的柯西序列在域中的收敛，即实数域具有完备性.}
     \end{proof}
-\end{comment}
 
-\begin{comment}
     \begin{proof}[完备性证明]
         考虑实数域中的柯西序列\(\{x_k\}, x_k \in \mathbb{R}\)，其中\(x_k=[\{a_i^k\}], a_i^k \in \mathbb{Q}\).
 
@@ -390,9 +385,7 @@
         \end{align*}
         {\kaishu 因此任意实数域中的柯西序列在域中的收敛，即实数域具有完备性.}
     \end{proof}
-\end{comment}
 
-\begin{comment}
     \begin{theorem}\label{1.A.2} 区间套定理 \:
         考虑区间套\([a_1,b_1] \supseteq [a_2,b_2] \supseteq \dots\)满足\(\lim_{n \to \infty}(b_n-a_n)=0\).
 
