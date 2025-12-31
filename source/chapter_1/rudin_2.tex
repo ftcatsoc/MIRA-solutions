@@ -76,10 +76,10 @@
 
 {\kaishu 下面是开集、闭集、联通集相关的习题.
 
-以下\(\mathrm{int} E\)指代\(E\)的内部，\(\mathrm{cl} E\)指代\(E\)的闭包，\(\lim E\)指代\(E\)的导集.}
+以下\(\operatorname{int} E\)指代\(E\)的内部，\(\operatorname{cl} E\)指代\(E\)的闭包，\(\lim E\)指代\(E\)的导集.}
 
 \begin{problem}[6]\label{pb2.6}
-    证明\(\lim E\)是闭集且\(\lim (\mathrm{cl} E)=\lim E, \lim (\lim E) \ne \lim E\).
+    证明\(\lim E\)是闭集且\(\lim (\operatorname{cl} E)=\lim E, \lim (\lim E) \ne \lim E\).
 \end{problem}
 
 \begin{proof}
@@ -91,13 +91,13 @@
     
     即\(p_0 \in \lim E, \lim (\lim E) \subseteq \lim E\).若\(\lim (\lim E)=\varnothing \subseteq \lim E\)，即\(\lim E\)依旧是闭集.
 
-    下证\(\lim (\mathrm{cl} E) \subseteq \lim E\).设\(\forall p_0 \in \lim (\mathrm{cl} E)\)，从而\(\forall \varepsilon>0, \exists p_1 \in \mathrm{cl} E, d(p_0,p_1)<\varepsilon/2\).
+    下证\(\lim (\operatorname{cl} E) \subseteq \lim E\).设\(\forall p_0 \in \lim (\operatorname{cl} E)\)，从而\(\forall \varepsilon>0, \exists p_1 \in \operatorname{cl} E, d(p_0,p_1)<\varepsilon/2\).
 
-    由于\(p_1 \in \mathrm{cl} E\)，故\(\forall \varepsilon>0, \exists p_2 \in E, d(p_1,p_2)<\varepsilon/2\).
+    由于\(p_1 \in \operatorname{cl} E\)，故\(\forall \varepsilon>0, \exists p_2 \in E, d(p_1,p_2)<\varepsilon/2\).
 
-    因此\(\forall \varepsilon>0, p_0 \in \lim (\mathrm{cl} E), \exists p_1 \in \mathrm{cl} E, p_2 \in E, d(p_0,p_2) \leq d(p_0,p_1)+d(p_1,p_2)<\varepsilon\).
+    因此\(\forall \varepsilon>0, p_0 \in \lim (\operatorname{cl} E), \exists p_1 \in \operatorname{cl} E, p_2 \in E, d(p_0,p_2) \leq d(p_0,p_1)+d(p_1,p_2)<\varepsilon\).
 
-    即\(p_0 \in \lim E, \lim (\mathrm{cl} E) \subseteq \lim E\).结合显然的\(\lim E \subseteq \lim (\mathrm{cl} E)\)，有\(\lim (\mathrm{cl} E)=\lim E\).
+    即\(p_0 \in \lim E, \lim (\operatorname{cl} E) \subseteq \lim E\).结合显然的\(\lim E \subseteq \lim (\operatorname{cl} E)\)，有\(\lim (\operatorname{cl} E)=\lim E\).
 
     设\(E=\{0\} \cup \{1/n: n \in \mathbb{Z}^+\}\)，则\(\lim E=\{0\}, \lim (\lim E)=\varnothing, \lim E \ne \lim (\lim E)\).
 \end{proof}
@@ -105,49 +105,49 @@
 \begin{problem}[7]\label{pb2.7}
     设\((X,d)\)是度量空间，\(A_1, A_2, \dots \subseteq X\).
     
-    证明若\(A=\bigcup_{k=1}^n A_k\)，则\(\mathrm{cl} A=\bigcup_{k=1}^n \mathrm{cl} A_k\)；若\(A=\bigcup_{k=1}^\infty A_k\)，则\(\mathrm{cl} A \supset \bigcup_{k=1}^\infty \mathrm{cl} A_k\).
+    证明若\(A=\bigcup_{k=1}^n A_k\)，则\(\operatorname{cl} A=\bigcup_{k=1}^n \operatorname{cl} A_k\)；若\(A=\bigcup_{k=1}^\infty A_k\)，则\(\operatorname{cl} A \supset \bigcup_{k=1}^\infty \operatorname{cl} A_k\).
 \end{problem}
 
 \begin{proof}
-    由于\(\forall k \in \mathbb{Z}^+, A_k \subseteq A\)，因此\(\mathrm{cl} A_k \subseteq \mathrm{cl} A\)，即\(\forall n \in \mathbb{Z}^+, \bigcup_{k=1}^n \mathrm{cl} A_k \subseteq \mathrm{cl} A\).
+    由于\(\forall k \in \mathbb{Z}^+, A_k \subseteq A\)，因此\(\operatorname{cl} A_k \subseteq \operatorname{cl} A\)，即\(\forall n \in \mathbb{Z}^+, \bigcup_{k=1}^n \operatorname{cl} A_k \subseteq \operatorname{cl} A\).
 
-    下证\(\mathrm{cl} A \subseteq \bigcup_{k=1}^n \mathrm{cl} A_k\).设\(\forall p_0 \in \mathrm{cl} A\)，则\(\forall \varepsilon>0, \exists p_1 \in A, d(p_0,p_1)<\varepsilon\).
+    下证\(\operatorname{cl} A \subseteq \bigcup_{k=1}^n \operatorname{cl} A_k\).设\(\forall p_0 \in \operatorname{cl} A\)，则\(\forall \varepsilon>0, \exists p_1 \in A, d(p_0,p_1)<\varepsilon\).
 
     由于\(A=\bigcup_{k=1}^n A_k\)，故\(\exists k=1, \dots, n, \forall \varepsilon>0, \exists p_1 \in A_k, d(p_0,p_1)<\varepsilon\).
 
-    这即\(p_0 \in \mathrm{cl} A_k, \mathrm{cl} A \subseteq \bigcup_{k=1}^n \mathrm{cl} A_k\)，因此\(\mathrm{cl} A=\bigcup_{k=1}^n \mathrm{cl} A_k\).
+    这即\(p_0 \in \operatorname{cl} A_k, \operatorname{cl} A \subseteq \bigcup_{k=1}^n \operatorname{cl} A_k\)，因此\(\operatorname{cl} A=\bigcup_{k=1}^n \operatorname{cl} A_k\).
 
-    考虑\(A_k=\{1/k\}\)，从而\(\mathrm{cl} A=\{1/n: n \in \mathbb{Z}^+\} \subset \{0\} \cup \{1/n: n \in \mathbb{Z}^+\}=\bigcup_{k=1}^\infty \mathrm{cl} A_k\).
+    考虑\(A_k=\{1/k\}\)，从而\(\operatorname{cl} A=\{1/n: n \in \mathbb{Z}^+\} \subset \{0\} \cup \{1/n: n \in \mathbb{Z}^+\}=\bigcup_{k=1}^\infty \operatorname{cl} A_k\).
 \end{proof}
 
 \newpage
 
 \begin{problem}[8]\label{pb2.8}
-    a.证明\(\mathrm{int} E\)是开集且\(\mathrm{int} E=E\)等价于\(E\)是开集.
+    a.证明\(\operatorname{int} E\)是开集且\(\operatorname{int} E=E\)等价于\(E\)是开集.
 
-    b.证明若开集\(G \subseteq E\)，则\(G \subseteq \mathrm{int} E\)；证明\((\mathrm{int} E)^c=\mathrm{cl} (E^c)\).
+    b.证明若开集\(G \subseteq E\)，则\(G \subseteq \operatorname{int} E\)；证明\((\operatorname{int} E)^c=\operatorname{cl} (E^c)\).
 
-    c.证明\(\mathrm{int} E \ne \mathrm{int} (\mathrm{cl} E); \mathrm{cl} E \ne \mathrm{cl} (\mathrm{int} E)\).
+    c.证明\(\operatorname{int} E \ne \operatorname{int} (\operatorname{cl} E); \operatorname{cl} E \ne \operatorname{cl} (\operatorname{int} E)\).
 \end{problem}
 
 \begin{proof}[证明a]
-    若\(p_0 \in \mathrm{int} E\)，则\(\exists r_0>0, B(p_0,r_0) \subseteq E\)，考虑\(\forall p_1 \in B(p_0,r_0)\).
+    若\(p_0 \in \operatorname{int} E\)，则\(\exists r_0>0, B(p_0,r_0) \subseteq E\)，考虑\(\forall p_1 \in B(p_0,r_0)\).
 
-    显然\(\exists r_1 \in (0, r_0-d(p_0,p_1)), \forall p_2 \in B(p_1,r_1), p_2 \in B(p_0,r_0)\)，从而\(p_2 \in \mathrm{int} E\)是\(\mathrm{int} E\)的内点.
+    显然\(\exists r_1 \in (0, r_0-d(p_0,p_1)), \forall p_2 \in B(p_1,r_1), p_2 \in B(p_0,r_0)\)，从而\(p_2 \in \operatorname{int} E\)是\(\operatorname{int} E\)的内点.
 
-    若\(E\)为开集显然有\(\mathrm{int} E=E\).若\(\mathrm{int} E=E\)，则\(E\)的所有点都是其内点，即\(E\)是开集.
+    若\(E\)为开集显然有\(\operatorname{int} E=E\).若\(\operatorname{int} E=E\)，则\(E\)的所有点都是其内点，即\(E\)是开集.
 \end{proof}
 
 \begin{proof}[证明b]
-    \(\forall p \in G, \exists r>0, B(p,r) \subseteq G \subseteq E\)，则\(p\)是\(E\)的内点，即\(p \in \mathrm{int} E, G \subseteq \mathrm{int} E\).
+    \(\forall p \in G, \exists r>0, B(p,r) \subseteq G \subseteq E\)，则\(p\)是\(E\)的内点，即\(p \in \operatorname{int} E, G \subseteq \operatorname{int} E\).
 
-    下证\((\mathrm{int} E)^c=\mathrm{cl} (E^c)\).\(p_0 \in \mathrm{cl} (E^c)\)等价于\(\forall \varepsilon>0, \exists p_1 \notin E, d(p_0,p_1)<\varepsilon\).
+    下证\((\operatorname{int} E)^c=\operatorname{cl} (E^c)\).\(p_0 \in \operatorname{cl} (E^c)\)等价于\(\forall \varepsilon>0, \exists p_1 \notin E, d(p_0,p_1)<\varepsilon\).
 
-    而这等价于\(\forall r>0, \exists p_1 \notin E, p_1 \in B(p_0,r)\)，即\(p_0\)不是\(E\)的内点，等价于\(p_0 \notin \mathrm{int} E\).
+    而这等价于\(\forall r>0, \exists p_1 \notin E, p_1 \in B(p_0,r)\)，即\(p_0\)不是\(E\)的内点，等价于\(p_0 \notin \operatorname{int} E\).
 \end{proof}
 
 \begin{proof}[证明c]
-    令\(X=\mathbb{R}, E=\mathbb{Q}\)，则\(\mathrm{int} E=\varnothing \ne X=\mathrm{int} (\mathrm{cl} E); \mathrm{cl} E=X \ne \varnothing=\mathrm{cl} (\mathrm{int} E)\).
+    令\(X=\mathbb{R}, E=\mathbb{Q}\)，则\(\operatorname{int} E=\varnothing \ne X=\operatorname{int} (\operatorname{cl} E); \operatorname{cl} E=X \ne \varnothing=\operatorname{cl} (\operatorname{int} E)\).
 \end{proof}
 
 \begin{problem}[19]\label{pb2.19}
@@ -161,11 +161,11 @@
 \end{problem}
 
 \begin{proof}[证明a]
-    显然\(\mathrm{cl} A \cap B=A \cap \mathrm{cl} B=A \cap B=\varnothing\)，即\(A,B\)是分离的.
+    显然\(\operatorname{cl} A \cap B=A \cap \operatorname{cl} B=A \cap B=\varnothing\)，即\(A,B\)是分离的.
 \end{proof}
 
 \begin{proof}[证明b]
-    若\(\mathrm{cl} A \cap B \ne \varnothing\)，即\(\exists p_0 \in B, \forall \varepsilon>0, \exists p_1 \in A, d(p_0,p_1)<\varepsilon\).然而\(p_0\)是\(B\)的内点，
+    若\(\operatorname{cl} A \cap B \ne \varnothing\)，即\(\exists p_0 \in B, \forall \varepsilon>0, \exists p_1 \in A, d(p_0,p_1)<\varepsilon\).然而\(p_0\)是\(B\)的内点，
     
     即\(\exists r>0, B(p_0,r) \subseteq B\).取\(\varepsilon<r, \exists p_1 \in A \cap B(p_0,r) \subseteq A \cap B\)，与\(A \cap B=\varnothing\)矛盾.
 \end{proof}
@@ -189,21 +189,21 @@
 \end{proof}
 
 \begin{problem}[20]\label{pb2.20}
-    证明任意度量空间\(X\)中的联通集\(E\)都保证\(\mathrm{cl} E\)是联通集，但不保证\(\mathrm{int} E\)联通.
+    证明任意度量空间\(X\)中的联通集\(E\)都保证\(\operatorname{cl} E\)是联通集，但不保证\(\operatorname{int} E\)联通.
 \end{problem}
 
 \begin{proof}
     令\(X=\mathbb{R}^2, E=\{(x,y): x \in [0,1], y \in [0,1]\} \cup \{(x,y): x \in [-1,0], y \in [-1,0]\}\).
 
-    那么\(\mathrm{int} E=\{(x,y): x \in (0,1), y \in (0,1)\} \cup \{(x,y): x \in (-1,0), y \in (-1,0)\}\).
+    那么\(\operatorname{int} E=\{(x,y): x \in (0,1), y \in (0,1)\} \cup \{(x,y): x \in (-1,0), y \in (-1,0)\}\).
 
-    \(\{(x,y): x \in (0,1), y \in (0,1)\}\)和\(\{(x,y): x \in (-1,0), y \in (-1,0)\}\)分离，故\(\mathrm{int} E\)不连通.
+    \(\{(x,y): x \in (0,1), y \in (0,1)\}\)和\(\{(x,y): x \in (-1,0), y \in (-1,0)\}\)分离，故\(\operatorname{int} E\)不连通.
 
-    设\(\mathrm{cl} E\)不是联通集，则\(\exists U_1,U_2 \ne \varnothing \subseteq X\)使得\(U_1,U_2\)分离且\(\mathrm{cl} E=U_1 \cup U_2\).
+    设\(\operatorname{cl} E\)不是联通集，则\(\exists U_1,U_2 \ne \varnothing \subseteq X\)使得\(U_1,U_2\)分离且\(\operatorname{cl} E=U_1 \cup U_2\).
 
-    由于\(E \subseteq \mathrm{cl} E\)，故\(E=(E \cap U_1) \cup (E \cap U_2)\).\(E \cap U_1\)和\(E \cap U_2\)是分离的，下证均不为空.
+    由于\(E \subseteq \operatorname{cl} E\)，故\(E=(E \cap U_1) \cup (E \cap U_2)\).\(E \cap U_1\)和\(E \cap U_2\)是分离的，下证均不为空.
 
-    设\(E \cap U_1=\varnothing\)，则\(E \subseteq U_2\).然而\(U_1 \subseteq \mathrm{cl} E \subseteq \mathrm{cl} U_2\)，从而\(U_1,U_2\)不是分离的，矛盾.
+    设\(E \cap U_1=\varnothing\)，则\(E \subseteq U_2\).然而\(U_1 \subseteq \operatorname{cl} E \subseteq \operatorname{cl} U_2\)，从而\(U_1,U_2\)不是分离的，矛盾.
 \end{proof}
 
 \begin{problem}[21]\label{pb2.21}
@@ -217,7 +217,7 @@
 \end{problem}
 
 \begin{proof}[证明a]
-    若\(\mathrm{cl} A_0 \cap B_0 \ne \varnothing\)，则\(p(\mathrm{cl} A_0 \cap B_0)=\mathrm{cl} A \cap B \ne \varnothing\)，与\(A,B\)分离矛盾.
+    若\(\operatorname{cl} A_0 \cap B_0 \ne \varnothing\)，则\(p(\operatorname{cl} A_0 \cap B_0)=\operatorname{cl} A \cap B \ne \varnothing\)，与\(A,B\)分离矛盾.
 \end{proof}
 
 \begin{proof}[证明b]
